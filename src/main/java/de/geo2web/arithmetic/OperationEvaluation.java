@@ -1,4 +1,4 @@
-package de.geo2web.arithmetics;
+package de.geo2web.arithmetic;
 
 import de.geo2web.util.logging.Level;
 import de.geo2web.util.logging.Logger;

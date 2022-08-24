@@ -1,7 +1,7 @@
-package arithmetics;
+package arithmetic;
 
-import de.geo2web.arithmetics.*;
-import de.geo2web.arithmetics.Number;
+import de.geo2web.arithmetic.*;
+import de.geo2web.arithmetic.Number;
 import org.junit.jupiter.api.Test;
 import org.springframework.util.Assert;
 

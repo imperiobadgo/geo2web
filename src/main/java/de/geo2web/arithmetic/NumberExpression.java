@@ -1,4 +1,4 @@
-package de.geo2web.arithmetics;
+package de.geo2web.arithmetic;
 
 public class NumberExpression extends ExpressionDecorator {
 
