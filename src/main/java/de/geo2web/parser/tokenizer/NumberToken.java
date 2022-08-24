@@ -1,10 +1,12 @@
 package de.geo2web.parser.tokenizer;
 
+import de.geo2web.parser.Number;
+
 /**
  * Represents a number in the expression
  */
 public final class NumberToken extends Token {
-    private final double value;
+    private final Number value;
 
     /**
      * Create a new instance
@@ -13,11 +15,20 @@ public final class NumberToken extends Token {
      */
     public NumberToken(double value) {
         super(TOKEN_NUMBER);
+        this.value = new Number((float)value);
+    }
+
+    public NumberToken(Number value) {
+        super(TOKEN_NUMBER);
         this.value = value;
     }
 
+    public NumberToken(String input) {
+        this(new Number(input));
+    }
+
     NumberToken(final char[] expression, final int offset, final int len) {
-        this(Double.parseDouble(String.valueOf(expression, offset, len)));
+        this(new Number(String.valueOf(expression, offset, len)));
     }
 
     /**
@@ -25,7 +36,7 @@ public final class NumberToken extends Token {
      *
      * @return the value
      */
-    public double getValue() {
+    public Number getValue() {
         return value;
     }
 }

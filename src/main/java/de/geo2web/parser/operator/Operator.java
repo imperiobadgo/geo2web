@@ -1,5 +1,7 @@
 package de.geo2web.parser.operator;
 
+import de.geo2web.parser.Operand;
+
 /**
  * Class representing operators that can be used in an expression
  */
@@ -104,7 +106,7 @@ public abstract class Operator {
      * @param args the operands for the operation
      * @return the calculated result of the operation
      */
-    public abstract double apply(double... args);
+    public abstract Operand apply(Operand... args);
 
     /**
      * Get the operator symbol

@@ -1,5 +1,7 @@
 package de.geo2web.parser.function;
 
+import de.geo2web.parser.Operand;
+
 /**
  * A class representing a Function which can be used in an expression
  */
@@ -61,7 +63,7 @@ public abstract class Function {
      * @param args the set of arguments used for calculating the function
      * @return the result of the function evaluation
      */
-    public abstract double apply(double... args);
+    public abstract Operand apply(Operand... args);
 
     /**
      * Get the set of characters which are allowed for use in Function names.

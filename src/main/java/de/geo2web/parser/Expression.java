@@ -13,16 +13,16 @@ public class Expression {
 
     private final Token[] tokens;
 
-    private final Map<String, Double> variables;
+    private final Map<String, Operand> variables;
 
     private final Set<String> userFunctionNames;
 
-    private static Map<String, Double> createDefaultVariables() {
-        final Map<String, Double> vars = new HashMap<>(4);
-        vars.put("pi", Math.PI);
-        vars.put("π", Math.PI);
-        vars.put("φ", 1.61803398874d);
-        vars.put("e", Math.E);
+    private static Map<String, Operand> createDefaultVariables() {
+        final Map<String, Operand> vars = new HashMap<>(4);
+        vars.put("pi", new Number(Math.PI));
+        vars.put("π", new Number(Math.PI));
+        vars.put("φ", new Number(1.61803398874d));
+        vars.put("e", new Number(Math.E));
         return vars;
     }
 
@@ -38,7 +38,7 @@ public class Expression {
         this.userFunctionNames = new HashSet<>(existing.userFunctionNames);
     }
 
-    Expression(final Token[] tokens) {
+    public Expression(final Token[] tokens) {
         this.tokens = tokens;
         this.variables = createDefaultVariables();
         this.userFunctionNames = Collections.emptySet();
@@ -50,7 +50,7 @@ public class Expression {
         this.userFunctionNames = userFunctionNames;
     }
 
-    public Expression setVariable(final String name, final double value) {
+    public Expression setVariable(final String name, final Operand value) {
         this.checkVariableName(name);
         this.variables.put(name, value);
         return this;
@@ -62,8 +62,8 @@ public class Expression {
         }
     }
 
-    public Expression setVariables(Map<String, Double> variables) {
-        for (Map.Entry<String, Double> v : variables.entrySet()) {
+    public Expression setVariables(Map<String, Operand> variables) {
+        for (Map.Entry<String, Operand> v : variables.entrySet()) {
             this.setVariable(v.getKey(), v.getValue());
         }
         return this;
@@ -146,18 +146,18 @@ public class Expression {
         return validate(true);
     }
 
-    public Future<Double> evaluateAsync(ExecutorService executor) {
+    public Future<Operand> evaluateAsync(ExecutorService executor) {
         return executor.submit(this::evaluate);
     }
 
-    public double evaluate() {
-        final ArrayStack output = new ArrayStack();
+    public Operand evaluate() {
+        final Stack<Operand> output = new Stack<>();
         for (Token t : tokens) {
             if (t.getType() == Token.TOKEN_NUMBER) {
                 output.push(((NumberToken) t).getValue());
             } else if (t.getType() == Token.TOKEN_VARIABLE) {
                 final String name = ((VariableToken) t).getName();
-                final Double value = this.variables.get(name);
+                final Operand value = this.variables.get(name);
                 if (value == null) {
                     throw new IllegalArgumentException("No value has been set for the setVariable '" + name + "'.");
                 }
@@ -169,12 +169,12 @@ public class Expression {
                 }
                 if (op.getOperator().getNumOperands() == 2) {
                     /* pop the operands and push the result of the operation */
-                    double rightArg = output.pop();
-                    double leftArg = output.pop();
+                    Operand rightArg = output.pop();
+                    Operand leftArg = output.pop();
                     output.push(op.getOperator().apply(leftArg, rightArg));
                 } else if (op.getOperator().getNumOperands() == 1) {
                     /* pop the operand and push the result of the operation */
-                    double arg = output.pop();
+                    Operand arg = output.pop();
                     output.push(op.getOperator().apply(arg));
                 }
             } else if (t.getType() == Token.TOKEN_FUNCTION) {
@@ -184,7 +184,7 @@ public class Expression {
                     throw new IllegalArgumentException("Invalid number of arguments available for '" + func.getFunction().getName() + "' function");
                 }
                 /* collect the arguments from the stack */
-                double[] args = new double[numArguments];
+                Operand[] args = new Operand[numArguments];
                 for (int j = numArguments - 1; j >= 0; j--) {
                     args[j] = output.pop();
                 }
