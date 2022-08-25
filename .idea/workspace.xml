@@ -4,58 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="cba5d1cc-47d2-4e5d-9117-80b432d6b105" name="Changes" comment="Adapted net.objecthunter.exp4j for own use and number encapsulated">
+    <list default="true" id="cba5d1cc-47d2-4e5d-9117-80b432d6b105" name="Changes" comment="Converted ExpressionBuilderTest">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/de/geo2web/arithmetic/ArithmeticParser.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/de/geo2web/arithmetic/EmptyExpression.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/de/geo2web/arithmetic/Expression.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/geo2web/arithmetic/Expression.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/de/geo2web/arithmetic/ExpressionDecorator.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/de/geo2web/arithmetic/ExpressionNode.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/de/geo2web/arithmetic/ExpressionResult.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/de/geo2web/arithmetic/Function.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/de/geo2web/arithmetic/Number.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/geo2web/arithmetic/Number.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/de/geo2web/arithmetic/NumberExpression.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/de/geo2web/arithmetic/NumberValue.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/de/geo2web/arithmetic/NumberVariable.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/de/geo2web/arithmetic/OperationEvaluation.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/de/geo2web/arithmetic/Operator.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/de/geo2web/arithmetic/Vector.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/geo2web/arithmetic/Vector.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/de/geo2web/arithmetic/VectorValue.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/de/geo2web/parser/Expression.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/de/geo2web/parser/ExpressionBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/geo2web/arithmetic/ExpressionBuilder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/de/geo2web/parser/Number.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/de/geo2web/parser/NumberOperand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/geo2web/arithmetic/NumberOperand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/de/geo2web/parser/Operand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/geo2web/arithmetic/Operand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/de/geo2web/parser/ShuntingYard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/geo2web/arithmetic/ShuntingYard.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/de/geo2web/parser/ValidationResult.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/geo2web/arithmetic/ValidationResult.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/de/geo2web/parser/Vector.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/de/geo2web/parser/VectorOperand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/geo2web/arithmetic/VectorOperand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/de/geo2web/parser/function/Function.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/geo2web/arithmetic/function/Function.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/de/geo2web/parser/function/FunctionEvaluation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/geo2web/arithmetic/function/FunctionEvaluation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/de/geo2web/parser/function/Functions.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/geo2web/arithmetic/function/Functions.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/de/geo2web/parser/operator/OperationEvaluation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/geo2web/arithmetic/operator/OperationEvaluation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/de/geo2web/parser/operator/Operator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/geo2web/arithmetic/operator/Operator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/de/geo2web/parser/operator/Operators.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/geo2web/arithmetic/operator/Operators.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/de/geo2web/parser/tokenizer/ArgumentSeparatorToken.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/geo2web/arithmetic/tokenizer/ArgumentSeparatorToken.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/de/geo2web/parser/tokenizer/CloseParenthesesToken.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/geo2web/arithmetic/tokenizer/CloseParenthesesToken.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/de/geo2web/parser/tokenizer/FunctionToken.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/geo2web/arithmetic/tokenizer/FunctionToken.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/de/geo2web/parser/tokenizer/NumberToken.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/geo2web/arithmetic/tokenizer/NumberToken.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/de/geo2web/parser/tokenizer/OpenParenthesesToken.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/geo2web/arithmetic/tokenizer/OpenParenthesesToken.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/de/geo2web/parser/tokenizer/OperatorToken.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/geo2web/arithmetic/tokenizer/OperatorToken.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/de/geo2web/parser/tokenizer/Token.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/geo2web/arithmetic/tokenizer/Token.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/de/geo2web/parser/tokenizer/Tokenizer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/geo2web/arithmetic/tokenizer/Tokenizer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/de/geo2web/parser/tokenizer/UnknownFunctionOrVariableException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/geo2web/arithmetic/tokenizer/UnknownFunctionOrVariableException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/de/geo2web/parser/tokenizer/VariableToken.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/geo2web/arithmetic/tokenizer/VariableToken.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/arithmetic/NumberArithmeticOperationTests.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/arithmetic/NumberVariableTests.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/arithmetic/VectorArithmeticOperationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/arithmetic/VectorArithmeticOperationTests.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/parser/ExpressionBuilderTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/arithmetic/ExpressionBuilderTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/parser/ExpressionTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/arithmetic/ExpressionTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/parser/ExpressionValidateTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/arithmetic/ExpressionValidateTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/parser/FunctionsTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/arithmetic/FunctionsTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/parser/PerformanceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/arithmetic/PerformanceTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/parser/ShuntingYardTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/arithmetic/ShuntingYardTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/parser/TestUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/arithmetic/TestUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/arithmetic/ExpressionBuilderTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/arithmetic/ExpressionBuilderTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -111,7 +62,7 @@
     &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;vcs.Subversion&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;inlay.hints&quot;,
     &quot;spring.configuration.checksum&quot;: &quot;3c5e0a303a466df6d93fc53f59a77a7c&quot;
   }
 }</component>
@@ -123,10 +74,18 @@
       <recent name="de.geo2web.arithmetics" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.arithmetic in geo2web">
+  <component name="RunManager" selected="JUnit.ExpressionBuilderTest">
     <configuration name="Unnamed" type="Application" factoryName="Application" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.imperiobadgo.geo2web.Application" />
       <module name="geo2web" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="All in geo2web" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="geo2web" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="TEST_OBJECT" value="package" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -146,7 +105,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ExpressionBuilderTest.testExpressionBuilder11" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="ExpressionBuilderTest.testExpression43" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="geo2web" />
       <extension name="coverage">
         <pattern>
@@ -156,13 +115,13 @@
       </extension>
       <option name="PACKAGE_NAME" value="arithmetic" />
       <option name="MAIN_CLASS_NAME" value="arithmetic.ExpressionBuilderTest" />
-      <option name="METHOD_NAME" value="testExpressionBuilder11" />
+      <option name="METHOD_NAME" value="testExpression43" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="FunctionsTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="ExpressionBuilderTest.testExpression62" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="geo2web" />
       <extension name="coverage">
         <pattern>
@@ -171,23 +130,8 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="arithmetic" />
-      <option name="MAIN_CLASS_NAME" value="arithmetic.FunctionsTest" />
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="PerformanceTest.testBenches" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="geo2web" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="arithmetic.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="arithmetic" />
-      <option name="MAIN_CLASS_NAME" value="arithmetic.PerformanceTest" />
-      <option name="METHOD_NAME" value="testBenches" />
+      <option name="MAIN_CLASS_NAME" value="arithmetic.ExpressionBuilderTest" />
+      <option name="METHOD_NAME" value="testExpression62" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -209,11 +153,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.arithmetic in geo2web" />
         <item itemvalue="JUnit.ExpressionBuilderTest" />
-        <item itemvalue="JUnit.ExpressionBuilderTest.testExpressionBuilder11" />
-        <item itemvalue="JUnit.PerformanceTest.testBenches" />
-        <item itemvalue="JUnit.FunctionsTest" />
+        <item itemvalue="JUnit.All in geo2web" />
+        <item itemvalue="JUnit.ExpressionBuilderTest.testExpression62" />
+        <item itemvalue="JUnit.ExpressionBuilderTest.testExpression43" />
+        <item itemvalue="JUnit.arithmetic in geo2web" />
       </list>
     </recent_temporary>
   </component>
@@ -235,7 +179,8 @@
       <workItem from="1661282607815" duration="4018000" />
       <workItem from="1661324754663" duration="20954000" />
       <workItem from="1661376822744" duration="86000" />
-      <workItem from="1661376928506" duration="449000" />
+      <workItem from="1661376928506" duration="858000" />
+      <workItem from="1661432204308" duration="6511000" />
     </task>
     <task id="LOCAL-00001" summary="Initial Commit">
       <created>1661200014255</created>
@@ -265,7 +210,14 @@
       <option name="project" value="LOCAL" />
       <updated>1661376146568</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Refactoring to new mathematical expression evaluation">
+      <created>1661377692654</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1661377692654</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -287,7 +239,9 @@
     <MESSAGE value="Added variables" />
     <MESSAGE value="Added net.objecthunter.exp4j mathematical expression evaluator for reference" />
     <MESSAGE value="Adapted net.objecthunter.exp4j for own use and number encapsulated" />
-    <option name="LAST_COMMIT_MESSAGE" value="Adapted net.objecthunter.exp4j for own use and number encapsulated" />
+    <MESSAGE value="Refactoring to new mathematical expression evaluation" />
+    <MESSAGE value="Converted ExpressionBuilderTest" />
+    <option name="LAST_COMMIT_MESSAGE" value="Converted ExpressionBuilderTest" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
