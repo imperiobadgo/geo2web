@@ -13,6 +13,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public abstract class TestUtil {
 
+    static double EPSILON = 0.001d;//Number works with floats
+    static double BIG_EPSILON = 0.01d;
     public static void assertVariableToken(Token token, String name) {
         assertEquals(Token.TOKEN_VARIABLE, token.getType());
         Assert.assertEquals(name, ((VariableToken) token).getName());

@@ -10,6 +10,7 @@ import de.geo2web.arithmetic.operator.Operators;
 
 import java.util.Map;
 import java.util.Set;
+import java.util.Stack;
 
 public class Tokenizer {
 
@@ -28,6 +29,11 @@ public class Tokenizer {
     private int pos = 0;
 
     private Token lastToken;
+
+    /**
+     * Keep track of number of arguments for the current vector (top element in the stack)
+     */
+    private final Stack<VectorTokenStatus> currentVectors = new Stack<>();
 
 
     public Tokenizer(String expression, final Map<String, Function> userFunctions,
@@ -75,6 +81,21 @@ public class Tokenizer {
             return parseNumberToken(ch);
         } else if (isArgumentSeparator(ch)) {
             return parseArgumentSeparatorToken();
+        } else if(isOpenVector(ch)){
+            //New vector is beginning so keep track of the number of arguments for this vector
+            //(increased at every argument separator or at close vector)
+            VectorTokenStatus newVector = new VectorTokenStatus();
+            currentVectors.push(newVector);
+            return parseParentheses(true);
+        } else if(isCloseVector(ch)){
+            if (currentVectors.empty()){
+                throw new IllegalArgumentException("Unable to parse char '" + ch + "' (Code:" + (int) ch + ") at [" + pos + "]");
+            }
+            increaseNumArgumentsOfCurrentVector();
+            VectorToken vector = new VectorToken(currentVectors.pop().numArguments);
+            this.pos++;
+            this.lastToken = vector;
+            return vector;
         } else if (isOpenParentheses(ch)) {
             if (lastToken != null && implicitMultiplication &&
                     (lastToken.getType() != Token.TOKEN_OPERATOR
@@ -107,9 +128,16 @@ public class Tokenizer {
         throw new IllegalArgumentException("Unable to parse char '" + ch + "' (Code:" + (int) ch + ") at [" + pos + "]");
     }
 
+    private void increaseNumArgumentsOfCurrentVector(){
+        if (!this.currentVectors.empty()){
+            this.currentVectors.peek().numArguments++;
+        }
+    }
+
     private Token parseArgumentSeparatorToken() {
         this.pos++;
         this.lastToken = new ArgumentSeparatorToken();
+        increaseNumArgumentsOfCurrentVector();
         return lastToken;
     }
 
@@ -135,6 +163,22 @@ public class Tokenizer {
         return ch == ')' || ch == '}' || ch == ']';
     }
 
+    private boolean isOpenVector(char ch) {
+        return ch == '{';
+    }
+
+    private boolean isCloseVector(char ch) {
+        return ch == '}';
+    }
+
+    private boolean isOpenIndex(char ch) {
+        return ch == '[';
+    }
+
+    private boolean isCloseIndex(char ch) {
+        return ch == ']';
+    }
+
     private Token parseFunctionOrVariable() {
         final int offset = this.pos;
         int testPos;
@@ -145,6 +189,7 @@ public class Tokenizer {
             this.pos++;
         }
         testPos = offset + len - 1;
+        //test every character until the name of the function or variable is over and save the last found function or variable in 'lastValidToken'
         while (!isEndOfExpression(testPos) &&
                 isVariableOrFunctionCharacter(expression[testPos])) {
             String name = new String(expression, offset, len);

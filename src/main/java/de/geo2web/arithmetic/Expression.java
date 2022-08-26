@@ -158,6 +158,18 @@ public class Expression {
         for (Token t : tokens) {
             if (t.getType() == Token.TOKEN_NUMBER) {
                 output.push(((NumberToken) t).getValue());
+            } else if (t.getType() == Token.TOKEN_VECTOR) {
+                VectorToken vec = (VectorToken) t;
+                final int numArguments = vec.getNumArguments();
+                if (output.size() < numArguments) {
+                    throw new IllegalArgumentException("Invalid number of arguments available for vector");
+                }
+                /* collect the operands from the stack */
+                Operand[] args = new Operand[numArguments];
+                for (int j = numArguments - 1; j >= 0; j--) {
+                    args[j] = output.pop();
+                }
+                output.push(new Vector(args));
             } else if (t.getType() == Token.TOKEN_VARIABLE) {
                 final String name = ((VariableToken) t).getName();
                 final Operand value = this.variables.get(name);

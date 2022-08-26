@@ -69,13 +69,25 @@ public class ShuntingYard {
                     stack.push(token);
                     break;
                 case Token.TOKEN_PARENTHESES_CLOSE:
+                    //put everything except the open parentheses into the output
                     while (stack.peek().getType() != Token.TOKEN_PARENTHESES_OPEN) {
                         output.add(stack.pop());
                     }
+                    //pop the open parentheses from the stack
                     stack.pop();
                     if (!stack.isEmpty() && stack.peek().getType() == Token.TOKEN_FUNCTION) {
+                        //put the function token into the output
                         output.add(stack.pop());
                     }
+                    break;
+                case Token.TOKEN_VECTOR:
+                    //put everything except the open parentheses into the output
+                    while (stack.peek().getType() != Token.TOKEN_PARENTHESES_OPEN) {
+                        output.add(stack.pop());
+                    }
+                    //pop the open parentheses from the stack
+                    stack.pop();
+                    output.add(token);
                     break;
                 default:
                     throw new IllegalArgumentException("Unknown Token type encountered. This should not happen");

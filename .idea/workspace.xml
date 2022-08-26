@@ -5,8 +5,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="cba5d1cc-47d2-4e5d-9117-80b432d6b105" name="Changes" comment="Converted ExpressionBuilderTest">
+      <change afterPath="$PROJECT_DIR$/src/main/java/de/geo2web/arithmetic/tokenizer/VectorToken.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/de/geo2web/arithmetic/tokenizer/VectorTokenStatus.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/arithmetic/VectorBuilderTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/de/geo2web/arithmetic/Expression.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/geo2web/arithmetic/Expression.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/de/geo2web/arithmetic/ShuntingYard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/geo2web/arithmetic/ShuntingYard.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/de/geo2web/arithmetic/Vector.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/geo2web/arithmetic/Vector.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/de/geo2web/arithmetic/tokenizer/Token.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/geo2web/arithmetic/tokenizer/Token.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/de/geo2web/arithmetic/tokenizer/Tokenizer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/geo2web/arithmetic/tokenizer/Tokenizer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/arithmetic/ExpressionBuilderTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/arithmetic/ExpressionBuilderTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/arithmetic/TestUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/arithmetic/TestUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/arithmetic/VectorArithmeticOperationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/arithmetic/VectorArithmeticOperationTests.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -41,6 +51,13 @@
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="useMavenConfig" value="true" />
+      </MavenGeneralSettings>
+    </option>
   </component>
   <component name="ProjectId" id="2DLNe3e9vbNMLa5qVHopwtnsVN4" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
@@ -82,14 +99,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="All in geo2web" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="geo2web" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="TEST_OBJECT" value="package" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="ExpressionBuilderTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="geo2web" />
       <extension name="coverage">
@@ -105,7 +114,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ExpressionBuilderTest.testExpression43" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="VectorBuilderTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="geo2web" />
       <extension name="coverage">
         <pattern>
@@ -114,14 +123,29 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="arithmetic" />
-      <option name="MAIN_CLASS_NAME" value="arithmetic.ExpressionBuilderTest" />
-      <option name="METHOD_NAME" value="testExpression43" />
+      <option name="MAIN_CLASS_NAME" value="arithmetic.VectorBuilderTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="VectorBuilderTest.testVectorBuilder10" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="geo2web" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="arithmetic.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="arithmetic" />
+      <option name="MAIN_CLASS_NAME" value="arithmetic.VectorBuilderTest" />
+      <option name="METHOD_NAME" value="testVectorBuilder10" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ExpressionBuilderTest.testExpression62" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="VectorBuilderTest.testVectorBuilder11" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="geo2web" />
       <extension name="coverage">
         <pattern>
@@ -130,14 +154,14 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="arithmetic" />
-      <option name="MAIN_CLASS_NAME" value="arithmetic.ExpressionBuilderTest" />
-      <option name="METHOD_NAME" value="testExpression62" />
+      <option name="MAIN_CLASS_NAME" value="arithmetic.VectorBuilderTest" />
+      <option name="METHOD_NAME" value="testVectorBuilder11" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="arithmetic in geo2web" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="VectorBuilderTest.testVectorBuilder12" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="geo2web" />
       <extension name="coverage">
         <pattern>
@@ -146,7 +170,9 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="arithmetic" />
-      <option name="TEST_OBJECT" value="package" />
+      <option name="MAIN_CLASS_NAME" value="arithmetic.VectorBuilderTest" />
+      <option name="METHOD_NAME" value="testVectorBuilder12" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -154,10 +180,10 @@
     <recent_temporary>
       <list>
         <item itemvalue="JUnit.ExpressionBuilderTest" />
-        <item itemvalue="JUnit.All in geo2web" />
-        <item itemvalue="JUnit.ExpressionBuilderTest.testExpression62" />
-        <item itemvalue="JUnit.ExpressionBuilderTest.testExpression43" />
-        <item itemvalue="JUnit.arithmetic in geo2web" />
+        <item itemvalue="JUnit.VectorBuilderTest" />
+        <item itemvalue="JUnit.VectorBuilderTest.testVectorBuilder12" />
+        <item itemvalue="JUnit.VectorBuilderTest.testVectorBuilder11" />
+        <item itemvalue="JUnit.VectorBuilderTest.testVectorBuilder10" />
       </list>
     </recent_temporary>
   </component>
@@ -181,6 +207,10 @@
       <workItem from="1661376822744" duration="86000" />
       <workItem from="1661376928506" duration="858000" />
       <workItem from="1661432204308" duration="6511000" />
+      <workItem from="1661465259164" duration="46000" />
+      <workItem from="1661465343377" duration="101000" />
+      <workItem from="1661499748504" duration="4704000" />
+      <workItem from="1661540364822" duration="9244000" />
     </task>
     <task id="LOCAL-00001" summary="Initial Commit">
       <created>1661200014255</created>
@@ -228,7 +258,19 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="master" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
           </value>
         </entry>
       </map>
@@ -253,5 +295,10 @@
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/geo2web$VectorBuilderTest_testExpressionBuilder1.ic" NAME="VectorBuilderTest.testExpressionBuilder1 Coverage Results" MODIFIED="1661506578497" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>arithmetic.*</FILTER>
+    </SUITE>
   </component>
 </project>

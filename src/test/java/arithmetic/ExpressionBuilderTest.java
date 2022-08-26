@@ -17,15 +17,12 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 
+import static arithmetic.TestUtil.*;
 import static java.lang.Math.*;
 import static org.junit.Assert.*;
 import static org.junit.Assert.assertEquals;
-import static arithmetic.TestUtil.getFactorialOperator;
 
 public class ExpressionBuilderTest {
-
-    static double EPSILON = 0.001d;//Number works with floats
-    static double BIG_EPSILON = 0.01d;
 
     @Test
     public void testExpressionBuilder1() {

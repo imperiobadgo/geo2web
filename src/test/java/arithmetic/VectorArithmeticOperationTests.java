@@ -18,7 +18,7 @@ public class VectorArithmeticOperationTests {
 //        Assert.isInstanceOf(Vector.class, result);
 //        Assert.isTrue(((Vector) result).getVector().equals(expected), "Expected");
 //    }
-//
+
 //    @Test
 //    public void AddVectorsTest2() {
 //        Vector expected = new Vector(Vector.toNumberArray(new float[]{-5, 2, 0, -11}));

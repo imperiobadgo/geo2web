@@ -1,14 +1,17 @@
 package de.geo2web.arithmetic;
 
+import de.geo2web.arithmetic.operator.OperationEvaluation;
 import lombok.RequiredArgsConstructor;
 import lombok.Value;
 import org.apache.commons.lang3.SerializationUtils;
+
+import java.util.Arrays;
 
 @Value
 @RequiredArgsConstructor
 public class Vector implements VectorOperand{
 
-    NumberOperand[] values;
+    Operand[] values;
 
     @Override
     public Operand deepClone() {
@@ -28,6 +31,14 @@ public class Vector implements VectorOperand{
         return result;
     }
 
+    public static Number[] toNumberArray(double[] input){
+        Number[] result = new Number[input.length];
+        for (int i = 0; i < result.length; i++) {
+            result[i] = new Number(input[i]);
+        }
+        return result;
+    }
+
     /**
      * Adds two vectors. The dimension of the result vector is the max of both input vectors. Remaining entries are not altered.
      * @param a input vector
@@ -37,14 +48,14 @@ public class Vector implements VectorOperand{
     public static Vector add(VectorOperand a, VectorOperand b) {
         Vector aVector = a.getVector();
         Vector bVector = b.getVector();
-        NumberOperand[] result = new NumberOperand[Math.max(aVector.values.length, bVector.values.length)];
+        Operand[] result = new Operand[Math.max(aVector.values.length, bVector.values.length)];
         for (int i = 0; i < result.length; i++) {
             if (aVector.values.length > i && bVector.values.length > i) {
-                result[i] = Number.add(aVector.values[i], bVector.values[i]);
+                result[i] = OperationEvaluation.handlePlus(aVector.values[i], bVector.values[i]);
             } else if (aVector.values.length > i) {
-                result[i] = (NumberOperand) aVector.values[i].deepClone();
+                result[i] = aVector.values[i].deepClone();
             } else {
-                result[i] = (NumberOperand) bVector.values[i].deepClone();
+                result[i] = bVector.values[i].deepClone();
             }
         }
         return new Vector(result);
@@ -59,24 +70,23 @@ public class Vector implements VectorOperand{
     public static Vector add(VectorOperand a, NumberOperand b) {
         Vector aVector = a.getVector();
         Number bNumber = b.getNumber();
-        NumberOperand[] result = new NumberOperand[aVector.values.length];
-        for (int i = 0; i < result.length; i++) {
-            result[i] = Number.add(aVector.values[i], bNumber);
-        }
+        Operand[] result = new Operand[aVector.values.length];
+        Arrays.setAll(result, i -> OperationEvaluation.handlePlus(aVector.values[i], bNumber));
         return new Vector(result);
     }
 
     public static Vector unaryMinus(VectorOperand left) {
-        NumberOperand[] values = left.getVector().getValues();
-        NumberOperand[] result = new NumberOperand[values.length];
-        for (int i = 0; i < result.length; i++) {
-            result[i] = Number.unaryMinus(values[i].getNumber());
-        }
+        Operand[] values = left.getVector().getValues();
+        Operand[] result = new Operand[values.length];
+        Arrays.setAll(result, i -> OperationEvaluation.handleUnaryMinus(values[i]));
         return new Vector(result);
     }
 
     public static Vector unaryPlus(VectorOperand left) {
-        return (Vector) left.deepClone();
+        Operand[] values = left.getVector().getValues();
+        Operand[] result = new Operand[values.length];
+        Arrays.setAll(result, i -> OperationEvaluation.handleUnaryPlus(values[i]));
+        return new Vector(result);
     }
 
 }
