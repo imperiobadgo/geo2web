@@ -4,18 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="cba5d1cc-47d2-4e5d-9117-80b432d6b105" name="Changes" comment="Converted ExpressionBuilderTest">
-      <change afterPath="$PROJECT_DIR$/src/main/java/de/geo2web/arithmetic/tokenizer/VectorToken.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/de/geo2web/arithmetic/tokenizer/VectorTokenStatus.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/arithmetic/VectorBuilderTest.java" afterDir="false" />
+    <list default="true" id="cba5d1cc-47d2-4e5d-9117-80b432d6b105" name="Changes" comment="Added vector parsing to tokenizer">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/de/geo2web/arithmetic/Expression.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/geo2web/arithmetic/Expression.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/de/geo2web/arithmetic/ShuntingYard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/geo2web/arithmetic/ShuntingYard.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/de/geo2web/arithmetic/Vector.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/geo2web/arithmetic/Vector.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/de/geo2web/arithmetic/tokenizer/Token.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/geo2web/arithmetic/tokenizer/Token.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/de/geo2web/arithmetic/tokenizer/Tokenizer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/geo2web/arithmetic/tokenizer/Tokenizer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/arithmetic/ExpressionBuilderTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/arithmetic/ExpressionBuilderTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/arithmetic/TestUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/arithmetic/TestUtil.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/arithmetic/VectorArithmeticOperationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/arithmetic/VectorArithmeticOperationTests.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -35,7 +25,6 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
-    <option name="SET_USER_NAME_GLOBALLY" value="false" />
   </component>
   <component name="JpbToolWindowState">
     <option name="myId2FirstActivated">
@@ -91,7 +80,7 @@
       <recent name="de.geo2web.arithmetics" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.ExpressionBuilderTest">
+  <component name="RunManager" selected="JUnit.VectorArithmeticOperationTests.addVectorCalc03">
     <configuration name="Unnamed" type="Application" factoryName="Application" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.imperiobadgo.geo2web.Application" />
       <module name="geo2web" />
@@ -114,6 +103,37 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="VectorArithmeticOperationTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="geo2web" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="arithmetic.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="arithmetic" />
+      <option name="MAIN_CLASS_NAME" value="arithmetic.VectorArithmeticOperationTests" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="VectorArithmeticOperationTests.addVectorCalc03" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="geo2web" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="arithmetic.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="arithmetic" />
+      <option name="MAIN_CLASS_NAME" value="arithmetic.VectorArithmeticOperationTests" />
+      <option name="METHOD_NAME" value="addVectorCalc03" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="VectorBuilderTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="geo2web" />
       <extension name="coverage">
@@ -129,7 +149,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="VectorBuilderTest.testVectorBuilder10" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="VectorBuilderTest.testVectorCalc" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="geo2web" />
       <extension name="coverage">
         <pattern>
@@ -139,39 +159,7 @@
       </extension>
       <option name="PACKAGE_NAME" value="arithmetic" />
       <option name="MAIN_CLASS_NAME" value="arithmetic.VectorBuilderTest" />
-      <option name="METHOD_NAME" value="testVectorBuilder10" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="VectorBuilderTest.testVectorBuilder11" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="geo2web" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="arithmetic.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="arithmetic" />
-      <option name="MAIN_CLASS_NAME" value="arithmetic.VectorBuilderTest" />
-      <option name="METHOD_NAME" value="testVectorBuilder11" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="VectorBuilderTest.testVectorBuilder12" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="geo2web" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="arithmetic.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="arithmetic" />
-      <option name="MAIN_CLASS_NAME" value="arithmetic.VectorBuilderTest" />
-      <option name="METHOD_NAME" value="testVectorBuilder12" />
+      <option name="METHOD_NAME" value="testVectorCalc" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -179,11 +167,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.VectorArithmeticOperationTests.addVectorCalc03" />
+        <item itemvalue="JUnit.VectorArithmeticOperationTests" />
+        <item itemvalue="JUnit.VectorBuilderTest.testVectorCalc" />
         <item itemvalue="JUnit.ExpressionBuilderTest" />
         <item itemvalue="JUnit.VectorBuilderTest" />
-        <item itemvalue="JUnit.VectorBuilderTest.testVectorBuilder12" />
-        <item itemvalue="JUnit.VectorBuilderTest.testVectorBuilder11" />
-        <item itemvalue="JUnit.VectorBuilderTest.testVectorBuilder10" />
       </list>
     </recent_temporary>
   </component>
@@ -210,7 +198,7 @@
       <workItem from="1661465259164" duration="46000" />
       <workItem from="1661465343377" duration="101000" />
       <workItem from="1661499748504" duration="4704000" />
-      <workItem from="1661540364822" duration="9244000" />
+      <workItem from="1661540364822" duration="10262000" />
     </task>
     <task id="LOCAL-00001" summary="Initial Commit">
       <created>1661200014255</created>
@@ -247,7 +235,14 @@
       <option name="project" value="LOCAL" />
       <updated>1661377692654</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Added vector parsing to tokenizer">
+      <created>1661550280921</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1661550280921</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -283,7 +278,8 @@
     <MESSAGE value="Adapted net.objecthunter.exp4j for own use and number encapsulated" />
     <MESSAGE value="Refactoring to new mathematical expression evaluation" />
     <MESSAGE value="Converted ExpressionBuilderTest" />
-    <option name="LAST_COMMIT_MESSAGE" value="Converted ExpressionBuilderTest" />
+    <MESSAGE value="Added vector parsing to tokenizer" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added vector parsing to tokenizer" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

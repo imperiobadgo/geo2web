@@ -1,60 +1,59 @@
 package arithmetic;
 
+import de.geo2web.arithmetic.ExpressionBuilder;
+import de.geo2web.arithmetic.Number;
+import de.geo2web.arithmetic.Operand;
 import de.geo2web.arithmetic.Vector;
-import org.junit.jupiter.api.Test;
-import org.springframework.util.Assert;
+import org.junit.Test;
+
+import static arithmetic.TestUtil.EPSILON;
+import static org.junit.Assert.assertEquals;
 
 public class VectorArithmeticOperationTests {
 
-//    @Test
-//    public void AddVectorsTest1() {
-//        Vector expected = new Vector(Vector.toNumberArray(new float[]{3, 5, 7, 0}));
-//
-//        Vector a = new Vector(Vector.toNumberArray(new float[]{1, 2, 3, 0}));
-//        Vector b = new Vector(Vector.toNumberArray(new float[]{2, 3, 4, 0}));
-//        ExpressionNode node = new ExpressionNode(a, b, Operator.PLUS);
-//        Expression result = node.evaluate();
-//
-//        Assert.isInstanceOf(Vector.class, result);
-//        Assert.isTrue(((Vector) result).getVector().equals(expected), "Expected");
-//    }
+    @Test
+    public void addVectorCalc01() {
+        Operand result = new ExpressionBuilder("{2,0,5}+5")
+                .build()
+                .evaluate();
+        assertEquals(3, ((Vector) result).getValues().length, 0);
 
-//    @Test
-//    public void AddVectorsTest2() {
-//        Vector expected = new Vector(Vector.toNumberArray(new float[]{-5, 2, 0, -11}));
-//
-//        Vector a = new Vector(Vector.toNumberArray(new float[]{1, 2, -4, -15}));
-//        Vector b = new Vector(Vector.toNumberArray(new float[]{-6, 0, 4, 4}));
-//        ExpressionNode node = new ExpressionNode(a, b, Operator.PLUS);
-//        Expression result = node.evaluate();
-//
-//        Assert.isInstanceOf(Vector.class, result);
-//        Assert.isTrue(((Vector) result).getVector().equals(expected), "Expected");
-//    }
-//
-//    @Test
-//    public void AddVectorsAndChangeNumberTest1() {
-//        Vector expected1 = new Vector(Vector.toNumberArray(new float[]{-5, 2, 0}));
-//        Vector expected2 = new Vector(Vector.toNumberArray(new float[]{-5, 10, 0}));
-//
-//        Vector a = new Vector(Vector.toNumberArray(new float[]{1, 2, -4}));
-//        NumberVariable y = new NumberVariable("y").setValue(new Number(0));
-//        Vector b = new Vector(new NumberValue[]{
-//                new Number(-6),
-//                y,
-//                new Number(4)});
-//
-//        ExpressionNode node = new ExpressionNode(a, b, Operator.PLUS);
-//        Expression result1 = node.evaluate();
-//
-//        Assert.isInstanceOf(Vector.class, result1);
-//        Assert.isTrue(((Vector) result1).getVector().equals(expected1), "Expected1");
-//
-//        y.setValue(new Number(8));
-//        Expression result2 = node.evaluate();
-//
-//        Assert.isInstanceOf(Vector.class, result2);
-//        Assert.isTrue(((Vector) result2).getVector().equals(expected2), "Expected2");
-//    }
+        Operand operand1 = ((Vector) result).getValues()[0];
+        assertEquals(7f, ((Number) operand1).getValue(), 0f);
+        Operand operand2 = ((Vector) result).getValues()[1];
+        assertEquals(5f, ((Number) operand2).getValue(), 0f);
+        Operand operand3 = ((Vector) result).getValues()[2];
+        assertEquals(10f, ((Number) operand3).getValue(), 0f);
+    }
+
+    @Test
+    public void addVectorCalc02() {
+        Operand result = new ExpressionBuilder("{2^2,2pi,5}+5")
+                .build()
+                .evaluate();
+        assertEquals(3, ((Vector) result).getValues().length, 0);
+
+        Operand operand1 = ((Vector) result).getValues()[0];
+        assertEquals(9f, ((Number) operand1).getValue(), 0f);
+        Operand operand2 = ((Vector) result).getValues()[1];
+        assertEquals(2 * Math.PI + 5, ((Number) operand2).getValue(), EPSILON);
+        Operand operand3 = ((Vector) result).getValues()[2];
+        assertEquals(10f, ((Number) operand3).getValue(), 0f);
+    }
+
+    @Test
+    public void addVectorCalc03() {
+        Operand result = new ExpressionBuilder("{2,0,5}+{2,-5,5}")
+                .build()
+                .evaluate();
+        assertEquals(3, ((Vector) result).getValues().length, 0);
+
+        Operand operand1 = ((Vector) result).getValues()[0];
+        assertEquals(4f, ((Number) operand1).getValue(), 0f);
+        Operand operand2 = ((Vector) result).getValues()[1];
+        assertEquals(-5f, ((Number) operand2).getValue(), EPSILON);
+        Operand operand3 = ((Vector) result).getValues()[2];
+        assertEquals(10f, ((Number) operand3).getValue(), 0f);
+    }
 
 }
