@@ -56,4 +56,74 @@ public class VectorArithmeticOperationTests {
         assertEquals(10f, ((Number) operand3).getValue(), 0f);
     }
 
+    @Test
+    public void dotVectorCalc01() {
+        Operand result = new ExpressionBuilder("{1,0,0}*{1,0,0}")
+                .build()
+                .evaluate();
+        assertEquals(1f, ((Number) result).getValue(), 0f);
+    }
+
+    @Test
+    public void dotVectorCalc02() {
+        Operand result = new ExpressionBuilder("{1,0,0}*{1,1,0}")
+                .build()
+                .evaluate();
+        assertEquals(1f, ((Number) result).getValue(), 0f);
+    }
+
+    @Test
+    public void dotVectorCalc03() {
+        Operand result = new ExpressionBuilder("{3,0,0}*{1,1,0}")
+                .build()
+                .evaluate();
+        assertEquals(3f, ((Number) result).getValue(), 0f);
+    }
+
+    @Test
+    public void dotVectorCalc04() {
+        Operand result = new ExpressionBuilder("{1,2,3}*{1,2,3}")
+                .build()
+                .evaluate();
+        assertEquals(14f, ((Number) result).getValue(), 0f);
+    }
+
+    @Test
+    public void multVectorCalc01() {
+        Operand result = new ExpressionBuilder("{1,2,3}*5")
+                .build()
+                .evaluate();
+        Operand operand1 = ((Vector) result).getValues()[0];
+        assertEquals(5f, ((Number) operand1).getValue(), 0f);
+        Operand operand2 = ((Vector) result).getValues()[1];
+        assertEquals(10f, ((Number) operand2).getValue(), 0f);
+        Operand operand3 = ((Vector) result).getValues()[2];
+        assertEquals(15f, ((Number) operand3).getValue(), 0f);
+    }
+
+    @Test
+    public void multVectorCalc02() {
+        Operand result = new ExpressionBuilder("-3 *{1,2,3}")
+                .build()
+                .evaluate();
+        Operand operand1 = ((Vector) result).getValues()[0];
+        assertEquals(-3f, ((Number) operand1).getValue(), 0f);
+        Operand operand2 = ((Vector) result).getValues()[1];
+        assertEquals(-6f, ((Number) operand2).getValue(), 0f);
+        Operand operand3 = ((Vector) result).getValues()[2];
+        assertEquals(-9f, ((Number) operand3).getValue(), 0f);
+    }
+
+    @Test
+    public void multVectorCalc03() {
+        Operand result = new ExpressionBuilder("0*{1,2,3}")
+                .build()
+                .evaluate();
+        Operand operand1 = ((Vector) result).getValues()[0];
+        assertEquals(0f, ((Number) operand1).getValue(), 0f);
+        Operand operand2 = ((Vector) result).getValues()[1];
+        assertEquals(0f, ((Number) operand2).getValue(), 0f);
+        Operand operand3 = ((Vector) result).getValues()[2];
+        assertEquals(0f, ((Number) operand3).getValue(), 0f);
+    }
 }

@@ -14,23 +14,25 @@ public class OperationEvaluation {
             return Vector.add((VectorOperand) left, (NumberOperand) right);
         } else if (left instanceof NumberOperand && right instanceof VectorOperand) {
             return Vector.add((VectorOperand) right, (NumberOperand) left);
-        }else {
-            throw new IllegalArgumentException("Operand combination not supported!");
-//            Logger.log(Level.Debug, de.geo2web.arithmetic.operator.OperationEvaluation.class, "handlePlus",
-//                    "returned EmptyExpression with: " + left.toString() + " and " + right.toString());
-//            return new EmptyExpression();
         }
+        throw new IllegalArgumentException("Operand combination not supported!");
     }
 
     public static Operand handleMinus(Operand left, Operand right) {
         if (left instanceof NumberOperand && right instanceof NumberOperand) {
             return Number.sub((NumberOperand) left, (NumberOperand) right);
+        } else if (left instanceof VectorOperand && right instanceof VectorOperand) {
+            return Vector.sub((VectorOperand) left, (VectorOperand) right);
+        } else if (left instanceof VectorOperand && right instanceof NumberOperand) {
+            return Vector.sub((VectorOperand) left, (NumberOperand) right);
+        } else if (left instanceof NumberOperand && right instanceof VectorOperand) {
+            return Vector.sub((VectorOperand) right, (NumberOperand) left);
         }
         throw new IllegalArgumentException("Operand combination not supported!");
     }
 
-    public static Operand handleUnaryMinus(Operand left){
-        if (left instanceof NumberOperand){
+    public static Operand handleUnaryMinus(Operand left) {
+        if (left instanceof NumberOperand) {
             return Number.unaryMinus((NumberOperand) left);
         } else if (left instanceof VectorOperand) {
             return Vector.unaryMinus((VectorOperand) left);
@@ -38,8 +40,8 @@ public class OperationEvaluation {
         throw new IllegalArgumentException("Operand not supported!");
     }
 
-    public static Operand handleUnaryPlus(Operand left){
-        if (left instanceof NumberOperand){
+    public static Operand handleUnaryPlus(Operand left) {
+        if (left instanceof NumberOperand) {
             return Number.unaryPlus((NumberOperand) left);
         } else if (left instanceof VectorOperand) {
             return Vector.unaryPlus((VectorOperand) left);
@@ -50,6 +52,12 @@ public class OperationEvaluation {
     public static Operand handleMult(Operand left, Operand right) {
         if (left instanceof NumberOperand && right instanceof NumberOperand) {
             return Number.mult((NumberOperand) left, (NumberOperand) right);
+        } else if (left instanceof VectorOperand && right instanceof VectorOperand) {
+            return Vector.dot((VectorOperand) left, (VectorOperand) right);
+        } else if (left instanceof VectorOperand && right instanceof NumberOperand) {
+            return Vector.mult((VectorOperand) left, (NumberOperand) right);
+        } else if (left instanceof NumberOperand && right instanceof VectorOperand) {
+            return Vector.mult((VectorOperand) right, (NumberOperand) left);
         }
         throw new IllegalArgumentException("Operand combination not supported!");
     }
