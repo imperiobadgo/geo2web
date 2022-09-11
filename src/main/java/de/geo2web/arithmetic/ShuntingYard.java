@@ -69,16 +69,7 @@ public class ShuntingYard {
                     stack.push(token);
                     break;
                 case Token.TOKEN_PARENTHESES_CLOSE:
-                    //put everything except the open parentheses into the output
-                    while (stack.peek().getType() != Token.TOKEN_PARENTHESES_OPEN) {
-                        output.add(stack.pop());
-                    }
-                    //pop the open parentheses from the stack
-                    stack.pop();
-                    if (!stack.isEmpty() && stack.peek().getType() == Token.TOKEN_FUNCTION) {
-                        //put the function token into the output
-                        output.add(stack.pop());
-                    }
+                    handleCloseParentheses(stack, output);
                     break;
                 case Token.TOKEN_VECTOR:
                     //put everything except the open parentheses into the output
@@ -87,6 +78,10 @@ public class ShuntingYard {
                     }
                     //pop the open parentheses from the stack
                     stack.pop();
+                    output.add(token);
+                    break;
+                case Token.TOKEN_INDEX:
+                    handleCloseParentheses(stack, output);
                     output.add(token);
                     break;
                 default:
@@ -102,5 +97,17 @@ public class ShuntingYard {
             }
         }
         return output.toArray(new Token[0]);
+    }
+    private static void handleCloseParentheses(final Stack<Token> stack, final List<Token> output){
+        //put everything except the open parentheses into the output
+        while (stack.peek().getType() != Token.TOKEN_PARENTHESES_OPEN) {
+            output.add(stack.pop());
+        }
+        //pop the open parentheses from the stack
+        stack.pop();
+        if (!stack.isEmpty() && stack.peek().getType() == Token.TOKEN_FUNCTION) {
+            //put the function token into the output
+            output.add(stack.pop());
+        }
     }
 }

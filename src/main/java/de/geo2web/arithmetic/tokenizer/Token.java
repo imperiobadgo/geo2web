@@ -15,6 +15,7 @@ public abstract class Token {
     public static final short TOKEN_VARIABLE = 6;
     public static final short TOKEN_SEPARATOR = 7;
     public static final short TOKEN_VECTOR = 8;
+    public static final short TOKEN_INDEX = 9;
 
     private final int type;
 

@@ -3,7 +3,7 @@ package de.geo2web.arithmetic.tokenizer;
 import lombok.Data;
 
 @Data
-public class VectorTokenStatus {
+class NumberArgumentsStatus {
 
     int numArguments;
 }

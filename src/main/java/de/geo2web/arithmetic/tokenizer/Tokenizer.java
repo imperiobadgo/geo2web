@@ -31,10 +31,9 @@ public class Tokenizer {
     private Token lastToken;
 
     /**
-     * Keep track of number of arguments for the current vector (top element in the stack)
+     * Keep track of number of arguments for the current vector or index-description (top element in the stack)
      */
-    private final Stack<VectorTokenStatus> currentVectors = new Stack<>();
-
+    private final Stack<NumberArgumentsStatus> currentNumberOfArguments = new Stack<>();
 
     public Tokenizer(String expression, final Map<String, Function> userFunctions,
                      final Map<String, Operator> userOperators, final Set<String> variableNames, final boolean implicitMultiplication) {
@@ -81,31 +80,32 @@ public class Tokenizer {
             return parseNumberToken(ch);
         } else if (isArgumentSeparator(ch)) {
             return parseArgumentSeparatorToken();
-        } else if(isOpenVector(ch)){
+        } else if (isOpenVector(ch)) {
             //New vector is beginning so keep track of the number of arguments for this vector
             //(increased at every argument separator or at close vector)
-            VectorTokenStatus newVector = new VectorTokenStatus();
-            currentVectors.push(newVector);
+            NumberArgumentsStatus newVector = new NumberArgumentsStatus();
+            currentNumberOfArguments.push(newVector);
             return parseParentheses(true);
-        } else if(isCloseVector(ch)){
-            if (currentVectors.empty()){
+        } else if (isCloseVector(ch)) {
+            if (currentNumberOfArguments.empty()) {
                 throw new IllegalArgumentException("Unable to parse char '" + ch + "' (Code:" + (int) ch + ") at [" + pos + "]");
             }
-            increaseNumArgumentsOfCurrentVector();
-            VectorToken vector = new VectorToken(currentVectors.pop().numArguments);
-            this.pos++;
-            this.lastToken = vector;
-            return vector;
-        } else if (isOpenParentheses(ch)) {
-            if (lastToken != null && implicitMultiplication &&
-                    (lastToken.getType() != Token.TOKEN_OPERATOR
-                            && lastToken.getType() != Token.TOKEN_PARENTHESES_OPEN
-                            && lastToken.getType() != Token.TOKEN_FUNCTION
-                            && lastToken.getType() != Token.TOKEN_SEPARATOR)) {
-                // insert an implicit multiplication token
-                lastToken = new OperatorToken(Operators.getBuiltinOperator('*', 2));
-                return lastToken;
+            increaseNumArguments();
+            return parseVector(currentNumberOfArguments.pop().numArguments);
+        } else if (isOpenIndex(ch)) {
+            //New index description is beginning so keep track of the number of arguments for this index description
+            //(increased at every argument separator or at close index)
+            NumberArgumentsStatus newIndex = new NumberArgumentsStatus();
+            currentNumberOfArguments.push(newIndex);
+            return parseParentheses(true);
+        } else if (isCloseIndex(ch)) {
+            if (currentNumberOfArguments.empty()) {
+                throw new IllegalArgumentException("Unable to parse char '" + ch + "' (Code:" + (int) ch + ") at [" + pos + "]");
             }
+            increaseNumArguments();
+            return parseIndex(currentNumberOfArguments.pop().numArguments);
+        } else if (isOpenParentheses(ch)) {
+            if (checkAndAddImplicitMultiplication()) return lastToken;
             return parseParentheses(true);
         } else if (isCloseParentheses(ch)) {
             return parseParentheses(false);
@@ -113,31 +113,40 @@ public class Tokenizer {
             return parseOperatorToken(ch);
         } else if (isAlphabetic(ch) || ch == '_') {
             // parse the name which can be a setVariable or a function
-            if (lastToken != null && implicitMultiplication &&
-                    (lastToken.getType() != Token.TOKEN_OPERATOR
-                            && lastToken.getType() != Token.TOKEN_PARENTHESES_OPEN
-                            && lastToken.getType() != Token.TOKEN_FUNCTION
-                            && lastToken.getType() != Token.TOKEN_SEPARATOR)) {
-                // insert an implicit multiplication token
-                lastToken = new OperatorToken(Operators.getBuiltinOperator('*', 2));
-                return lastToken;
-            }
+            if (checkAndAddImplicitMultiplication()) return lastToken;
             return parseFunctionOrVariable();
 
         }
         throw new IllegalArgumentException("Unable to parse char '" + ch + "' (Code:" + (int) ch + ") at [" + pos + "]");
     }
 
-    private void increaseNumArgumentsOfCurrentVector(){
-        if (!this.currentVectors.empty()){
-            this.currentVectors.peek().numArguments++;
+    private boolean checkAndAddImplicitMultiplication() {
+        if (lastToken != null && implicitMultiplication &&
+                (lastToken.getType() != Token.TOKEN_OPERATOR
+                        && lastToken.getType() != Token.TOKEN_PARENTHESES_OPEN
+                        && lastToken.getType() != Token.TOKEN_FUNCTION
+                        && lastToken.getType() != Token.TOKEN_SEPARATOR)) {
+            // insert an implicit multiplication token
+            lastToken = new OperatorToken(Operators.getBuiltinOperator('*', 2));
+            return true;
+        }
+        return false;
+    }
+
+
+    /**
+     * Increases the number of arguments count for the top element in the currentNumberOfArguments stack.
+     */
+    private void increaseNumArguments() {
+        if (!this.currentNumberOfArguments.empty()) {
+            this.currentNumberOfArguments.peek().numArguments++;
         }
     }
 
     private Token parseArgumentSeparatorToken() {
         this.pos++;
         this.lastToken = new ArgumentSeparatorToken();
-        increaseNumArgumentsOfCurrentVector();
+        increaseNumArguments();
         return lastToken;
     }
 
@@ -151,6 +160,18 @@ public class Tokenizer {
         } else {
             this.lastToken = new CloseParenthesesToken();
         }
+        this.pos++;
+        return lastToken;
+    }
+
+    private Token parseVector(final int numOfArguments) {
+        this.lastToken = new VectorToken(numOfArguments);
+        this.pos++;
+        return lastToken;
+    }
+
+    private Token parseIndex(final int numOfArguments) {
+        this.lastToken = new IndexToken(numOfArguments);
         this.pos++;
         return lastToken;
     }

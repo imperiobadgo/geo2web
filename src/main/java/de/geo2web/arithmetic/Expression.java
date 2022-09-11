@@ -1,5 +1,5 @@
 /*
-*Source of inspiration: https://github.com/fasseg/exp4j
+ *Source of inspiration: https://github.com/fasseg/exp4j
  */
 package de.geo2web.arithmetic;
 
@@ -170,6 +170,44 @@ public class Expression {
                     args[j] = output.pop();
                 }
                 output.push(new Vector(args));
+            } else if (t.getType() == Token.TOKEN_INDEX) {
+                IndexToken indexToken = (IndexToken) t;
+                /* Collect the arguments from the stack */
+                final int numArguments = indexToken.getNumArguments();
+                if (output.size() < numArguments) {
+                    throw new IllegalArgumentException("Invalid number of arguments available for index description!");
+                }
+
+                int[] indices = new int[numArguments];
+                for (int j = numArguments - 1; j >= 0; j--) {
+                    Operand arg = output.pop();
+                    if (!(arg instanceof NumberOperand)){
+                        throw new IllegalArgumentException("Only numbers are allowed as arguments for indices!");
+                    }
+                    Number numberIndex = ((NumberOperand) arg).getNumber();
+                    int index = Math.round(numberIndex.getValue());
+                    if (index < 0){
+                        throw new IllegalArgumentException("Index cannot be smaller than zero!");
+                    }
+                    indices[j] = index;
+                }
+
+                /* get the desired content from the vector-combination and push the resulting content onto the stack */
+
+                //remember the current result of the last index operation
+                Operand lastOutputElement = output.pop();
+                for (int index : indices) {
+                    if (!(lastOutputElement instanceof VectorOperand)) {
+                        throw new IllegalArgumentException("Index only available after vectors!");
+                    }
+                    Vector lastVector = ((VectorOperand) lastOutputElement).getVector();
+                    if (index >= lastVector.getValues().length) {
+                        throw new IllegalArgumentException("Index cannot be greater than elements in the vector!");
+                    }
+                    lastOutputElement = lastVector.getValues()[index];
+                }
+
+                output.push(lastOutputElement);
             } else if (t.getType() == Token.TOKEN_VARIABLE) {
                 final String name = ((VariableToken) t).getName();
                 final Operand value = this.variables.get(name);

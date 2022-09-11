@@ -283,4 +283,101 @@ public class VectorBuilderTest {
         assertEquals(Math.E, ((Number) vector3Operand3).getValue(), EPSILON);
     }
 
+    @Test
+    public void testVectorIndexBuilder01() {
+        Operand result = new ExpressionBuilder("{2,1,5}[0]")
+                .build()
+                .evaluate();
+        assertEquals(2, ((Number) result).getValue(), 0);
+    }
+
+    @Test
+    public void testVectorIndexBuilder02() {
+        Operand result = new ExpressionBuilder("{2,1,5}[1]")
+                .build()
+                .evaluate();
+        assertEquals(1, ((Number) result).getValue(), 0);
+    }
+
+    @Test
+    public void testVectorIndexBuilder03() {
+        Operand result = new ExpressionBuilder("{2,1,5}[2]")
+                .build()
+                .evaluate();
+        assertEquals(5, ((Number) result).getValue(), 0);
+    }
+
+    @Test
+    public void testVectorIndexBuilder04() {
+        Operand result = new ExpressionBuilder("x[1]")
+                .variable("x")
+                .build()
+                .setVariable("x", new Vector(new Operand[] {
+                        new Number(-2),
+                        new Number(1),
+                        new Number(3),
+                }))
+                .evaluate();
+        assertEquals(1, ((Number) result).getValue(), 0);
+    }
+
+    @Test
+    public void testVectorIndexBuilder05() {
+        Operand result = new ExpressionBuilder("{2,{5,3},-4}[1,0]")
+                .build()
+                .evaluate();
+        assertEquals(5, ((Number) result).getValue(), 0);
+    }
+
+    @Test
+    public void testVectorIndexBuilder06() {
+        Operand result = new ExpressionBuilder("{2,{5,3}[0],-4}")
+                .build()
+                .evaluate();
+
+        Operand operand1 = ((Vector) result).getValues()[0];
+        assertEquals(2f, ((Number) operand1).getValue(), 0f);
+        Operand operand2 = ((Vector) result).getValues()[1];
+        assertEquals(5f, ((Number) operand2).getValue(), 0f);
+        Operand operand3 = ((Vector) result).getValues()[2];
+        assertEquals(-4f, ((Number) operand3).getValue(), 0f);
+    }
+
+    @Test
+    public void testVectorIndexBuilder07() {
+        Operand result = new ExpressionBuilder("{2,{sin(4),3}[0],-4}")
+                .build()
+                .evaluate();
+
+        Operand operand1 = ((Vector) result).getValues()[0];
+        assertEquals(2f, ((Number) operand1).getValue(), 0f);
+        Operand operand2 = ((Vector) result).getValues()[1];
+        assertEquals(Math.sin(4f), ((Number) operand2).getValue(), EPSILON);
+        Operand operand3 = ((Vector) result).getValues()[2];
+        assertEquals(-4f, ((Number) operand3).getValue(), 0f);
+    }
+
+    @Test
+    public void testVectorIndexBuilder08() {
+        Operand result = new ExpressionBuilder("{2,-4,{sin(4),3}}[2,0]")
+                .build()
+                .evaluate();
+        assertEquals(Math.sin(4f), ((Number) result).getValue(), EPSILON);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testVectorIndex_OutOfBounds01() {
+        new ExpressionBuilder("{2,1,5}[-1]")
+                .build()
+                .evaluate();
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testVectorIndex_OutOfBounds02() {
+        new ExpressionBuilder("{2,1,5}[3]")
+                .build()
+                .evaluate();
+    }
+
+
 }

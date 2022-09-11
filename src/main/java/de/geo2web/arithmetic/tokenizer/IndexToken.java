@@ -1,25 +1,24 @@
 package de.geo2web.arithmetic.tokenizer;
 
 /**
- * Represents a vector in the expression
+ * represents a index description used in an expression
  */
-public class VectorToken extends Token {
+public class IndexToken extends Token {
 
     private final int numArguments;
 
     /**
      * Create a new instance
      *
-     * @param numArguments number of vector columns
+     * @param numArguments number of index rows
      */
-    public VectorToken(final int numArguments) {
-        super(TOKEN_VECTOR);
+    public IndexToken(final int numArguments) {
+        super(TOKEN_INDEX);
         this.numArguments = numArguments;
     }
 
-
     /**
-     * Get the number of arguments for this vector
+     * Get the number of arguments for this index description
      *
      * @return the number of arguments
      */
