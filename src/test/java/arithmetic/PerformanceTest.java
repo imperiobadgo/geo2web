@@ -7,6 +7,7 @@ import de.geo2web.arithmetic.Expression;
 import de.geo2web.arithmetic.ExpressionBuilder;
 import de.geo2web.arithmetic.Number;
 import de.geo2web.arithmetic.Operand;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import javax.script.ScriptEngine;
@@ -20,6 +21,7 @@ public class PerformanceTest {
     private static final String EXPRESSION = "log(x) - y * (sqrt(x^cos(y)))";
 
     @Test
+    @Ignore
     public void testBenches() throws Exception {
         StringBuffer sb = new StringBuffer();
         Formatter fmt = new Formatter(sb);

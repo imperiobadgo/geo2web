@@ -1,8 +1,7 @@
 package de.geo2web.arithmetic.function;
 
+import de.geo2web.arithmetic.*;
 import de.geo2web.arithmetic.Number;
-import de.geo2web.arithmetic.NumberOperand;
-import de.geo2web.arithmetic.Operand;
 
 public class FunctionEvaluation {
 
@@ -254,4 +253,11 @@ public class FunctionEvaluation {
         }
     }
 
+    public static Operand handleCross(Operand a, Operand b) {
+        if (a instanceof VectorOperand && b instanceof VectorOperand){
+            return Vector.cross((VectorOperand) a, (VectorOperand) b);
+        }else {
+            throw new IllegalArgumentException("Operand combination not supported!");
+        }
+    }
 }

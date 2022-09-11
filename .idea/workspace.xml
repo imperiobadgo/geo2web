@@ -4,11 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="cba5d1cc-47d2-4e5d-9117-80b432d6b105" name="Changes" comment="Added vector first operation tests">
-      <change afterPath="$PROJECT_DIR$/src/main/java/de/geo2web/arithmetic/CompensatedUtil.java" afterDir="false" />
+    <list default="true" id="cba5d1cc-47d2-4e5d-9117-80b432d6b105" name="Changes" comment="Added vector cross product">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/de/geo2web/arithmetic/CompensatedUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/geo2web/arithmetic/CompensatedUtil.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/de/geo2web/arithmetic/Vector.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/geo2web/arithmetic/Vector.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/de/geo2web/arithmetic/operator/OperationEvaluation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/geo2web/arithmetic/operator/OperationEvaluation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/de/geo2web/arithmetic/function/FunctionEvaluation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/geo2web/arithmetic/function/FunctionEvaluation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/de/geo2web/arithmetic/function/Functions.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/geo2web/arithmetic/function/Functions.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/arithmetic/PerformanceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/arithmetic/PerformanceTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/arithmetic/VectorArithmeticOperationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/arithmetic/VectorArithmeticOperationTests.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -91,6 +93,14 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="All in geo2web" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="geo2web" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="TEST_OBJECT" value="package" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="VectorArithmeticOperationTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="geo2web" />
       <extension name="coverage">
@@ -106,7 +116,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="VectorArithmeticOperationTests.dotVectorCalc04" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="VectorArithmeticOperationTests.crossVectorCalc04" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="geo2web" />
       <extension name="coverage">
         <pattern>
@@ -116,13 +126,13 @@
       </extension>
       <option name="PACKAGE_NAME" value="arithmetic" />
       <option name="MAIN_CLASS_NAME" value="arithmetic.VectorArithmeticOperationTests" />
-      <option name="METHOD_NAME" value="dotVectorCalc04" />
+      <option name="METHOD_NAME" value="crossVectorCalc04" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="VectorArithmeticOperationTests.multVectorCalc01" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="VectorArithmeticOperationTests.crossVector_OperandsNotSupported" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="geo2web" />
       <extension name="coverage">
         <pattern>
@@ -132,13 +142,13 @@
       </extension>
       <option name="PACKAGE_NAME" value="arithmetic" />
       <option name="MAIN_CLASS_NAME" value="arithmetic.VectorArithmeticOperationTests" />
-      <option name="METHOD_NAME" value="multVectorCalc01" />
+      <option name="METHOD_NAME" value="crossVector_OperandsNotSupported" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="VectorArithmeticOperationTests.multVectorCalc02" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="VectorArithmeticOperationTests.dotVector_NotSameDimensions" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="geo2web" />
       <extension name="coverage">
         <pattern>
@@ -148,23 +158,7 @@
       </extension>
       <option name="PACKAGE_NAME" value="arithmetic" />
       <option name="MAIN_CLASS_NAME" value="arithmetic.VectorArithmeticOperationTests" />
-      <option name="METHOD_NAME" value="multVectorCalc02" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="VectorArithmeticOperationTests.multVectorCalc03" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="geo2web" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="arithmetic.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="arithmetic" />
-      <option name="MAIN_CLASS_NAME" value="arithmetic.VectorArithmeticOperationTests" />
-      <option name="METHOD_NAME" value="multVectorCalc03" />
+      <option name="METHOD_NAME" value="dotVector_NotSameDimensions" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -173,10 +167,10 @@
     <recent_temporary>
       <list>
         <item itemvalue="JUnit.VectorArithmeticOperationTests" />
-        <item itemvalue="JUnit.VectorArithmeticOperationTests.multVectorCalc03" />
-        <item itemvalue="JUnit.VectorArithmeticOperationTests.multVectorCalc02" />
-        <item itemvalue="JUnit.VectorArithmeticOperationTests.multVectorCalc01" />
-        <item itemvalue="JUnit.VectorArithmeticOperationTests.dotVectorCalc04" />
+        <item itemvalue="JUnit.All in geo2web" />
+        <item itemvalue="JUnit.VectorArithmeticOperationTests.crossVector_OperandsNotSupported" />
+        <item itemvalue="JUnit.VectorArithmeticOperationTests.dotVector_NotSameDimensions" />
+        <item itemvalue="JUnit.VectorArithmeticOperationTests.crossVectorCalc04" />
       </list>
     </recent_temporary>
   </component>
@@ -204,7 +198,9 @@
       <workItem from="1661465343377" duration="101000" />
       <workItem from="1661499748504" duration="4704000" />
       <workItem from="1661540364822" duration="10399000" />
-      <workItem from="1661625226884" duration="2343000" />
+      <workItem from="1661625226884" duration="2492000" />
+      <workItem from="1661715011888" duration="19000" />
+      <workItem from="1662892569300" duration="4091000" />
     </task>
     <task id="LOCAL-00001" summary="Initial Commit">
       <created>1661200014255</created>
@@ -255,7 +251,14 @@
       <option name="project" value="LOCAL" />
       <updated>1661550894170</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Added vector dot product and multiplication">
+      <created>1661637010638</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1661637010638</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -293,7 +296,9 @@
     <MESSAGE value="Converted ExpressionBuilderTest" />
     <MESSAGE value="Added vector parsing to tokenizer" />
     <MESSAGE value="Added vector first operation tests" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added vector first operation tests" />
+    <MESSAGE value="Added vector dot product and multiplication" />
+    <MESSAGE value="Added vector cross product" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added vector cross product" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

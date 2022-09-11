@@ -88,6 +88,73 @@ public class VectorArithmeticOperationTests {
         assertEquals(14f, ((Number) result).getValue(), 0f);
     }
 
+    @Test(expected = ArithmeticException.class)
+    public void dotVector_NotSameDimensions() {
+        new ExpressionBuilder("{1,2,3,4}*{1,2,3}")
+                .build()
+                .evaluate();
+    }
+
+    @Test
+    public void crossVectorCalc01() {
+        Operand result = new ExpressionBuilder("cross({1,0,0},{0,1,0})")
+                .build()
+                .evaluate();
+        Operand operand1 = ((Vector) result).getValues()[0];
+        assertEquals(0f, ((Number) operand1).getValue(), 0f);
+        Operand operand2 = ((Vector) result).getValues()[1];
+        assertEquals(0f, ((Number) operand2).getValue(), 0f);
+        Operand operand3 = ((Vector) result).getValues()[2];
+        assertEquals(1f, ((Number) operand3).getValue(), 0f);
+    }
+
+    @Test
+    public void crossVectorCalc02() {
+        Operand result = new ExpressionBuilder("cross({1,0,0},{0,-1,0})")
+                .build()
+                .evaluate();
+        Operand operand1 = ((Vector) result).getValues()[0];
+        assertEquals(0f, ((Number) operand1).getValue(), 0f);
+        Operand operand2 = ((Vector) result).getValues()[1];
+        assertEquals(0f, ((Number) operand2).getValue(), 0f);
+        Operand operand3 = ((Vector) result).getValues()[2];
+        assertEquals(-1f, ((Number) operand3).getValue(), 0f);
+    }
+
+    @Test
+    public void crossVectorCalc03() {
+        Operand result = new ExpressionBuilder("cross({1,2,3},{-7,8,9})")
+                .build()
+                .evaluate();
+        Operand operand1 = ((Vector) result).getValues()[0];
+        assertEquals(-6f, ((Number) operand1).getValue(), 0f);
+        Operand operand2 = ((Vector) result).getValues()[1];
+        assertEquals(-30f, ((Number) operand2).getValue(), 0f);
+        Operand operand3 = ((Vector) result).getValues()[2];
+        assertEquals(22f, ((Number) operand3).getValue(), 0f);
+    }
+
+    @Test(expected = ArithmeticException.class)
+    public void crossVector_A_NotSupported() {
+        new ExpressionBuilder("cross({1,0,0,-4},{0,2,0})")
+                .build()
+                .evaluate();
+    }
+
+    @Test(expected = ArithmeticException.class)
+    public void crossVector_B_NotSupported() {
+        new ExpressionBuilder("cross({1,0,0},{0,2,0,5})")
+                .build()
+                .evaluate();
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void crossVector_OperandsNotSupported() {
+        new ExpressionBuilder("cross({1,0,0},4)")
+                .build()
+                .evaluate();
+    }
+
     @Test
     public void multVectorCalc01() {
         Operand result = new ExpressionBuilder("{1,2,3}*5")

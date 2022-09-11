@@ -4,6 +4,7 @@ public class CompensatedUtil {
 
     /**
      * Summation algorithm, also known as compensated summation introduced by Neumaier. <a href="https://en.wikipedia.org/wiki/Kahan_summation_algorithm">Base algorithm is the Kahan summation algorithm</a>
+     *
      * @param input numbers to sum
      * @return sum
      */

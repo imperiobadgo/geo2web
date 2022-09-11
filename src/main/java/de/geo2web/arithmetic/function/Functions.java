@@ -42,7 +42,9 @@ public class Functions {
     private static final int INDEX_TO_RADIAN = 29;
     private static final int INDEX_TO_DEGREE = 30;
 
-    private static final Function[] BUILT_IN_FUNCTIONS = new Function[31];
+    private static final int INDEX_CROSS = 31;
+
+    private static final Function[] BUILT_IN_FUNCTIONS = new Function[32];
 
     static {
         BUILT_IN_FUNCTIONS[INDEX_SIN] = new Function("sin") {
@@ -260,6 +262,13 @@ public class Functions {
             }
         };
 
+        BUILT_IN_FUNCTIONS[INDEX_CROSS] = new Function("cross", 2) {
+            @Override
+            public Operand apply(Operand... args) {
+                return FunctionEvaluation.handleCross(args[0], args[1]);
+            }
+        };
+
     }
 
     /**
@@ -331,6 +340,8 @@ public class Functions {
                 return BUILT_IN_FUNCTIONS[INDEX_TO_RADIAN];
             case "todegree":
                 return BUILT_IN_FUNCTIONS[INDEX_TO_DEGREE];
+            case "cross":
+                return BUILT_IN_FUNCTIONS[INDEX_CROSS];
             default:
                 return null;
         }

@@ -7,6 +7,8 @@ import org.apache.commons.lang3.SerializationUtils;
 
 import java.util.Arrays;
 
+import static de.geo2web.arithmetic.operator.OperationEvaluation.*;
+
 @Value
 @RequiredArgsConstructor
 public class Vector implements VectorOperand {
@@ -52,7 +54,7 @@ public class Vector implements VectorOperand {
         Operand[] result = new Operand[Math.max(aVector.values.length, bVector.values.length)];
         for (int i = 0; i < result.length; i++) {
             if (aVector.values.length > i && bVector.values.length > i) {
-                result[i] = OperationEvaluation.handlePlus(aVector.values[i], bVector.values[i]);
+                result[i] = handlePlus(aVector.values[i], bVector.values[i]);
             } else if (aVector.values.length > i) {
                 result[i] = aVector.values[i].deepClone();
             } else {
@@ -73,7 +75,7 @@ public class Vector implements VectorOperand {
         Vector aVector = a.getVector();
         Number bNumber = b.getNumber();
         Operand[] result = new Operand[aVector.values.length];
-        Arrays.setAll(result, i -> OperationEvaluation.handlePlus(aVector.values[i], bNumber));
+        Arrays.setAll(result, i -> handlePlus(aVector.values[i], bNumber));
         return new Vector(result);
     }
 
@@ -90,7 +92,7 @@ public class Vector implements VectorOperand {
         Operand[] result = new Operand[Math.max(aVector.values.length, bVector.values.length)];
         for (int i = 0; i < result.length; i++) {
             if (aVector.values.length > i && bVector.values.length > i) {
-                result[i] = OperationEvaluation.handleMinus(aVector.values[i], bVector.values[i]);
+                result[i] = handleMinus(aVector.values[i], bVector.values[i]);
             } else if (aVector.values.length > i) {
                 result[i] = aVector.values[i].deepClone();
             } else {
@@ -111,12 +113,13 @@ public class Vector implements VectorOperand {
         Vector aVector = a.getVector();
         Number bNumber = b.getNumber();
         Operand[] result = new Operand[aVector.values.length];
-        Arrays.setAll(result, i -> OperationEvaluation.handleMinus(aVector.values[i], bNumber));
+        Arrays.setAll(result, i -> handleMinus(aVector.values[i], bNumber));
         return new Vector(result);
     }
 
     /**
      * Calculated the dot product of two vectors. Both input vectors must have the same dimension and contain only numbers. This implementation uses compensated summation.
+     *
      * @param a input vector
      * @param b input vector
      * @return result number
@@ -129,7 +132,7 @@ public class Vector implements VectorOperand {
         }
         float[] sumInput = new float[aVector.values.length];
         for (int i = 0; i < aVector.values.length; i++) {
-            Operand multResult = OperationEvaluation.handleMult(aVector.values[i], bVector.values[i]);
+            Operand multResult = handleMult(aVector.values[i], bVector.values[i]);
             if (!(multResult instanceof NumberOperand)) {
                 throw new ArithmeticException("Vector does contain other content than numbers!");
             }
@@ -149,7 +152,28 @@ public class Vector implements VectorOperand {
         Vector aVector = a.getVector();
         Number bNumber = b.getNumber();
         Operand[] result = new Operand[aVector.values.length];
-        Arrays.setAll(result, i -> OperationEvaluation.handleMult(aVector.values[i], bNumber));
+        Arrays.setAll(result, i -> handleMult(aVector.values[i], bNumber));
+        return new Vector(result);
+    }
+
+    /**
+     * Calculates the cross-product of two three-dimensional vectors. Defined right-handed Cartesian coordinate system.
+     *
+     * @param a input vector
+     * @param b input vector
+     * @return result vector
+     */
+    public static Vector cross(VectorOperand a, VectorOperand b) {
+        int num_dimensions = 3;
+        if (a.getVector().getValues().length != num_dimensions || b.getVector().getValues().length != num_dimensions){
+            throw new ArithmeticException("Cross-product only supports three-dimensional vectors!");
+        }
+        Vector aVector = a.getVector();
+        Vector bVector = b.getVector();
+        Operand[] result = new Operand[num_dimensions];
+        result[0] = handleMinus(handleMult(aVector.values[1], bVector.values[2]), handleMult(aVector.values[2], bVector.values[1]));
+        result[1] = handleMinus(handleMult(aVector.values[2], bVector.values[0]), handleMult(aVector.values[0], bVector.values[2]));
+        result[2] = handleMinus(handleMult(aVector.values[0], bVector.values[1]), handleMult(aVector.values[1], bVector.values[0]));
         return new Vector(result);
     }
 
