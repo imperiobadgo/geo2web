@@ -3,6 +3,7 @@
  */
 package de.geo2web.arithmetic.tokenizer;
 
+import de.geo2web.arithmetic.ArithmeticSettings;
 import de.geo2web.arithmetic.function.Function;
 import de.geo2web.arithmetic.function.Functions;
 import de.geo2web.arithmetic.operator.Operator;
@@ -151,7 +152,7 @@ public class Tokenizer {
     }
 
     private boolean isArgumentSeparator(char ch) {
-        return ch == ',';
+        return ch == ArithmeticSettings.Instance().Argument_Separator;
     }
 
     private Token parseParentheses(final boolean open) {
@@ -177,27 +178,31 @@ public class Tokenizer {
     }
 
     private boolean isOpenParentheses(char ch) {
-        return ch == '(' || ch == '{' || ch == '[';
+        return ch == ArithmeticSettings.Instance().Open_Parentheses ||
+                ch == ArithmeticSettings.Instance().Open_Vector ||
+                ch == ArithmeticSettings.Instance().Open_Index;
     }
 
     private boolean isCloseParentheses(char ch) {
-        return ch == ')' || ch == '}' || ch == ']';
+        return ch == ArithmeticSettings.Instance().Close_Parentheses ||
+                ch == ArithmeticSettings.Instance().Close_Vector ||
+                ch == ArithmeticSettings.Instance().Close_Index;
     }
 
     private boolean isOpenVector(char ch) {
-        return ch == '{';
+        return ch == ArithmeticSettings.Instance().Open_Vector;
     }
 
     private boolean isCloseVector(char ch) {
-        return ch == '}';
+        return ch == ArithmeticSettings.Instance().Close_Vector;
     }
 
     private boolean isOpenIndex(char ch) {
-        return ch == '[';
+        return ch == ArithmeticSettings.Instance().Open_Index;
     }
 
     private boolean isCloseIndex(char ch) {
-        return ch == ']';
+        return ch == ArithmeticSettings.Instance().Close_Index;
     }
 
     private Token parseFunctionOrVariable() {
