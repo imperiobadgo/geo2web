@@ -72,6 +72,8 @@ public class OperationEvaluation {
     public static Operand handlePow(Operand left, Operand right) {
         if (left instanceof NumberOperand && right instanceof NumberOperand) {
             return Number.pow((NumberOperand) left, (NumberOperand) right);
+        } else if (left instanceof VectorOperand && right instanceof NumberOperand){
+            return Vector.pow((VectorOperand) left, (NumberOperand) right);
         }
         throw new IllegalArgumentException("Operand combination not supported!");
     }

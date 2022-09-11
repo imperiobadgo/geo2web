@@ -1,5 +1,6 @@
 package de.geo2web.arithmetic;
 
+import de.geo2web.arithmetic.function.FunctionEvaluation;
 import de.geo2web.arithmetic.operator.OperationEvaluation;
 import lombok.RequiredArgsConstructor;
 import lombok.Value;
@@ -142,6 +143,36 @@ public class Vector implements VectorOperand {
     }
 
     /**
+     * Calculates result by raising the dot product of the vector to the power of the given number.
+     * <a href="https://www.euclideanspace.com/maths/algebra/vectors/vecAlgebra/powers/index.htm">Maths - Powers of Vectors</a>
+     *
+     * @param left  input vector
+     * @param right pow number. Gets rounded to integer and cannot be smaller than 2.
+     * @return even power: number, not even power: vector
+     */
+    public static Operand pow(VectorOperand left, NumberOperand right) {
+        Number countNumber = right.getNumber();
+        int power = Math.round(countNumber.getValue());
+        if (power < 2) {
+            throw new ArithmeticException("Power cannot be smaller than 2!");
+        }
+
+        boolean even = power % 2 == 0;
+
+        int count = power / 2;//integer division. example: 5/2 -> 2
+        Operand result = new Number(1f);
+        for (int i = 0; i < count; i++) {
+            result = handleMult(dot(left, left), result);
+        }
+        if (even) {
+            return result;
+        }else{
+            //for uneven powers the dot-results have to be multiplies by the vector
+            return handleMult(left, result);
+        }
+    }
+
+    /**
      * Multiplies a vector with a number. The given input is multiplied to every entry in the dimension array.
      *
      * @param a input vector
@@ -165,7 +196,7 @@ public class Vector implements VectorOperand {
      */
     public static Vector cross(VectorOperand a, VectorOperand b) {
         int num_dimensions = 3;
-        if (a.getVector().getValues().length != num_dimensions || b.getVector().getValues().length != num_dimensions){
+        if (a.getVector().getValues().length != num_dimensions || b.getVector().getValues().length != num_dimensions) {
             throw new ArithmeticException("Cross-product only supports three-dimensional vectors!");
         }
         Vector aVector = a.getVector();
@@ -175,6 +206,15 @@ public class Vector implements VectorOperand {
         result[1] = handleMinus(handleMult(aVector.values[2], bVector.values[0]), handleMult(aVector.values[0], bVector.values[2]));
         result[2] = handleMinus(handleMult(aVector.values[0], bVector.values[1]), handleMult(aVector.values[1], bVector.values[0]));
         return new Vector(result);
+    }
+
+    /**
+     * Calculated the length of the vector.
+     * @param a input vector
+     * @return result number
+     */
+    public static Operand length(VectorOperand a) {
+        return FunctionEvaluation.handleSqrt(pow(a, new Number(2f)));
     }
 
     public static Vector unaryMinus(VectorOperand left) {

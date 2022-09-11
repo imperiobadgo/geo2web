@@ -43,8 +43,9 @@ public class Functions {
     private static final int INDEX_TO_DEGREE = 30;
 
     private static final int INDEX_CROSS = 31;
+    private static final int INDEX_LENGTH = 32;
 
-    private static final Function[] BUILT_IN_FUNCTIONS = new Function[32];
+    private static final Function[] BUILT_IN_FUNCTIONS = new Function[33];
 
     static {
         BUILT_IN_FUNCTIONS[INDEX_SIN] = new Function("sin") {
@@ -268,6 +269,12 @@ public class Functions {
                 return FunctionEvaluation.handleCross(args[0], args[1]);
             }
         };
+        BUILT_IN_FUNCTIONS[INDEX_LENGTH] = new Function("length") {
+            @Override
+            public Operand apply(Operand... args) {
+                return FunctionEvaluation.handleLength(args[0]);
+            }
+        };
 
     }
 
@@ -342,6 +349,8 @@ public class Functions {
                 return BUILT_IN_FUNCTIONS[INDEX_TO_DEGREE];
             case "cross":
                 return BUILT_IN_FUNCTIONS[INDEX_CROSS];
+            case "length":
+                return BUILT_IN_FUNCTIONS[INDEX_LENGTH];
             default:
                 return null;
         }
