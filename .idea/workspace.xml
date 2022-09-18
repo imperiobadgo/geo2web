@@ -4,16 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="cba5d1cc-47d2-4e5d-9117-80b432d6b105" name="Changes" comment="Added vector power and length">
-      <change afterPath="$PROJECT_DIR$/src/main/java/de/geo2web/arithmetic/tokenizer/IndexToken.java" afterDir="false" />
+    <list default="true" id="cba5d1cc-47d2-4e5d-9117-80b432d6b105" name="Changes" comment="Extracted char definitions to separate ArithmeticSettings class">
+      <change afterPath="$PROJECT_DIR$/angular/geo2webClient/src/assets/toucan-fragment-shader.glsl" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/angular/geo2webClient/src/assets/toucan-vertex-shader.glsl" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/angular/geo2webClient/src/glsl.d.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/angular/geo2webClient/webpack.config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/jpa-buddy.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/jpa-buddy.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/de/geo2web/arithmetic/Expression.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/geo2web/arithmetic/Expression.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/de/geo2web/arithmetic/ShuntingYard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/geo2web/arithmetic/ShuntingYard.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/de/geo2web/arithmetic/tokenizer/Token.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/geo2web/arithmetic/tokenizer/Token.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/de/geo2web/arithmetic/tokenizer/Tokenizer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/geo2web/arithmetic/tokenizer/Tokenizer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/de/geo2web/arithmetic/tokenizer/VectorToken.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/geo2web/arithmetic/tokenizer/VectorToken.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/de/geo2web/arithmetic/tokenizer/VectorTokenStatus.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/geo2web/arithmetic/tokenizer/NumberArgumentsStatus.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/arithmetic/VectorBuilderTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/arithmetic/VectorBuilderTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -73,11 +70,13 @@
     "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
     "extract.method.default.visibility": "private",
     "last_opened_file_path": "C:/Users/Lenovo/IdeaProjects/geo2web",
+    "nodejs_package_manager_path": "npm",
     "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.0",
     "project.structure.side.proportion": "0.0",
-    "settings.editor.selected.configurable": "inlay.hints",
-    "spring.configuration.checksum": "3c5e0a303a466df6d93fc53f59a77a7c"
+    "settings.editor.selected.configurable": "preferences.keymap",
+    "spring.configuration.checksum": "3c5e0a303a466df6d93fc53f59a77a7c",
+    "ts.external.directory.path": "C:\\Users\\Lenovo\\IdeaProjects\\geo2web\\angular\\geo2webClient\\node_modules\\typescript\\lib"
   }
 }]]></component>
   <component name="RecentsManager">
@@ -204,7 +203,10 @@
       <workItem from="1661540364822" duration="10399000" />
       <workItem from="1661625226884" duration="2492000" />
       <workItem from="1661715011888" duration="19000" />
-      <workItem from="1662892569300" duration="17472000" />
+      <workItem from="1662892569300" duration="19620000" />
+      <workItem from="1663098744476" duration="740000" />
+      <workItem from="1663100136921" duration="1154000" />
+      <workItem from="1663512043418" duration="6584000" />
     </task>
     <task id="LOCAL-00001" summary="Initial Commit">
       <created>1661200014255</created>
@@ -276,7 +278,21 @@
       <option name="project" value="LOCAL" />
       <updated>1662904677229</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="Added vector indexing">
+      <created>1662930236370</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1662930236370</updated>
+    </task>
+    <task id="LOCAL-00012" summary="Extracted char definitions to separate ArithmeticSettings class">
+      <created>1662931566162</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1662931566162</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -317,7 +333,9 @@
     <MESSAGE value="Added vector dot product and multiplication" />
     <MESSAGE value="Added vector cross product" />
     <MESSAGE value="Added vector power and length" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added vector power and length" />
+    <MESSAGE value="Added vector indexing" />
+    <MESSAGE value="Extracted char definitions to separate ArithmeticSettings class" />
+    <option name="LAST_COMMIT_MESSAGE" value="Extracted char definitions to separate ArithmeticSettings class" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -326,21 +344,6 @@
           <url>file://$PROJECT_DIR$/src/main/java/de/geo2web/Application.java</url>
           <line>12</line>
           <option name="timeStamp" value="1" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/de/geo2web/arithmetic/Expression.java</url>
-          <line>157</line>
-          <option name="timeStamp" value="9" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/de/geo2web/arithmetic/ShuntingYard.java</url>
-          <line>71</line>
-          <option name="timeStamp" value="13" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/de/geo2web/arithmetic/Expression.java</url>
-          <line>174</line>
-          <option name="timeStamp" value="14" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
