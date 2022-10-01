@@ -4,10 +4,29 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="cba5d1cc-47d2-4e5d-9117-80b432d6b105" name="Changes" comment="Added Test WebGl scene">
+    <list default="true" id="cba5d1cc-47d2-4e5d-9117-80b432d6b105" name="Changes" comment="Added Test WebGl 3d scene">
+      <change afterPath="$PROJECT_DIR$/src/main/java/de/geo2web/construction/ConstructionElement.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/de/geo2web/construction/ConstructionElementId.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/de/geo2web/construction/ConstructionRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/de/geo2web/construction/adapter/persistence/ConstructionElementJpa.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/de/geo2web/construction/adapter/persistence/ConstructionElementJpaMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/de/geo2web/construction/adapter/persistence/ConstructionJpaRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/de/geo2web/construction/adapter/persistence/ConstructionRepositoryAdapter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/de/geo2web/construction/adapter/shared/ConstructionElementIdMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/de/geo2web/construction/application/ConstructionElementChanges.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/de/geo2web/construction/application/ConstructionElementNotFoundException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/de/geo2web/construction/application/CreateConstructionElementUseCase.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/de/geo2web/construction/application/CreateConstructionElementUseCaseImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/de/geo2web/construction/application/DeleteConstructionElementUseCase.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/de/geo2web/construction/application/DeleteConstructionElementUseCaseImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/de/geo2web/shared/ExpressionInput.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/de/geo2web/shared/ExpressionInputMapper.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/angular/geo2webClient/src/app/scene/scene.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/angular/geo2webClient/src/app/scene/scene.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/angular/geo2webClient/src/app/scene/services/web-gl.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/angular/geo2webClient/src/app/scene/services/web-gl.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/de/geo2web/Application.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/geo2web/Application.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/de/geo2web/Example.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/de/geo2web/TestClass.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/de/geo2web/pack/Another.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/de/geo2web/util/logging/Logger.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/geo2web/util/logging/Logger.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -30,11 +49,15 @@
   <component name="JpbToolWindowState">
     <option name="myId2FirstActivated">
       <map>
+        <entry key="com.haulmont.jpb.jpaInspector" value="true" />
+        <entry key="com.haulmont.jpb.jpaPalette" value="true" />
         <entry key="com.haulmont.jpb.jpaStructure" value="true" />
       </map>
     </option>
     <option name="myId2Visible">
       <map>
+        <entry key="com.haulmont.jpb.jpaInspector" value="false" />
+        <entry key="com.haulmont.jpb.jpaPalette" value="false" />
         <entry key="com.haulmont.jpb.jpaStructure" value="false" />
       </map>
     </option>
@@ -77,6 +100,9 @@
   }
 }</component>
   <component name="RecentsManager">
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="de.geo2web.construction.application" />
+    </key>
     <key name="CreateTestDialog.Recents.Supers">
       <recent name="" />
     </key>
@@ -204,7 +230,9 @@
       <workItem from="1663098744476" duration="740000" />
       <workItem from="1663100136921" duration="1154000" />
       <workItem from="1663512043418" duration="6881000" />
-      <workItem from="1663788041527" duration="1901000" />
+      <workItem from="1663788041527" duration="3008000" />
+      <workItem from="1664391951944" duration="693000" />
+      <workItem from="1664653179830" duration="5967000" />
     </task>
     <task id="LOCAL-00001" summary="Initial Commit">
       <created>1661200014255</created>
@@ -297,7 +325,14 @@
       <option name="project" value="LOCAL" />
       <updated>1663530768539</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="Added Test WebGl 3d scene">
+      <created>1663790155342</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1663790155342</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -341,18 +376,8 @@
     <MESSAGE value="Added vector indexing" />
     <MESSAGE value="Extracted char definitions to separate ArithmeticSettings class" />
     <MESSAGE value="Added Test WebGl scene" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added Test WebGl scene" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/de/geo2web/Application.java</url>
-          <line>12</line>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
+    <MESSAGE value="Added Test WebGl 3d scene" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added Test WebGl 3d scene" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/geo2web$VectorBuilderTest_testExpressionBuilder1.ic" NAME="VectorBuilderTest.testExpressionBuilder1 Coverage Results" MODIFIED="1661506578497" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
