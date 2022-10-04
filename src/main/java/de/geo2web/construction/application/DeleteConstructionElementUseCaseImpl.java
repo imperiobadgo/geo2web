@@ -16,10 +16,7 @@ public class DeleteConstructionElementUseCaseImpl implements DeleteConstructionE
 
 
     @Override
-    public ConstructionElement execute(ConstructionElementId id) {
-//        final ConstructionElement element = repository.findById(id)
-//                .orElseThrow(() -> new ConstructionElementNotFoundException(id.toString()));
-
+    public ConstructionElement execute(final ConstructionElementId id) {
         Logger.log(Level.Info, DeleteConstructionElementUseCaseImpl.class, "deleting " + id.toString());
 
         return repository.delete(id)

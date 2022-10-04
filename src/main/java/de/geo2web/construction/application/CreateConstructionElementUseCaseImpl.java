@@ -16,7 +16,7 @@ public class CreateConstructionElementUseCaseImpl implements CreateConstructionE
     private final ConstructionRepository repository;
 
     @Override
-    public ConstructionElement execute(ConstructionElementChanges input) {
+    public ConstructionElement execute(final ConstructionElementChanges input) {
         final Optional<ConstructionElement> lastElement = repository.getLast();
 
         int constructionIndex = ConstructionElement.InitialConstructionIndex;

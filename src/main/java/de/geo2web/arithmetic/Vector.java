@@ -22,6 +22,20 @@ public class Vector implements VectorOperand {
     }
 
     @Override
+    public String toReadableString() {
+        final StringBuilder builder = new StringBuilder();
+        builder.append(ArithmeticSettings.Instance().Open_Vector);
+        for (int i = 0, valuesLength = values.length; i < valuesLength; i++) {
+            builder.append(values[i].toReadableString());
+            if (i > 0){
+                builder.append(ArithmeticSettings.Instance().Argument_Separator);
+            }
+        }
+        builder.append(ArithmeticSettings.Instance().Close_Vector);
+        return builder.toString();
+    }
+
+    @Override
     public Vector getVector() {
         return this;
     }
@@ -166,7 +180,7 @@ public class Vector implements VectorOperand {
         }
         if (even) {
             return result;
-        }else{
+        } else {
             //for uneven powers the dot-results have to be multiplies by the vector
             return handleMult(left, result);
         }
@@ -210,6 +224,7 @@ public class Vector implements VectorOperand {
 
     /**
      * Calculated the length of the vector.
+     *
      * @param a input vector
      * @return result number
      */

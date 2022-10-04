@@ -27,6 +27,11 @@ public class Number implements NumberOperand {
         return new Number(value);
     }
 
+    @Override
+    public String toReadableString(){
+        return Float.toString(value);
+    }
+
     //Operations
 
     public static Number add(NumberOperand a, NumberOperand b) {
