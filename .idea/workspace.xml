@@ -4,29 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="cba5d1cc-47d2-4e5d-9117-80b432d6b105" name="Changes" comment="First start of Database">
-      <change afterPath="$PROJECT_DIR$/src/main/java/de/geo2web/construction/adapter/rest/ConstructionElementCreateModel.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/de/geo2web/construction/adapter/rest/ConstructionElementMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/de/geo2web/construction/adapter/rest/ConstructionElementReadModel.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/de/geo2web/construction/adapter/rest/ConstructionElementWriteModel.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/de/geo2web/construction/adapter/rest/ConstructionsController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/de/geo2web/construction/adapter/rest/EvaluationResultReadModel.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/de/geo2web/construction/application/EvaluateConstructionElementUseCase.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/de/geo2web/construction/application/EvaluateConstructionElementUseCaseImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/de/geo2web/construction/application/ReadConstructionElementUseCase.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/de/geo2web/construction/application/ReadConstructionElementUseCaseImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/de/geo2web/shared/EvaluationResult.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/de/geo2web/shared/EvaluationResultMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
+    <list default="true" id="cba5d1cc-47d2-4e5d-9117-80b432d6b105" name="Changes" comment="Added ConstructionElement">
+      <change afterPath="$PROJECT_DIR$/src/test/java/arithmetic/VectorValidateTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/de/geo2web/Application.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/geo2web/Application.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/de/geo2web/arithmetic/Number.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/geo2web/arithmetic/Number.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/de/geo2web/arithmetic/Operand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/geo2web/arithmetic/Operand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/de/geo2web/arithmetic/Vector.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/geo2web/arithmetic/Vector.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/de/geo2web/construction/ConstructionElement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/geo2web/construction/ConstructionElement.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/de/geo2web/construction/application/ConstructionElementChanges.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/geo2web/construction/application/ConstructionElementChanges.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/de/geo2web/construction/application/CreateConstructionElementUseCaseImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/geo2web/construction/application/CreateConstructionElementUseCaseImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/de/geo2web/construction/application/DeleteConstructionElementUseCaseImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/geo2web/construction/application/DeleteConstructionElementUseCaseImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/de/geo2web/arithmetic/Expression.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/geo2web/arithmetic/Expression.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -113,7 +94,7 @@
       <recent name="de.geo2web.arithmetics" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Application">
+  <component name="RunManager" selected="JUnit.VectorValidateTest.testValidateInvalidVectorOperator">
     <configuration name="Application" type="Application" factoryName="Application" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="de.geo2web.Application" />
       <module name="geo2web" />
@@ -121,17 +102,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="All in geo2web" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="geo2web" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="" />
-      <option name="METHOD_NAME" value="" />
-      <option name="TEST_OBJECT" value="package" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="VectorBuilderTest.testVectorIndexBuilder02" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="VectorValidateTest.testValidateInvalidMultipleVectorFunction" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="geo2web" />
       <extension name="coverage">
         <pattern>
@@ -140,14 +111,14 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="arithmetic" />
-      <option name="MAIN_CLASS_NAME" value="arithmetic.VectorBuilderTest" />
-      <option name="METHOD_NAME" value="testVectorIndexBuilder02" />
+      <option name="MAIN_CLASS_NAME" value="arithmetic.VectorValidateTest" />
+      <option name="METHOD_NAME" value="testValidateInvalidMultipleVectorFunction" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="VectorBuilderTest.testVectorIndexBuilder06" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="VectorValidateTest.testValidateInvalidVector1" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="geo2web" />
       <extension name="coverage">
         <pattern>
@@ -156,14 +127,14 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="arithmetic" />
-      <option name="MAIN_CLASS_NAME" value="arithmetic.VectorBuilderTest" />
-      <option name="METHOD_NAME" value="testVectorIndexBuilder06" />
+      <option name="MAIN_CLASS_NAME" value="arithmetic.VectorValidateTest" />
+      <option name="METHOD_NAME" value="testValidateInvalidVector1" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="VectorBuilderTest.testVectorIndexBuilder07" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="VectorValidateTest.testValidateInvalidVector2" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="geo2web" />
       <extension name="coverage">
         <pattern>
@@ -172,14 +143,14 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="arithmetic" />
-      <option name="MAIN_CLASS_NAME" value="arithmetic.VectorBuilderTest" />
-      <option name="METHOD_NAME" value="testVectorIndexBuilder07" />
+      <option name="MAIN_CLASS_NAME" value="arithmetic.VectorValidateTest" />
+      <option name="METHOD_NAME" value="testValidateInvalidVector2" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="VectorBuilderTest.testVectorIndexBuilder08" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="VectorValidateTest.testValidateInvalidVectorFunction" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="geo2web" />
       <extension name="coverage">
         <pattern>
@@ -188,8 +159,24 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="arithmetic" />
-      <option name="MAIN_CLASS_NAME" value="arithmetic.VectorBuilderTest" />
-      <option name="METHOD_NAME" value="testVectorIndexBuilder08" />
+      <option name="MAIN_CLASS_NAME" value="arithmetic.VectorValidateTest" />
+      <option name="METHOD_NAME" value="testValidateInvalidVectorFunction" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="VectorValidateTest.testValidateInvalidVectorOperator" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="geo2web" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="arithmetic.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="arithmetic" />
+      <option name="MAIN_CLASS_NAME" value="arithmetic.VectorValidateTest" />
+      <option name="METHOD_NAME" value="testValidateInvalidVectorOperator" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -197,19 +184,19 @@
     </configuration>
     <list>
       <item itemvalue="Application.Application" />
-      <item itemvalue="JUnit.All in geo2web" />
-      <item itemvalue="JUnit.VectorBuilderTest.testVectorIndexBuilder02" />
-      <item itemvalue="JUnit.VectorBuilderTest.testVectorIndexBuilder06" />
-      <item itemvalue="JUnit.VectorBuilderTest.testVectorIndexBuilder07" />
-      <item itemvalue="JUnit.VectorBuilderTest.testVectorIndexBuilder08" />
+      <item itemvalue="JUnit.VectorValidateTest.testValidateInvalidMultipleVectorFunction" />
+      <item itemvalue="JUnit.VectorValidateTest.testValidateInvalidVector1" />
+      <item itemvalue="JUnit.VectorValidateTest.testValidateInvalidVector2" />
+      <item itemvalue="JUnit.VectorValidateTest.testValidateInvalidVectorFunction" />
+      <item itemvalue="JUnit.VectorValidateTest.testValidateInvalidVectorOperator" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.All in geo2web" />
-        <item itemvalue="JUnit.VectorBuilderTest.testVectorIndexBuilder08" />
-        <item itemvalue="JUnit.VectorBuilderTest.testVectorIndexBuilder07" />
-        <item itemvalue="JUnit.VectorBuilderTest.testVectorIndexBuilder06" />
-        <item itemvalue="JUnit.VectorBuilderTest.testVectorIndexBuilder02" />
+        <item itemvalue="JUnit.VectorValidateTest.testValidateInvalidVectorOperator" />
+        <item itemvalue="JUnit.VectorValidateTest.testValidateInvalidVector1" />
+        <item itemvalue="JUnit.VectorValidateTest.testValidateInvalidVector2" />
+        <item itemvalue="JUnit.VectorValidateTest.testValidateInvalidMultipleVectorFunction" />
+        <item itemvalue="JUnit.VectorValidateTest.testValidateInvalidVectorFunction" />
       </list>
     </recent_temporary>
   </component>
@@ -248,6 +235,7 @@
       <workItem from="1664653179830" duration="6584000" />
       <workItem from="1664743003859" duration="6806000" />
       <workItem from="1664749943207" duration="1496000" />
+      <workItem from="1664879841891" duration="2464000" />
     </task>
     <task id="LOCAL-00001" summary="Initial Commit">
       <created>1661200014255</created>
@@ -354,7 +342,14 @@
       <option name="project" value="LOCAL" />
       <updated>1664659831536</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="Added ConstructionElement">
+      <created>1664880038127</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1664880038127</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -400,7 +395,8 @@
     <MESSAGE value="Added Test WebGl scene" />
     <MESSAGE value="Added Test WebGl 3d scene" />
     <MESSAGE value="First start of Database" />
-    <option name="LAST_COMMIT_MESSAGE" value="First start of Database" />
+    <MESSAGE value="Added ConstructionElement" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added ConstructionElement" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/geo2web$VectorBuilderTest_testExpressionBuilder1.ic" NAME="VectorBuilderTest.testExpressionBuilder1 Coverage Results" MODIFIED="1661506578497" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">

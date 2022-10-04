@@ -3,8 +3,8 @@
  */
 package de.geo2web.arithmetic;
 
-import de.geo2web.arithmetic.function.Functions;
 import de.geo2web.arithmetic.function.Function;
+import de.geo2web.arithmetic.function.Functions;
 import de.geo2web.arithmetic.operator.Operator;
 import de.geo2web.arithmetic.tokenizer.*;
 
@@ -113,6 +113,26 @@ public class Expression {
                 case Token.TOKEN_VARIABLE:
                     count++;
                     break;
+                case Token.TOKEN_VECTOR:
+                    final VectorToken vectorToken = (VectorToken) tok;
+                    final int argsNumVector = vectorToken.getNumArguments();
+                    if (argsNumVector > count) {
+                        errors.add("Not enough arguments for 'Vector of " + argsNumVector + " dimensions'");
+                    }
+                    if (argsNumVector > 1) {
+                        count -= argsNumVector - 1;
+                    }
+                    break;
+                case Token.TOKEN_INDEX:
+                    final IndexToken indexToken = (IndexToken) tok;
+                    final int argsNumIndex = indexToken.getNumArguments();
+                    if (argsNumIndex > count) {
+                        errors.add("Not enough arguments for 'Index of " + argsNumIndex + " dimensions'");
+                    }
+                    if (argsNumIndex > 1) {
+                        count -= argsNumIndex - 1;
+                    }
+                    break;
                 case Token.TOKEN_FUNCTION:
                     final Function func = ((FunctionToken) tok).getFunction();
                     final int argsNum = func.getNumArguments();
@@ -181,12 +201,12 @@ public class Expression {
                 int[] indices = new int[numArguments];
                 for (int j = numArguments - 1; j >= 0; j--) {
                     Operand arg = output.pop();
-                    if (!(arg instanceof NumberOperand)){
+                    if (!(arg instanceof NumberOperand)) {
                         throw new IllegalArgumentException("Only numbers are allowed as arguments for indices!");
                     }
                     Number numberIndex = ((NumberOperand) arg).getNumber();
                     int index = Math.round(numberIndex.getValue());
-                    if (index < 0){
+                    if (index < 0) {
                         throw new IllegalArgumentException("Index cannot be smaller than zero!");
                     }
                     indices[j] = index;
