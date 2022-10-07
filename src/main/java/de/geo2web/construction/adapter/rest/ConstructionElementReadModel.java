@@ -11,6 +11,8 @@ public class ConstructionElementReadModel {
 
     int constructionIndex;
 
+    String name;
+
     String input;
 
 }

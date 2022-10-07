@@ -2,12 +2,14 @@ package de.geo2web.construction.adapter.persistence;
 
 import de.geo2web.construction.ConstructionElement;
 import de.geo2web.construction.adapter.shared.ConstructionElementIdMapper;
+import de.geo2web.shared.ElementNameMapper;
 import de.geo2web.shared.ExpressionInputMapper;
 import org.mapstruct.Mapper;
 
 @Mapper(uses = {
         ConstructionElementIdMapper.class,
-        ExpressionInputMapper.class
+        ExpressionInputMapper.class,
+        ElementNameMapper.class
 })
 interface ConstructionElementJpaMapper {
 

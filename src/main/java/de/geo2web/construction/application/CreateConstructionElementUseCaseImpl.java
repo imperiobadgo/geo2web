@@ -7,23 +7,17 @@ import de.geo2web.util.logging.Logger;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
-import java.util.Optional;
-
 @Component
 @RequiredArgsConstructor
 public class CreateConstructionElementUseCaseImpl implements CreateConstructionElementUseCase {
 
     private final ConstructionRepository repository;
 
+    private final ReadConstructionElementUseCase read;
+
     @Override
     public ConstructionElement execute(final ConstructionElementChanges input) {
-        final Optional<ConstructionElement> lastElement = repository.getLast();
-
-        int constructionIndex = ConstructionElement.InitialConstructionIndex;
-        if (lastElement.isPresent()) {
-            constructionIndex = lastElement.get().getConstructionIndex() + 1;
-        }
-
+        int constructionIndex = read.getNextConstructionIndex();
         final ConstructionElement element = input.apply(ConstructionElement.builder(), constructionIndex);
         Logger.log(Level.Info, CreateConstructionElementUseCaseImpl.class,
                 "Creating at ConstructionIndex " + constructionIndex + ": " + element.toString());

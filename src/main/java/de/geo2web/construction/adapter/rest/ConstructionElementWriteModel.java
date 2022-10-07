@@ -13,6 +13,8 @@ public class ConstructionElementWriteModel {
     @NonNull
     UUID id;
 
+    String name;
+
     String input;
 
 }

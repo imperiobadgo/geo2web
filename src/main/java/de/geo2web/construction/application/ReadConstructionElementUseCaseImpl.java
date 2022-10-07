@@ -7,6 +7,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
+import java.util.Optional;
 
 @Component
 @RequiredArgsConstructor
@@ -25,4 +26,16 @@ public class ReadConstructionElementUseCaseImpl implements ReadConstructionEleme
         return repository.findById(id)
                 .orElseThrow(() -> new ConstructionElementNotFoundException(id.toString()));
     }
+
+    @Override
+    public int getNextConstructionIndex() {
+        final Optional<ConstructionElement> lastElement = repository.getLast();
+
+        int constructionIndex = ConstructionElement.InitialConstructionIndex;
+        if (lastElement.isPresent()) {
+            constructionIndex = lastElement.get().getConstructionIndex() + 1;
+        }
+        return constructionIndex;
+    }
+
 }

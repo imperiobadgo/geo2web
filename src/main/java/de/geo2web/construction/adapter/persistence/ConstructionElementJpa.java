@@ -32,5 +32,7 @@ public class ConstructionElementJpa {
 
     int constructionIndex;
 
+    String name;
+
     String input;
 }

@@ -7,6 +7,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class ConstructionElementCreateModel {
 
+    String name;
+
     String input;
 
 }

@@ -8,7 +8,7 @@ package de.geo2web.arithmetic.tokenizer;
  *
  * @author Bartosz Firyn (sarxos)
  */
-class UnknownFunctionOrVariableException extends IllegalArgumentException {
+public class UnknownFunctionOrVariableException extends IllegalArgumentException {
 
     /**
      * Serial version UID.
