@@ -129,9 +129,7 @@ public class Expression {
                     if (argsNumIndex > count) {
                         errors.add("Not enough arguments for 'Index of " + argsNumIndex + " dimensions'");
                     }
-                    if (argsNumIndex > 1) {
-                        count -= argsNumIndex - 1;
-                    }
+                    count -= argsNumIndex;
                     break;
                 case Token.TOKEN_FUNCTION:
                     final Function func = ((FunctionToken) tok).getFunction();

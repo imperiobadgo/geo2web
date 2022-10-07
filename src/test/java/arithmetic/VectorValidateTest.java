@@ -35,6 +35,14 @@ public class VectorValidateTest {
     }
 
     @Test
+    public void testValidateVector4() {
+        Expression exp = new ExpressionBuilder("{1}")
+                .build();
+        ValidationResult result = exp.validate(false);
+        Assert.assertTrue(result.isValid());
+    }
+
+    @Test
     public void testValidateVectorPositive1() {
         Expression exp = new ExpressionBuilder("{+1,2}")
                 .build();
@@ -123,6 +131,22 @@ public class VectorValidateTest {
     }
 
     @Test
+    public void testValidateVectorIndices1() {
+        Expression exp = new ExpressionBuilder("{1,2}[0]")
+                .build();
+        ValidationResult result = exp.validate(false);
+        Assert.assertTrue(result.isValid());
+    }
+
+    @Test
+    public void testValidateVectorIndices2() {
+        Expression exp = new ExpressionBuilder("{1,{4,5},3}[1,0]")
+                .build();
+        ValidationResult result = exp.validate(false);
+        Assert.assertTrue(result.isValid());
+    }
+
+    @Test
     public void testValidateInvalidVector1() {
         Expression exp = new ExpressionBuilder("{1,}")
                 .build();
@@ -157,6 +181,22 @@ public class VectorValidateTest {
     @Test
     public void testValidateInvalidMultipleVectorFunction() {
         Expression exp = new ExpressionBuilder("cross({1, 3, 4},)")
+                .build();
+        ValidationResult result = exp.validate(false);
+        Assert.assertFalse(result.isValid());
+    }
+
+    @Test
+    public void testValidateInvalidVectorIndices1() {
+        Expression exp = new ExpressionBuilder("{1,2}[]")
+                .build();
+        ValidationResult result = exp.validate(false);
+        Assert.assertFalse(result.isValid());
+    }
+
+    @Test
+    public void testValidateInvalidVectorIndices2() {
+        Expression exp = new ExpressionBuilder("{1,{4,5},3}[1,]")
                 .build();
         ValidationResult result = exp.validate(false);
         Assert.assertFalse(result.isValid());
