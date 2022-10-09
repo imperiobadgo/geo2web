@@ -4,24 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="cba5d1cc-47d2-4e5d-9117-80b432d6b105" name="Changes" comment="Included indices tests to VectorValidateTest">
-      <change afterPath="$PROJECT_DIR$/src/main/java/de/geo2web/shared/ElementName.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/de/geo2web/shared/ElementNameMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/construction/ConstructionElementTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/construction/mocks/ReadConstructionElementUseCaseMock.java" afterDir="false" />
+    <list default="true" id="cba5d1cc-47d2-4e5d-9117-80b432d6b105" name="Changes" comment="Added evaluation of dependent construction elements">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/de/geo2web/arithmetic/tokenizer/UnknownFunctionOrVariableException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/geo2web/arithmetic/tokenizer/UnknownFunctionOrVariableException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/de/geo2web/construction/ConstructionElement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/geo2web/construction/ConstructionElement.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/de/geo2web/construction/adapter/persistence/ConstructionElementJpa.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/geo2web/construction/adapter/persistence/ConstructionElementJpa.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/de/geo2web/construction/adapter/persistence/ConstructionElementJpaMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/geo2web/construction/adapter/persistence/ConstructionElementJpaMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/de/geo2web/construction/adapter/rest/ConstructionElementCreateModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/geo2web/construction/adapter/rest/ConstructionElementCreateModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/de/geo2web/construction/adapter/rest/ConstructionElementMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/geo2web/construction/adapter/rest/ConstructionElementMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/de/geo2web/construction/adapter/rest/ConstructionElementReadModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/geo2web/construction/adapter/rest/ConstructionElementReadModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/de/geo2web/construction/adapter/rest/ConstructionElementWriteModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/geo2web/construction/adapter/rest/ConstructionElementWriteModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/de/geo2web/construction/application/ConstructionElementChanges.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/geo2web/construction/application/ConstructionElementChanges.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/de/geo2web/construction/application/CreateConstructionElementUseCaseImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/geo2web/construction/application/CreateConstructionElementUseCaseImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/de/geo2web/construction/application/ReadConstructionElementUseCase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/geo2web/construction/application/ReadConstructionElementUseCase.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/de/geo2web/construction/application/ReadConstructionElementUseCaseImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/geo2web/construction/application/ReadConstructionElementUseCaseImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/angular/geo2webClient/angular.json" beforeDir="false" afterPath="$PROJECT_DIR$/angular/geo2webClient/angular.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/angular/geo2webClient/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/angular/geo2webClient/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/angular/geo2webClient/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/angular/geo2webClient/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/angular/geo2webClient/src/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/angular/geo2webClient/src/styles.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -241,7 +229,9 @@
       <workItem from="1664743003859" duration="6806000" />
       <workItem from="1664749943207" duration="1496000" />
       <workItem from="1664879841891" duration="2856000" />
-      <workItem from="1665174894061" duration="6983000" />
+      <workItem from="1665174894061" duration="7187000" />
+      <workItem from="1665239042394" duration="5121000" />
+      <workItem from="1665342113703" duration="1362000" />
     </task>
     <task id="LOCAL-00001" summary="Initial Commit">
       <created>1661200014255</created>
@@ -369,7 +359,14 @@
       <option name="project" value="LOCAL" />
       <updated>1665176762870</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="Added evaluation of dependent construction elements">
+      <created>1665182664778</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1665182664778</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -418,7 +415,8 @@
     <MESSAGE value="Added ConstructionElement" />
     <MESSAGE value="Added VectorValidateTest" />
     <MESSAGE value="Included indices tests to VectorValidateTest" />
-    <option name="LAST_COMMIT_MESSAGE" value="Included indices tests to VectorValidateTest" />
+    <MESSAGE value="Added evaluation of dependent construction elements" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added evaluation of dependent construction elements" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/geo2web$VectorBuilderTest_testExpressionBuilder1.ic" NAME="VectorBuilderTest.testExpressionBuilder1 Coverage Results" MODIFIED="1661506578497" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
