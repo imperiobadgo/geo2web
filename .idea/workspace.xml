@@ -4,12 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="cba5d1cc-47d2-4e5d-9117-80b432d6b105" name="Changes" comment="Added evaluation of dependent construction elements">
+    <list default="true" id="cba5d1cc-47d2-4e5d-9117-80b432d6b105" name="Changes" comment="Added primeng styles">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/angular/geo2webClient/angular.json" beforeDir="false" afterPath="$PROJECT_DIR$/angular/geo2webClient/angular.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/angular/geo2webClient/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/angular/geo2webClient/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/angular/geo2webClient/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/angular/geo2webClient/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/angular/geo2webClient/src/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/angular/geo2webClient/src/styles.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -231,7 +228,7 @@
       <workItem from="1664879841891" duration="2856000" />
       <workItem from="1665174894061" duration="7187000" />
       <workItem from="1665239042394" duration="5121000" />
-      <workItem from="1665342113703" duration="1362000" />
+      <workItem from="1665342113703" duration="1971000" />
     </task>
     <task id="LOCAL-00001" summary="Initial Commit">
       <created>1661200014255</created>
@@ -366,7 +363,14 @@
       <option name="project" value="LOCAL" />
       <updated>1665182664778</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="Added primeng styles">
+      <created>1665344419849</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1665344419849</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -416,7 +420,8 @@
     <MESSAGE value="Added VectorValidateTest" />
     <MESSAGE value="Included indices tests to VectorValidateTest" />
     <MESSAGE value="Added evaluation of dependent construction elements" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added evaluation of dependent construction elements" />
+    <MESSAGE value="Added primeng styles" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added primeng styles" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/geo2web$VectorBuilderTest_testExpressionBuilder1.ic" NAME="VectorBuilderTest.testExpressionBuilder1 Coverage Results" MODIFIED="1661506578497" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
