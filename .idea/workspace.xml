@@ -4,9 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="cba5d1cc-47d2-4e5d-9117-80b432d6b105" name="Changes" comment="Added primeng styles">
+    <list default="true" id="cba5d1cc-47d2-4e5d-9117-80b432d6b105" name="Changes" comment="Changed stylesheet from css to scss">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/angular/geo2webClient/angular.json" beforeDir="false" afterPath="$PROJECT_DIR$/angular/geo2webClient/angular.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/angular/geo2webClient/src/app/app.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/angular/geo2webClient/src/app/app.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/angular/geo2webClient/src/app/app.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/angular/geo2webClient/src/app/app.component.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/angular/geo2webClient/src/app/app.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/angular/geo2webClient/src/app/app.module.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/angular/geo2webClient/src/app/scene/scene.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/angular/geo2webClient/src/app/scene/scene.component.scss" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -228,7 +231,7 @@
       <workItem from="1664879841891" duration="2856000" />
       <workItem from="1665174894061" duration="7187000" />
       <workItem from="1665239042394" duration="5121000" />
-      <workItem from="1665342113703" duration="1971000" />
+      <workItem from="1665342113703" duration="7874000" />
     </task>
     <task id="LOCAL-00001" summary="Initial Commit">
       <created>1661200014255</created>
@@ -370,7 +373,14 @@
       <option name="project" value="LOCAL" />
       <updated>1665344419849</updated>
     </task>
-    <option name="localTasksCounter" value="21" />
+    <task id="LOCAL-00021" summary="Changed stylesheet from css to scss">
+      <created>1665345349533</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1665345349533</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -421,7 +431,8 @@
     <MESSAGE value="Included indices tests to VectorValidateTest" />
     <MESSAGE value="Added evaluation of dependent construction elements" />
     <MESSAGE value="Added primeng styles" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added primeng styles" />
+    <MESSAGE value="Changed stylesheet from css to scss" />
+    <option name="LAST_COMMIT_MESSAGE" value="Changed stylesheet from css to scss" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/geo2web$VectorBuilderTest_testExpressionBuilder1.ic" NAME="VectorBuilderTest.testExpressionBuilder1 Coverage Results" MODIFIED="1661506578497" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">

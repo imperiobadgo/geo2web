@@ -1,0 +1,21 @@
+.flex-row {
+  display: flex;
+  justify-content: right;
+  height: 90%;
+  width: 100%;
+}
+
+.split-layout-H-Dragger {
+  cursor: ew-resize;
+  border-left: none;
+  padding-right: 8px;
+  border-right: 1px solid #dcdcdc;
+  box-sizing: border-box;
+}
+
+.scene-positioning {
+  padding: 2px;
+  width: 80%;
+  align-self: end;
+  height: 100%;
+}
