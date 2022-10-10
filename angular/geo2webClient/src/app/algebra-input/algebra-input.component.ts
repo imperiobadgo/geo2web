@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-algebra-input',
@@ -7,9 +7,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AlgebraInputComponent implements OnInit {
 
-  constructor() { }
+  input: string = '';
+  floatLabel: string = 'Enter input';
+
+  constructor() {
+  }
 
   ngOnInit(): void {
+  }
+
+  onEnter(): void {
+
   }
 
 }

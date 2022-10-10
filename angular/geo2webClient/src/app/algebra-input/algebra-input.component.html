@@ -1,4 +1,10 @@
-<div class="input-border">
-  <p>algebra-input works!</p>
-</div>
+<span class="p-float-label margin--small">
+  <input class="input-width"
+         id="float-input"
+         type="text"
+         pInputText [(ngModel)]="input"
+         (keyup.enter)="onEnter()"
+  />
+  <label for="float-input">{{floatLabel}}</label>
+</span>
 

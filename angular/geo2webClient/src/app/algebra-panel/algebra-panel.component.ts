@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {ConstructionElementRead} from "../domain/construction-element/construction-element-read";
+import {ConstructionElementService} from "../services/construction-element.service";
+import {HttpErrorResponse} from "@angular/common/http";
 
 @Component({
   selector: 'app-algebra-panel',
@@ -7,9 +10,25 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AlgebraPanelComponent implements OnInit {
 
-  constructor() { }
+  public constructionElements: ConstructionElementRead[] = [];
+
+
+  constructor(private constructionElementService: ConstructionElementService) {
+  }
 
   ngOnInit(): void {
+    this.getConstructionElements();
+  }
+
+  public getConstructionElements(): void {
+    this.constructionElementService.getConstructionElements().subscribe(
+      (response: ConstructionElementRead[]) => {
+        this.constructionElements = response;
+      },
+      (error: HttpErrorResponse) => {
+        alert(error.message);
+      }
+    )
   }
 
 }
