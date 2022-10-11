@@ -1,4 +1,4 @@
-export interface ConstructionElementCreate{
+export interface ConstructionElementCreate {
   name: string;
 
   input: string;

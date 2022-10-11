@@ -1,8 +1,21 @@
 .flex-row {
   display: flex;
-  justify-content: right;
+  justify-content: space-between;
   height: 85%;
   width: 100%;
+}
+
+.algebra-panel--flex {
+  flex-grow:1;
+  flex-basis:20%;
+}
+
+.split-layout--flex {
+  flex-basis:10px;
+}
+
+.scene--flex {
+  flex-basis:80%;
 }
 
 .split-layout-H-Dragger {
@@ -15,7 +28,6 @@
 
 .scene-positioning {
   padding: 2px;
-  width: 80%;
   align-self: end;
   height: 100%;
 }

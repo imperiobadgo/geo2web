@@ -1,34 +1,34 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Injectable, OnInit} from '@angular/core';
 import {ConstructionElementRead} from "../domain/construction-element/construction-element-read";
-import {ConstructionElementService} from "../services/construction-element.service";
-import {HttpErrorResponse} from "@angular/common/http";
+import {AlgebraPanelService} from "./services/algebra-panel.service";
 
 @Component({
   selector: 'app-algebra-panel',
   templateUrl: './algebra-panel.component.html',
   styleUrls: ['./algebra-panel.component.scss']
 })
+@Injectable({
+  providedIn: 'root'
+})
 export class AlgebraPanelComponent implements OnInit {
 
-  public constructionElements: ConstructionElementRead[] = [];
+  constructionElements: ConstructionElementRead[] = [];
 
-
-  constructor(private constructionElementService: ConstructionElementService) {
+  constructor(private panelService: AlgebraPanelService) {
+    //The AlgebraPanelService provides the data so that other components can also initiate an update.
+    this.panelService.currentElements.subscribe(elements => this.constructionElements = elements);
   }
 
   ngOnInit(): void {
-    this.getConstructionElements();
+    this.refresh();
   }
 
-  public getConstructionElements(): void {
-    this.constructionElementService.getConstructionElements().subscribe(
-      (response: ConstructionElementRead[]) => {
-        this.constructionElements = response;
-      },
-      (error: HttpErrorResponse) => {
-        alert(error.message);
-      }
-    )
+  public refresh() {
+    this.panelService.refresh();
+  }
+
+  public trackElement(index: number, item: ConstructionElementRead) {
+    return item ? item.id : null;
   }
 
 }

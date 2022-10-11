@@ -27,16 +27,16 @@ export class ConstructionElementService {
   }
 
   public addConstructionElement(element: ConstructionElementCreate): Observable<ConstructionElementRead> {
-    const headers = {'content-type': 'application/json'}//Set up the http.post for sending json
-    const body = JSON.stringify(element);//Convert to json for posting
-    console.log(body)
-    return this.http.post<ConstructionElementRead>(`${this.apiServerUrl}/${this.apiConstruction}`, body, {'headers': headers});
+    // const headers = {'content-type': 'application/json'}//Set up the http.post for sending json
+    // const body = JSON.stringify(element);//Convert to json for posting
+    // console.log(body);
+    return this.http.post<ConstructionElementRead>(`${this.apiServerUrl}/${this.apiConstruction}`, element);//, {'headers': headers});
   }
 
   public updateConstructionElement(element: ConstructionElementWrite): Observable<ConstructionElementRead> {
-    const headers = {'content-type': 'application/json'}//Set up the http.post for sending json
-    const body = JSON.stringify(element);//Convert to json for posting
-    return this.http.put<ConstructionElementRead>(`${this.apiServerUrl}/${this.apiConstruction}`, body, {'headers': headers});
+    // const headers = {'content-type': 'application/json'}//Set up the http.post for sending json
+    // const body = JSON.stringify(element);//Convert to json for posting
+    return this.http.put<ConstructionElementRead>(`${this.apiServerUrl}/${this.apiConstruction}`, element);// body, {'headers': headers});
   }
 
   public deleteConstructionElement(id: string): Observable<ConstructionElementRead> {
