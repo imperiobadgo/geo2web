@@ -2,10 +2,7 @@ package de.geo2web.construction.adapter.rest;
 
 import de.geo2web.Application;
 import de.geo2web.construction.adapter.shared.ConstructionElementIdMapper;
-import de.geo2web.construction.application.CreateConstructionElementUseCase;
-import de.geo2web.construction.application.DeleteConstructionElementUseCase;
-import de.geo2web.construction.application.EvaluateConstructionElementUseCase;
-import de.geo2web.construction.application.ReadConstructionElementUseCase;
+import de.geo2web.construction.application.*;
 import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -29,6 +26,9 @@ public class ConstructionsController {
 
     @Autowired
     private ReadConstructionElementUseCase read;
+
+    @Autowired
+    private UpdateConstructionElementUseCase update;
 
     @Autowired
     private EvaluateConstructionElementUseCase evaluate;
@@ -55,6 +55,12 @@ public class ConstructionsController {
     @GetMapping("/{id}")
     public ConstructionElementReadModel findById(@PathVariable("id") final UUID id) {
         return mapper.toReadModel(read.findById(ConstructionElementIdMapper.fromUuid(id)));
+    }
+
+    @Operation(summary = "Updates the given construction element to the new values.")
+    @PutMapping()
+    public ConstructionElementReadModel update(@RequestBody final ConstructionElementWriteModel input) {
+        return mapper.toReadModel(update.execute(ConstructionElementIdMapper.fromUuid(input.id), mapper.toChanges(input)));
     }
 
     @Operation(summary = "Evaluates the given construction element.")

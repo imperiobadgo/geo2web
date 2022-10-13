@@ -1,0 +1,15 @@
+<div>
+  <span class="p-float-label margin--small">
+    <input id="float-input"
+           type="text"
+           pInputText [(ngModel)]="inputEdit"
+           (keyup.enter)="onEnter()"
+    />
+    <label for="float-input">{{constructionElement.name}}</label>
+    => {{constructionElement.output}}
+    <button pButton type="button" icon="pi pi-eraser" class="p-button-outlined"
+            (click)="onDelete()"
+    ></button>
+  </span>
+</div>
+<!--<div> {{constructionElement.name}} : {{constructionElement.input}} => {{constructionElement.output}} </div>-->

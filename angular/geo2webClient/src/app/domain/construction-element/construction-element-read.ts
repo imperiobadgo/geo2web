@@ -6,4 +6,6 @@ export interface ConstructionElementRead{
   name: string;
 
   input: string;
+
+  output: string;
 }

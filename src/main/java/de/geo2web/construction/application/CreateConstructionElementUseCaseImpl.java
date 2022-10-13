@@ -19,8 +19,9 @@ public class CreateConstructionElementUseCaseImpl implements CreateConstructionE
     public ConstructionElement execute(final ConstructionElementChanges input) {
         int constructionIndex = read.getNextConstructionIndex();
         final ConstructionElement element = input.apply(ConstructionElement.builder(), constructionIndex);
+        element.evaluate(read);
         Logger.log(Level.Info, CreateConstructionElementUseCaseImpl.class,
-                "Creating at ConstructionIndex " + constructionIndex + ": " + element.toString());
+                "Creating at ConstructionIndex " + constructionIndex + ": " + element);
         return repository.save(element);
     }
 }

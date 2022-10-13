@@ -8,8 +8,10 @@ import {AlgebraPanelComponent} from './algebra-panel/algebra-panel.component';
 import {AlgebraInputComponent} from './algebra-input/algebra-input.component';
 import {HeaderComponent} from './header/header.component';
 import {InputTextModule} from 'primeng/inputtext';
+import {ButtonModule} from 'primeng/button';
 import {FormsModule} from "@angular/forms";
 import {HttpClientModule} from "@angular/common/http";
+import { AlgebraPanelItemComponent } from './algebra-panel/algebra-panel-item/algebra-panel-item.component';
 
 @NgModule({
   declarations: [
@@ -17,12 +19,14 @@ import {HttpClientModule} from "@angular/common/http";
     SceneComponent,
     AlgebraPanelComponent,
     AlgebraInputComponent,
-    HeaderComponent
+    HeaderComponent,
+    AlgebraPanelItemComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     InputTextModule,
+    ButtonModule,
     FormsModule,
     HttpClientModule
   ],

@@ -15,4 +15,5 @@ public class ConstructionElementReadModel {
 
     String input;
 
+    String output;
 }

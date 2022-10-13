@@ -14,7 +14,7 @@ public class ArithmeticSettings {
     }
 
     public static char[] ALLOWED_CHARS_TO_CHANGE =
-            {',','(',')','{','}','[',']',';','|'};
+            {',','(',')','{','}','[',']',';','|','=',':'};
 
     public char Argument_Separator = ',';
 
@@ -26,5 +26,7 @@ public class ArithmeticSettings {
 
     public char Open_Index = '[';
     public char Close_Index = ']';
+
+    public char Assignment = '=';
 
 }

@@ -4,10 +4,12 @@ import de.geo2web.arithmetic.ExpressionBuilder;
 import de.geo2web.arithmetic.Operand;
 import de.geo2web.construction.application.ReadConstructionElementUseCase;
 import de.geo2web.shared.ElementName;
+import de.geo2web.shared.EvaluationResult;
 import de.geo2web.shared.ExpressionInput;
 import lombok.Builder;
 import lombok.NonNull;
 import lombok.Value;
+import lombok.experimental.NonFinal;
 
 import java.util.HashMap;
 import java.util.List;
@@ -27,9 +29,14 @@ public class ConstructionElement {
     @Builder.Default
     int constructionIndex = InitialConstructionIndex;
 
+    int version;
+
     ElementName name;
 
     ExpressionInput input;
+
+    @NonFinal
+    EvaluationResult output;
 
     public Operand evaluate(final ReadConstructionElementUseCase read){
         List<ConstructionElement> orderedPreviousElements = read.findAllInOrderUntil(this.constructionIndex);
@@ -39,12 +46,14 @@ public class ConstructionElement {
         for (ConstructionElement element: orderedPreviousElements) {
             variables.put(element.getName().getName(), element.evaluate(read));
         }
-
-        return new ExpressionBuilder(input.getValue())
+        final Operand result = new ExpressionBuilder(input.getValue())
                 .variables(variables.keySet())
                 .build()
                 .setVariables(variables)
                 .evaluate();
+
+        this.output = EvaluationResult.of(result.toReadableString());
+        return result;
     }
 
 

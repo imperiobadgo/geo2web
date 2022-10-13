@@ -35,4 +35,6 @@ public class ConstructionElementJpa {
     String name;
 
     String input;
+
+    String output;
 }
