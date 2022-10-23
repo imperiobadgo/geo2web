@@ -78,8 +78,8 @@ export class WebGLService {
    * Formats the scene for rendering (by resizing the WebGL canvas and setting the defaults for WebGL drawing).
    */
   public formatScene() {
+    // this.resizeWebGLCanvas();
     this.updateWebGLCanvas();
-    this.resizeWebGLCanvas();
     this.updateViewport();
   }
 

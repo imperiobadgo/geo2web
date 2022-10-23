@@ -1,12 +1,22 @@
-<app-header></app-header>
-<div class="flex-row">
-  <app-algebra-panel class="algebra-panel--flex"></app-algebra-panel>
-  <div class="split-layout-H-Dragger split-layout--flex"></div>
-  <div class="scene-positioning scene--flex">
+<!--<app-header></app-header>-->
+<p-splitter [style]="{'height': '95%', 'width' : '100%'}" [panelSizes]="[20,80]">
+  <ng-template pTemplate>
+    <app-algebra-panel></app-algebra-panel>
+  </ng-template>
+  <ng-template pTemplate>
     <app-scene></app-scene>
-  </div>
+  </ng-template>
+</p-splitter>
 
-</div>
+
+<!--<div class="flex-row">-->
+
+<!--  <div class="split-layout-H-Dragger split-layout&#45;&#45;flex"></div>-->
+<!--  <div class="scene-positioning scene&#45;&#45;flex">-->
+<!--    <app-scene></app-scene>-->
+<!--  </div>-->
+
+<!--</div>-->
 
 <app-algebra-input></app-algebra-input>
 <!--<router-outlet></router-outlet>-->

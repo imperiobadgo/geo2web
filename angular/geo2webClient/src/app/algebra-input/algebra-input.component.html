@@ -1,10 +1,16 @@
-<span class="p-float-label margin--small">
-  <input class="input-width"
-         id="float-input"
-         type="text"
-         pInputText [(ngModel)]="input"
-         (keyup.enter)="onEnter()"
-  />
+<span class="p-float-label margin--small" [style]="{'height': '5%', 'width' : 'auto'}">
+<p-autoComplete id="float-input"
+  [(ngModel)]="input"
+  [suggestions]="suggestions"
+  (completeMethod)="search({event : $event})"
+(keyup.enter)="onEnter()"></p-autoComplete>
+
+  <!--  <input [style]="{'width' : 'calc(100vw - 5px)'}"-->
+<!--         id="float-input"-->
+<!--         type="text"-->
+<!--         pInputText [(ngModel)]="input"-->
+<!--         (keyup.enter)="onEnter()"-->
+<!--  />-->
   <label for="float-input">{{floatLabel}}</label>
 </span>
 
