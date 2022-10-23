@@ -48,11 +48,9 @@ export class AlgebraInputComponent implements OnInit {
       if (current == "="){
         startSearchIndex = i;
         lastDevider = "=";
-        break;
       }else if (current == ","){
         startSearchIndex = i;
-        lastDevider = ";";
-        break;
+        lastDevider = ",";
       }
     }
     let previousInput = query.substring(0, startSearchIndex);

@@ -9,7 +9,8 @@ import {ThemeService} from "./services/theme.service";
 export class AppComponent {
   title = 'geo2webClient';
 
-  constructor(private themeService: ThemeService) { }
+
+  constructor(private themeService: ThemeService) {  }
 
   changeTheme(newTheme: string) {
     this.themeService.switchTheme(newTheme);

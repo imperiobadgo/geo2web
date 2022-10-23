@@ -1,10 +1,10 @@
 <div>
-  <span class="p-float-label margin--small">
-    <input id="float-input"
-           type="text"
-           pInputText [(ngModel)]="inputEdit"
-           (keyup.enter)="onEnter()"
-    />
+  <span class="p-float-label">
+<p-autoComplete id="float-input"
+                [(ngModel)]="inputEdit"
+                [suggestions]="suggestions"
+                (completeMethod)="search({event : $event})"
+                (keyup.enter)="onEnter()"></p-autoComplete>
     <label for="float-input">{{constructionElement.name}}</label>
     => {{constructionElement.output}}
     <button pButton type="button" icon="pi pi-eraser" class="p-button-outlined"

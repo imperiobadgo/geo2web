@@ -14,6 +14,7 @@ export class AlgebraPanelItemComponent implements OnInit {
 
   @Input() constructionElement: ConstructionElementRead;
   inputEdit: string = "";
+  suggestions: string[] = [];
   nameEdit: string = "";
 
 
@@ -27,6 +28,12 @@ export class AlgebraPanelItemComponent implements OnInit {
 
   ngOnChanges(changes: SimpleChanges){
     this.inputEdit = changes["constructionElement"].currentValue.input;
+  }
+
+  search({event}: { event: any }) {
+    let query = event.query;
+    let filtered: any [] = [];
+    this.suggestions = filtered;
   }
 
   onEnter(): void {

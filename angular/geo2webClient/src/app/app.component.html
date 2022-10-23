@@ -1,11 +1,18 @@
 <!--<app-header></app-header>-->
 <p-splitter [style]="{'height': '95%', 'width' : '100%'}" [panelSizes]="[20,80]">
   <ng-template pTemplate>
-    <button (click)="changeTheme('saga-blue')">blue</button>
-    <button (click)="changeTheme('saga-orange')">orange</button>
-    <button (click)="changeTheme('vela-blue')">dark blue</button>
-    <button (click)="changeTheme('vela-orange')">dark orange</button>
-    <app-algebra-panel></app-algebra-panel>
+    <p-splitter [panelSizes]="[1,99]" layout="vertical">
+      <ng-template pTemplate>
+        <p-button (click)="changeTheme('saga-blue')">blue</p-button>
+        <p-button (click)="changeTheme('saga-orange')">orange</p-button>
+        <p-button (click)="changeTheme('vela-blue')">dark blue</p-button>
+        <p-button (click)="changeTheme('vela-orange')">dark orange</p-button>
+      </ng-template>
+
+      <ng-template pTemplate>
+      <app-algebra-panel></app-algebra-panel>
+      </ng-template>
+    </p-splitter>
   </ng-template>
   <ng-template pTemplate>
     <app-scene></app-scene>
