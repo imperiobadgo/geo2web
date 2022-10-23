@@ -4,16 +4,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="cba5d1cc-47d2-4e5d-9117-80b432d6b105" name="Changes" comment="Example of autocompletion">
-      <change afterPath="$PROJECT_DIR$/angular/geo2webClient/src/theme-lara-light-blue.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/angular/geo2webClient/src/theme-md-dark-indigo.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/angular/geo2webClient/src/theme-md-light-indigo.scss" afterDir="false" />
+    <list default="true" id="cba5d1cc-47d2-4e5d-9117-80b432d6b105" name="Changes" comment="Change Theme on the fly">
+      <change afterPath="$PROJECT_DIR$/angular/geo2webClient/src/themes/theme-saga-orange.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/angular/geo2webClient/src/themes/theme-vela-blue.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/angular/geo2webClient/src/themes/theme-vela-orange.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/angular/geo2webClient/angular.json" beforeDir="false" afterPath="$PROJECT_DIR$/angular/geo2webClient/angular.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/angular/geo2webClient/src/app/app.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/angular/geo2webClient/src/app/app.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/angular/geo2webClient/src/app/app.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/angular/geo2webClient/src/app/app.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/angular/geo2webClient/src/environments/environment.prod.ts" beforeDir="false" afterPath="$PROJECT_DIR$/angular/geo2webClient/src/environments/environment.prod.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/angular/geo2webClient/src/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/angular/geo2webClient/src/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/angular/geo2webClient/src/theme-lara-light-blue.scss" beforeDir="false" afterPath="$PROJECT_DIR$/angular/geo2webClient/src/themes/theme-saga-blue.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/angular/geo2webClient/src/theme-md-dark-indigo.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/angular/geo2webClient/src/theme-md-light-indigo.scss" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -78,7 +79,7 @@
     "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
     "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
     "extract.method.default.visibility": "private",
-    "last_opened_file_path": "C:/Users/Lenovo/IdeaProjects/geo2web/angular/geo2webClient/dist/geo2web-client",
+    "last_opened_file_path": "C:/Users/Lenovo/IdeaProjects/geo2web/angular/geo2webClient/src/themes",
     "nodejs_package_manager_path": "npm",
     "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.0",
@@ -93,6 +94,7 @@
       <recent name="de.geo2web.construction.application" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Lenovo\IdeaProjects\geo2web\angular\geo2webClient\src\themes" />
       <recent name="C:\Users\Lenovo\IdeaProjects\geo2web\angular\geo2webClient\dist\geo2web-client" />
       <recent name="C:\Users\Lenovo\IdeaProjects\geo2web\src\main\resources" />
     </key>
@@ -100,8 +102,8 @@
       <recent name="" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\Lenovo\IdeaProjects\geo2web\angular\geo2webClient\src" />
       <recent name="C:\Users\Lenovo\IdeaProjects\geo2web\angular\geo2webClient\src\themes" />
+      <recent name="C:\Users\Lenovo\IdeaProjects\geo2web\angular\geo2webClient\src" />
       <recent name="C:\Users\Lenovo\IdeaProjects\geo2web\angular\geo2webClient\src\app\algebra-input\services" />
       <recent name="C:\Users\Lenovo\IdeaProjects\geo2web\angular\geo2webClient\src\app\algebra-panel\services" />
       <recent name="C:\Users\Lenovo\IdeaProjects\geo2web\angular\geo2webClient\src\app\domain\construction-element" />
@@ -180,7 +182,7 @@
       <workItem from="1665670076812" duration="1954000" />
       <workItem from="1666467716491" duration="693000" />
       <workItem from="1666523075598" duration="2379000" />
-      <workItem from="1666545881569" duration="8158000" />
+      <workItem from="1666545881569" duration="9346000" />
     </task>
     <task id="LOCAL-00001" summary="Initial Commit">
       <created>1661200014255</created>
@@ -364,7 +366,14 @@
       <option name="project" value="LOCAL" />
       <updated>1666557510568</updated>
     </task>
-    <option name="localTasksCounter" value="27" />
+    <task id="LOCAL-00027" summary="Change Theme on the fly">
+      <created>1666560855231</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1666560855231</updated>
+    </task>
+    <option name="localTasksCounter" value="28" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -394,7 +403,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Added net.objecthunter.exp4j mathematical expression evaluator for reference" />
     <MESSAGE value="Adapted net.objecthunter.exp4j for own use and number encapsulated" />
     <MESSAGE value="Refactoring to new mathematical expression evaluation" />
     <MESSAGE value="Converted ExpressionBuilderTest" />
@@ -419,7 +427,8 @@
     <MESSAGE value="First working Angular communication" />
     <MESSAGE value="Implemented updating and deleting ConstructionElements in angular" />
     <MESSAGE value="Example of autocompletion" />
-    <option name="LAST_COMMIT_MESSAGE" value="Example of autocompletion" />
+    <MESSAGE value="Change Theme on the fly" />
+    <option name="LAST_COMMIT_MESSAGE" value="Change Theme on the fly" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

@@ -35,18 +35,23 @@
               "node_modules/primeicons/primeicons.css",
               "node_modules/primeng/resources/primeng.min.css",
               {
-                "input": "src/theme-lara-light-blue.scss",
-                "bundleName": "lara-light-blue",
+                "input": "src/themes/theme-saga-blue.scss",
+                "bundleName": "saga-blue",
                 "inject": false
               },
               {
-                "input": "src/theme-md-light-indigo.scss",
-                "bundleName": "md-light-indigo",
+                "input": "src/themes/theme-saga-orange.scss",
+                "bundleName": "saga-orange",
                 "inject": false
               },
               {
-                "input": "src/theme-md-dark-indigo.scss",
-                "bundleName": "md-dark-indigo",
+                "input": "src/themes/theme-vela-blue.scss",
+                "bundleName": "vela-blue",
+                "inject": false
+              },
+              {
+                "input": "src/themes/theme-vela-orange.scss",
+                "bundleName": "vela-orange",
                 "inject": false
               }
             ],
