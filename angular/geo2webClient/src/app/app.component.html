@@ -1,6 +1,9 @@
 <!--<app-header></app-header>-->
 <p-splitter [style]="{'height': '95%', 'width' : '100%'}" [panelSizes]="[20,80]">
   <ng-template pTemplate>
+    <button (click)="changeTheme('lara-light-blue')">lara-light-blue</button>
+    <button (click)="changeTheme('md-light-indigo')">md-light-indigo</button>
+    <button (click)="changeTheme('md-dark-indigo')">md-dark-indigo</button>
     <app-algebra-panel></app-algebra-panel>
   </ng-template>
   <ng-template pTemplate>
