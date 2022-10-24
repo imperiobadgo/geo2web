@@ -7,6 +7,7 @@ import fragmentShaderSrc from '../../../assets/toucan-fragment-shader.glsl';
 import vertexShaderSrc from '../../../assets/toucan-vertex-shader.glsl';
 import * as matrix from 'gl-matrix';
 import {mat4} from "gl-matrix";
+import {of} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
@@ -78,7 +79,7 @@ export class WebGLService {
    * Formats the scene for rendering (by resizing the WebGL canvas and setting the defaults for WebGL drawing).
    */
   public formatScene() {
-    // this.resizeWebGLCanvas();
+    this.resizeWebGLCanvas();
     this.updateWebGLCanvas();
     this.updateViewport();
   }

@@ -1,33 +1,17 @@
-<!--<app-header></app-header>-->
-<p-splitter [style]="{'height': '95%', 'width' : '100%'}" [panelSizes]="[20,80]">
-  <ng-template pTemplate>
-    <p-splitter [panelSizes]="[1,99]" layout="vertical">
-      <ng-template pTemplate>
-        <p-button (click)="changeTheme('saga-blue')">blue</p-button>
-        <p-button (click)="changeTheme('saga-orange')">orange</p-button>
-        <p-button (click)="changeTheme('vela-blue')">dark blue</p-button>
-        <p-button (click)="changeTheme('vela-orange')">dark orange</p-button>
-      </ng-template>
+<div style="display: flex; flex-direction: column; height: 100%">
+  <div style="flex: initial">
+    <p-menubar [model]="items"></p-menubar>
+  </div>
 
+  <div style="flex: auto; height: 100%">
+    <p-splitter [style]="{'height': '100%', 'width' : '100%'}" [minSizes]="[10,10]" [panelSizes]="[20,80]">
       <ng-template pTemplate>
-      <app-algebra-panel></app-algebra-panel>
+        <app-algebra-panel></app-algebra-panel>
+      </ng-template>
+      <ng-template pTemplate>
+        <app-scene></app-scene>
       </ng-template>
     </p-splitter>
-  </ng-template>
-  <ng-template pTemplate>
-    <app-scene></app-scene>
-  </ng-template>
-</p-splitter>
-
-
-<!--<div class="flex-row">-->
-
-<!--  <div class="split-layout-H-Dragger split-layout&#45;&#45;flex"></div>-->
-<!--  <div class="scene-positioning scene&#45;&#45;flex">-->
-<!--    <app-scene></app-scene>-->
-<!--  </div>-->
-
-<!--</div>-->
-
-<app-algebra-input></app-algebra-input>
-<!--<router-outlet></router-outlet>-->
+  </div>
+  <app-algebra-input style="flex: initial"></app-algebra-input>
+</div>

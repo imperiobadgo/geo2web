@@ -5,6 +5,7 @@ import {FormsModule} from "@angular/forms";
 import {HttpClientModule} from "@angular/common/http";
 
 import {SplitterModule} from 'primeng/splitter';
+import {MenubarModule} from 'primeng/menubar';
 import {ToolbarModule} from "primeng/toolbar";
 import {AutoCompleteModule} from 'primeng/autocomplete';
 import {ButtonModule} from 'primeng/button';
@@ -33,6 +34,7 @@ import {AlgebraPanelItemComponent} from './algebra-panel/algebra-panel-item/alge
     FormsModule,
     HttpClientModule,
     SplitterModule,
+    MenubarModule,
     ToolbarModule,
     AutoCompleteModule,
     ButtonModule,

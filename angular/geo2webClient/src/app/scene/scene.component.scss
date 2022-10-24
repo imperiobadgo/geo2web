@@ -1,12 +1,12 @@
-.scene {
+:host{
   height: 100%;
-  width: auto;
+  width: 100%;
+}
+.scene {
+  height: 99%;//produces strange resize behaviour, but the viewer is filled in
 }
 
 .scene canvas {
   height: 100%;
-  width: auto;
-  border-style: solid;
-  border-width: 1px;
-  border-color: black;
+  width: 100%;
 }
