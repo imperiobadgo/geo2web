@@ -27,7 +27,7 @@ public class Vector implements VectorOperand {
         builder.append(ArithmeticSettings.Instance().Open_Vector);
         for (int i = 0, valuesLength = values.length; i < valuesLength; i++) {
             builder.append(values[i].toReadableString());
-            if (i > 0){
+            if (i < valuesLength - 1){
                 builder.append(ArithmeticSettings.Instance().Argument_Separator);
             }
         }

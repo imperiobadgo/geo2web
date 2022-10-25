@@ -260,6 +260,14 @@ public class Expression {
                     args[j] = output.pop();
                 }
                 output.push(func.getFunction().apply(args));
+            } else if (t.getType() == Token.TOKEN_ASSIGNMENT) {
+                AssignmentToken assignment = (AssignmentToken) t;
+                if (output.size() > 1){
+                    throw new IllegalArgumentException("To many arguments left for function");
+                }
+                Operand lastOperand = output.pop();
+                VariableFunction variableFunction = new VariableFunction(lastOperand.toReadableString(), assignment.getName(), assignment.getParameters());
+                output.push(variableFunction);
             }
         }
         if (output.size() > 1) {

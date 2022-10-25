@@ -4,15 +4,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="cba5d1cc-47d2-4e5d-9117-80b432d6b105" name="Changes" comment="Layout stuff attempt number 1">
+    <list default="true" id="cba5d1cc-47d2-4e5d-9117-80b432d6b105" name="Changes" comment="Layout stuff attempt number 2">
+      <change afterPath="$PROJECT_DIR$/src/main/java/de/geo2web/arithmetic/VariableFunction.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/de/geo2web/arithmetic/VariableFunctionOperand.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/de/geo2web/arithmetic/tokenizer/AssignmentToken.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/de/geo2web/util/StringUtil.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/arithmetic/VariableFunctionBuilderTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/angular/geo2webClient/src/app/app.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/angular/geo2webClient/src/app/app.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/angular/geo2webClient/src/app/app.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/angular/geo2webClient/src/app/app.component.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/angular/geo2webClient/src/app/app.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/angular/geo2webClient/src/app/app.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/angular/geo2webClient/src/app/app.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/angular/geo2webClient/src/app/app.module.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/angular/geo2webClient/src/app/scene/scene.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/angular/geo2webClient/src/app/scene/scene.component.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/angular/geo2webClient/src/app/scene/services/web-gl.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/angular/geo2webClient/src/app/scene/services/web-gl.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/angular/geo2webClient/src/styles.scss" beforeDir="false" afterPath="$PROJECT_DIR$/angular/geo2webClient/src/styles.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/de/geo2web/arithmetic/Expression.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/geo2web/arithmetic/Expression.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/de/geo2web/arithmetic/ShuntingYard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/geo2web/arithmetic/ShuntingYard.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/de/geo2web/arithmetic/Vector.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/geo2web/arithmetic/Vector.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/de/geo2web/arithmetic/tokenizer/Token.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/geo2web/arithmetic/tokenizer/Token.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/arithmetic/VectorBuilderTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/arithmetic/VectorBuilderTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -23,10 +26,10 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="JUnit5 Test Class" />
-        <option value="Interface" />
         <option value="Enum" />
         <option value="JavaScript File" />
         <option value="TypeScript File" />
+        <option value="Interface" />
         <option value="Class" />
       </list>
     </option>
@@ -110,10 +113,82 @@
       <recent name="de.geo2web.arithmetics" />
     </key>
   </component>
-  <component name="RunManager" selected="npm.Angular CLI Server">
+  <component name="RunManager" selected="JUnit.All in geo2web">
     <configuration name="Application" type="Application" factoryName="Application" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="de.geo2web.Application" />
       <module name="geo2web" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="All in geo2web" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="geo2web" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="TEST_OBJECT" value="package" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="VariableFunctionBuilderTest.testVariableFunction1" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="geo2web" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="arithmetic.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="arithmetic" />
+      <option name="MAIN_CLASS_NAME" value="arithmetic.VariableFunctionBuilderTest" />
+      <option name="METHOD_NAME" value="testVariableFunction1" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="VariableFunctionBuilderTest.testVariableFunction2" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="geo2web" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="arithmetic.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="arithmetic" />
+      <option name="MAIN_CLASS_NAME" value="arithmetic.VariableFunctionBuilderTest" />
+      <option name="METHOD_NAME" value="testVariableFunction2" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="VariableFunctionBuilderTest.testVariableFunction3" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="geo2web" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="arithmetic.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="arithmetic" />
+      <option name="MAIN_CLASS_NAME" value="arithmetic.VariableFunctionBuilderTest" />
+      <option name="METHOD_NAME" value="testVariableFunction3" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="VectorBuilderTest.testVectorBuilder03" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="geo2web" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="arithmetic.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="arithmetic" />
+      <option name="MAIN_CLASS_NAME" value="arithmetic.VectorBuilderTest" />
+      <option name="METHOD_NAME" value="testVectorBuilder03" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -130,8 +205,22 @@
     </configuration>
     <list>
       <item itemvalue="Application.Application" />
+      <item itemvalue="JUnit.All in geo2web" />
+      <item itemvalue="JUnit.VariableFunctionBuilderTest.testVariableFunction1" />
+      <item itemvalue="JUnit.VariableFunctionBuilderTest.testVariableFunction2" />
+      <item itemvalue="JUnit.VariableFunctionBuilderTest.testVariableFunction3" />
+      <item itemvalue="JUnit.VectorBuilderTest.testVectorBuilder03" />
       <item itemvalue="npm.Angular CLI Server" />
     </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.All in geo2web" />
+        <item itemvalue="JUnit.VariableFunctionBuilderTest.testVariableFunction3" />
+        <item itemvalue="JUnit.VariableFunctionBuilderTest.testVariableFunction2" />
+        <item itemvalue="JUnit.VariableFunctionBuilderTest.testVariableFunction1" />
+        <item itemvalue="JUnit.VectorBuilderTest.testVectorBuilder03" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="SvnConfiguration">
@@ -181,7 +270,8 @@
       <workItem from="1666467716491" duration="693000" />
       <workItem from="1666523075598" duration="2379000" />
       <workItem from="1666545881569" duration="14325000" />
-      <workItem from="1666626859525" duration="13247000" />
+      <workItem from="1666626859525" duration="13475000" />
+      <workItem from="1666729085881" duration="9613000" />
     </task>
     <task id="LOCAL-00001" summary="Initial Commit">
       <created>1661200014255</created>
@@ -386,7 +476,14 @@
       <option name="project" value="LOCAL" />
       <updated>1666566473623</updated>
     </task>
-    <option name="localTasksCounter" value="30" />
+    <task id="LOCAL-00030" summary="Layout stuff attempt number 2">
+      <created>1666647660712</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1666647660712</updated>
+    </task>
+    <option name="localTasksCounter" value="31" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -416,7 +513,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Converted ExpressionBuilderTest" />
     <MESSAGE value="Added vector parsing to tokenizer" />
     <MESSAGE value="Added vector first operation tests" />
     <MESSAGE value="Added vector dot product and multiplication" />
@@ -441,7 +537,8 @@
     <MESSAGE value="Change Theme on the fly" />
     <MESSAGE value="Refactoring theme changing" />
     <MESSAGE value="Layout stuff attempt number 1" />
-    <option name="LAST_COMMIT_MESSAGE" value="Layout stuff attempt number 1" />
+    <MESSAGE value="Layout stuff attempt number 2" />
+    <option name="LAST_COMMIT_MESSAGE" value="Layout stuff attempt number 2" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

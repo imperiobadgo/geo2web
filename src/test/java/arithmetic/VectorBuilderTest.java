@@ -18,6 +18,9 @@ public class VectorBuilderTest {
                 .evaluate();
         assertEquals(3, ((Vector) result).getValues().length, 0);
 
+        String readableString = result.toReadableString();
+        assertEquals(readableString, "{2.0,1.0,5.0}");
+
         Operand operand1 = ((Vector) result).getValues()[0];
         assertEquals(2f, ((Number) operand1).getValue(), 0f);
         Operand operand2 = ((Vector) result).getValues()[1];
@@ -33,6 +36,9 @@ public class VectorBuilderTest {
                 .evaluate();
         assertEquals(3, ((Vector) result).getValues().length, 0);
 
+        String readableString = result.toReadableString();
+        assertEquals(readableString, "{-2.0,3.0,0.0}");
+
         Operand operand1 = ((Vector) result).getValues()[0];
         assertEquals(-2f, ((Number) operand1).getValue(), 0f);
         Operand operand2 = ((Vector) result).getValues()[1];
@@ -47,6 +53,9 @@ public class VectorBuilderTest {
                 .build()
                 .evaluate();
         assertEquals(5, ((Vector) result).getValues().length, 0);
+
+        String readableString = result.toReadableString();
+        assertEquals(readableString, "{-23.0,31.0,0.0,6.0,50.0}");
 
         Operand operand1 = ((Vector) result).getValues()[0];
         assertEquals(-23f, ((Number) operand1).getValue(), 0f);
