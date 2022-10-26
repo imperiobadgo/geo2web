@@ -233,7 +233,11 @@ public class Tokenizer {
             testPos = offset + len - 1;
         }
         if (lastValidToken == null) {
-            throw new UnknownFunctionOrVariableException(new String(expression), pos, len);
+            //If no known variable or function is found, a new variable should be created.
+            lastValidLen = len - 1;
+            lastValidToken = new VariableToken(new String(expression, offset, lastValidLen));
+
+            //throw new UnknownFunctionOrVariableException(new String(expression), pos, len);
         }
         pos += lastValidLen;
         lastToken = lastValidToken;

@@ -4,6 +4,7 @@
 package de.geo2web.arithmetic.operator;
 
 import de.geo2web.arithmetic.Operand;
+import de.geo2web.arithmetic.VariableOperand;
 
 /**
  * Class representing operators that can be used in an expression
@@ -41,6 +42,11 @@ public abstract class Operator {
      * The precedence value for the unary plus operation
      */
     public static final int PRECEDENCE_UNARY_PLUS = PRECEDENCE_UNARY_MINUS;
+
+    /**
+     * The max precedence value
+     */
+    public static final int PRECEDENCE_MAX = 100000;
 
     /**
      * The set of allowed operator chars
@@ -101,6 +107,18 @@ public abstract class Operator {
      */
     public int getPrecedence() {
         return precedence;
+    }
+
+    /**
+     * This method checks whether there are unresolved variables in the operands before the actual calculation.
+     * @param args the set of arguments used for calculating the operation
+     * @return the calculated result of the operation or an instruction
+     */
+    public Operand applyWithVariableCheck(Operand... args){
+        if (VariableOperand.containsVariable(args)){
+            return VariableOperand.convertOperator(args, this);
+        }
+        return apply(args);
     }
 
     /**

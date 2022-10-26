@@ -42,7 +42,7 @@ public class FunctionsTest {
                 return new Number(0);
             }
         };
-        assertEquals(0f, ((Number)f.apply()).getValue(), 0f);
+        assertEquals(0f, ((Number)f.applyWithVariableCheck()).getValue(), 0f);
     }
 
     @Test(expected = IllegalArgumentException.class)

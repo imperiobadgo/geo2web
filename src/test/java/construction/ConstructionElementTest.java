@@ -1,9 +1,8 @@
 package construction;
 
 import construction.mocks.ReadConstructionElementUseCaseMock;
-import de.geo2web.arithmetic.Operand;
 import de.geo2web.arithmetic.Number;
-import de.geo2web.arithmetic.tokenizer.UnknownFunctionOrVariableException;
+import de.geo2web.arithmetic.Operand;
 import de.geo2web.construction.ConstructionElement;
 import de.geo2web.construction.application.ConstructionElementChanges;
 import de.geo2web.shared.ElementName;
@@ -175,7 +174,7 @@ public class ConstructionElementTest {
         assertEquals(element2.getConstructionIndex(), ConstructionElement.InitialConstructionIndex + 1);
     }
 
-    @Test(expected = UnknownFunctionOrVariableException.class)
+    @Test(expected = IllegalArgumentException.class)
     public void testNotValidVariableNameConstructionElements() {
         ReadConstructionElementUseCaseMock read = new ReadConstructionElementUseCaseMock();
 

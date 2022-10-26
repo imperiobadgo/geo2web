@@ -230,9 +230,13 @@ public class Expression {
                 final String name = ((VariableToken) t).getName();
                 final Operand value = this.variables.get(name);
                 if (value == null) {
-                    throw new IllegalArgumentException("No value has been set for the setVariable '" + name + "'.");
+                    //If no known variable was found, pass it on the output.
+                    final Variable variable = new Variable(name);
+                    output.push(variable);
+                } else {
+                    output.push(value);
                 }
-                output.push(value);
+
             } else if (t.getType() == Token.TOKEN_OPERATOR) {
                 OperatorToken op = (OperatorToken) t;
                 if (output.size() < op.getOperator().getNumOperands()) {
@@ -242,11 +246,11 @@ public class Expression {
                     /* pop the operands and push the result of the operation */
                     Operand rightArg = output.pop();
                     Operand leftArg = output.pop();
-                    output.push(op.getOperator().apply(leftArg, rightArg));
+                    output.push(op.getOperator().applyWithVariableCheck(leftArg, rightArg));
                 } else if (op.getOperator().getNumOperands() == 1) {
                     /* pop the operand and push the result of the operation */
                     Operand arg = output.pop();
-                    output.push(op.getOperator().apply(arg));
+                    output.push(op.getOperator().applyWithVariableCheck(arg));
                 }
             } else if (t.getType() == Token.TOKEN_FUNCTION) {
                 FunctionToken func = (FunctionToken) t;
@@ -259,10 +263,10 @@ public class Expression {
                 for (int j = numArguments - 1; j >= 0; j--) {
                     args[j] = output.pop();
                 }
-                output.push(func.getFunction().apply(args));
+                output.push(func.getFunction().applyWithVariableCheck(args));
             } else if (t.getType() == Token.TOKEN_ASSIGNMENT) {
                 AssignmentToken assignment = (AssignmentToken) t;
-                if (output.size() > 1){
+                if (output.size() > 1) {
                     throw new IllegalArgumentException("To many arguments left for function");
                 }
                 Operand lastOperand = output.pop();

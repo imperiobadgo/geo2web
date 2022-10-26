@@ -4,18 +4,22 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="cba5d1cc-47d2-4e5d-9117-80b432d6b105" name="Changes" comment="Layout stuff attempt number 2">
-      <change afterPath="$PROJECT_DIR$/src/main/java/de/geo2web/arithmetic/VariableFunction.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/de/geo2web/arithmetic/VariableFunctionOperand.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/de/geo2web/arithmetic/tokenizer/AssignmentToken.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/de/geo2web/util/StringUtil.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/arithmetic/VariableFunctionBuilderTest.java" afterDir="false" />
+    <list default="true" id="cba5d1cc-47d2-4e5d-9117-80b432d6b105" name="Changes" comment="VeriableFunction WIP">
+      <change afterPath="$PROJECT_DIR$/src/main/java/de/geo2web/arithmetic/Instruction.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/de/geo2web/arithmetic/Variable.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/de/geo2web/arithmetic/VariableOperand.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/de/geo2web/arithmetic/Expression.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/geo2web/arithmetic/Expression.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/de/geo2web/arithmetic/ShuntingYard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/geo2web/arithmetic/ShuntingYard.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/de/geo2web/arithmetic/Vector.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/geo2web/arithmetic/Vector.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/de/geo2web/arithmetic/tokenizer/Token.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/geo2web/arithmetic/tokenizer/Token.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/arithmetic/VectorBuilderTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/arithmetic/VectorBuilderTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/de/geo2web/arithmetic/function/Function.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/geo2web/arithmetic/function/Function.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/de/geo2web/arithmetic/operator/Operator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/geo2web/arithmetic/operator/Operator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/de/geo2web/arithmetic/tokenizer/Tokenizer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/geo2web/arithmetic/tokenizer/Tokenizer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/arithmetic/ExpressionBuilderTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/arithmetic/ExpressionBuilderTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/arithmetic/ExpressionTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/arithmetic/ExpressionTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/arithmetic/FunctionsTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/arithmetic/FunctionsTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/arithmetic/TestUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/arithmetic/TestUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/arithmetic/VariableFunctionBuilderTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/arithmetic/VariableFunctionBuilderTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/construction/ConstructionElementTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/construction/ConstructionElementTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -71,25 +75,25 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary&quot;: &quot;JUnit5&quot;,
-    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5&quot;: &quot;&quot;,
-    &quot;extract.method.default.visibility&quot;: &quot;private&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/Lenovo/IdeaProjects/geo2web/angular/geo2webClient/src/themes&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;project.propDebugger&quot;,
-    &quot;spring.configuration.checksum&quot;: &quot;3c5e0a303a466df6d93fc53f59a77a7c&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;C:\\Users\\Lenovo\\IdeaProjects\\geo2web\\angular\\geo2webClient\\node_modules\\typescript\\lib&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
+    "extract.method.default.visibility": "private",
+    "last_opened_file_path": "C:/Users/Lenovo/IdeaProjects/geo2web/angular/geo2webClient/src/themes",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0",
+    "settings.editor.selected.configurable": "editor.preferences.tabs",
+    "spring.configuration.checksum": "3c5e0a303a466df6d93fc53f59a77a7c",
+    "ts.external.directory.path": "C:\\Users\\Lenovo\\IdeaProjects\\geo2web\\angular\\geo2webClient\\node_modules\\typescript\\lib"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
       <recent name="de.geo2web.construction.application" />
@@ -129,7 +133,39 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="VariableFunctionBuilderTest.testVariableFunction1" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="ExpressionBuilderTest.testFailUnknownFunction2" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="geo2web" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="arithmetic.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="arithmetic" />
+      <option name="MAIN_CLASS_NAME" value="arithmetic.ExpressionBuilderTest" />
+      <option name="METHOD_NAME" value="testFailUnknownFunction2" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ExpressionBuilderTest.testInvalidFunction" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="geo2web" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="arithmetic.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="arithmetic" />
+      <option name="MAIN_CLASS_NAME" value="arithmetic.ExpressionBuilderTest" />
+      <option name="METHOD_NAME" value="testInvalidFunction" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="VariableFunctionBuilderTest.testLongVariableName2" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="geo2web" />
       <extension name="coverage">
         <pattern>
@@ -139,13 +175,13 @@
       </extension>
       <option name="PACKAGE_NAME" value="arithmetic" />
       <option name="MAIN_CLASS_NAME" value="arithmetic.VariableFunctionBuilderTest" />
-      <option name="METHOD_NAME" value="testVariableFunction1" />
+      <option name="METHOD_NAME" value="testLongVariableName2" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="VariableFunctionBuilderTest.testVariableFunction2" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="VariableFunctionBuilderTest.testLongVariableName3" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="geo2web" />
       <extension name="coverage">
         <pattern>
@@ -155,39 +191,7 @@
       </extension>
       <option name="PACKAGE_NAME" value="arithmetic" />
       <option name="MAIN_CLASS_NAME" value="arithmetic.VariableFunctionBuilderTest" />
-      <option name="METHOD_NAME" value="testVariableFunction2" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="VariableFunctionBuilderTest.testVariableFunction3" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="geo2web" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="arithmetic.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="arithmetic" />
-      <option name="MAIN_CLASS_NAME" value="arithmetic.VariableFunctionBuilderTest" />
-      <option name="METHOD_NAME" value="testVariableFunction3" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="VectorBuilderTest.testVectorBuilder03" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="geo2web" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="arithmetic.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="arithmetic" />
-      <option name="MAIN_CLASS_NAME" value="arithmetic.VectorBuilderTest" />
-      <option name="METHOD_NAME" value="testVectorBuilder03" />
+      <option name="METHOD_NAME" value="testLongVariableName3" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -205,20 +209,20 @@
     </configuration>
     <list>
       <item itemvalue="Application.Application" />
+      <item itemvalue="JUnit.ExpressionBuilderTest.testFailUnknownFunction2" />
+      <item itemvalue="JUnit.ExpressionBuilderTest.testInvalidFunction" />
+      <item itemvalue="JUnit.VariableFunctionBuilderTest.testLongVariableName2" />
+      <item itemvalue="JUnit.VariableFunctionBuilderTest.testLongVariableName3" />
       <item itemvalue="JUnit.All in geo2web" />
-      <item itemvalue="JUnit.VariableFunctionBuilderTest.testVariableFunction1" />
-      <item itemvalue="JUnit.VariableFunctionBuilderTest.testVariableFunction2" />
-      <item itemvalue="JUnit.VariableFunctionBuilderTest.testVariableFunction3" />
-      <item itemvalue="JUnit.VectorBuilderTest.testVectorBuilder03" />
       <item itemvalue="npm.Angular CLI Server" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="JUnit.All in geo2web" />
-        <item itemvalue="JUnit.VariableFunctionBuilderTest.testVariableFunction3" />
-        <item itemvalue="JUnit.VariableFunctionBuilderTest.testVariableFunction2" />
-        <item itemvalue="JUnit.VariableFunctionBuilderTest.testVariableFunction1" />
-        <item itemvalue="JUnit.VectorBuilderTest.testVectorBuilder03" />
+        <item itemvalue="JUnit.VariableFunctionBuilderTest.testLongVariableName3" />
+        <item itemvalue="JUnit.VariableFunctionBuilderTest.testLongVariableName2" />
+        <item itemvalue="JUnit.ExpressionBuilderTest.testFailUnknownFunction2" />
+        <item itemvalue="JUnit.ExpressionBuilderTest.testInvalidFunction" />
       </list>
     </recent_temporary>
   </component>
@@ -271,7 +275,8 @@
       <workItem from="1666523075598" duration="2379000" />
       <workItem from="1666545881569" duration="14325000" />
       <workItem from="1666626859525" duration="13475000" />
-      <workItem from="1666729085881" duration="9613000" />
+      <workItem from="1666729085881" duration="9883000" />
+      <workItem from="1666814787602" duration="9755000" />
     </task>
     <task id="LOCAL-00001" summary="Initial Commit">
       <created>1661200014255</created>
@@ -483,7 +488,14 @@
       <option name="project" value="LOCAL" />
       <updated>1666647660712</updated>
     </task>
-    <option name="localTasksCounter" value="31" />
+    <task id="LOCAL-00031" summary="VeriableFunction WIP">
+      <created>1666738953223</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1666738953223</updated>
+    </task>
+    <option name="localTasksCounter" value="32" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -513,7 +525,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Added vector parsing to tokenizer" />
     <MESSAGE value="Added vector first operation tests" />
     <MESSAGE value="Added vector dot product and multiplication" />
     <MESSAGE value="Added vector cross product" />
@@ -538,7 +549,8 @@
     <MESSAGE value="Refactoring theme changing" />
     <MESSAGE value="Layout stuff attempt number 1" />
     <MESSAGE value="Layout stuff attempt number 2" />
-    <option name="LAST_COMMIT_MESSAGE" value="Layout stuff attempt number 2" />
+    <MESSAGE value="VeriableFunction WIP" />
+    <option name="LAST_COMMIT_MESSAGE" value="VeriableFunction WIP" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

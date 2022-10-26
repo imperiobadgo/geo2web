@@ -939,24 +939,25 @@ public class ExpressionBuilderTest {
         assertEquals(1, res.getErrors().size());
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test
     public void testInvalidFunction() {
         double varY = 4.22d;
         Expression e = new ExpressionBuilder("3*invalid_function(y)")
                 .variables("<")
                 .build()
                 .setVariable("y", new Number(varY));
-        e.evaluate();
+        Operand result = e.evaluate();
+        assertIsInstruction(result);
     }
 
-    @Test(expected = IllegalArgumentException.class)
     public void testMissingVar() {
         double varY = 4.22d;
         Expression e = new ExpressionBuilder("3*y*z")
                 .variables("y", "z")
                 .build()
                 .setVariable("y", new Number(varY));
-        e.evaluate();
+        Operand result = e.evaluate();
+        assertIsInstruction(result);
     }
 
     @Test
@@ -2026,31 +2027,33 @@ public class ExpressionBuilderTest {
         assertEquals(expected, ((Number)e.evaluate()).getValue(), 0.0);
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test
     public void testFailUnknownFunction1() {
         String expr;
         expr = "lig(1)";
         Expression e = new ExpressionBuilder(expr)
                 .build();
-        e.evaluate();
+        Operand result = e.evaluate();
+        assertIsInstruction(result);
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test
     public void testFailUnknownFunction2() {
         String expr;
         expr = "galength(1)";
-        new ExpressionBuilder(expr)
+        Operand result = new ExpressionBuilder(expr)
                 .build().evaluate();
+        assertIsInstruction(result);
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test
     public void testFailUnknownFunction3() {
         String expr;
         expr = "tcos(1)";
         Expression exp = new ExpressionBuilder(expr)
                 .build();
         Operand result = exp.evaluate();
-        System.out.println(result);
+        assertIsInstruction(result);
     }
 
     @Test

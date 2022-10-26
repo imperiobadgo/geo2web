@@ -3,10 +3,8 @@
  */
 package arithmetic;
 
-import de.geo2web.arithmetic.Expression;
-import de.geo2web.arithmetic.ExpressionBuilder;
+import de.geo2web.arithmetic.*;
 import de.geo2web.arithmetic.Number;
-import de.geo2web.arithmetic.Operand;
 import de.geo2web.arithmetic.function.Functions;
 import de.geo2web.arithmetic.operator.Operator;
 import de.geo2web.arithmetic.operator.Operators;
@@ -137,7 +135,7 @@ public class ExpressionTest {
     public void testCotangent1() {
         Expression e = new ExpressionBuilder("cot(1)")
                 .build();
-        assertEquals((float)(1 / Math.tan(1)), ((Number) e.evaluate()).getValue(), 0f);
+        assertEquals((float) (1 / Math.tan(1)), ((Number) e.evaluate()).getValue(), 0f);
 
     }
 
@@ -185,7 +183,9 @@ public class ExpressionTest {
 
         try {
             result = expression.evaluate();
-            fail("Should fail as there aren't values in the expression.");
+            if (!(result instanceof Instruction)) {
+                fail("Should fail as there aren't values in the expression, so a instruction is created.");
+            }
         } catch (Exception ignored) {
 
         }
@@ -195,7 +195,9 @@ public class ExpressionTest {
 
         try {
             result = expression.evaluate();
-            fail("Should fail as there aren't values in the expression.");
+            if (!(result instanceof Instruction)) {
+                fail("Should fail as there aren't values in the expression, so a instruction is created.");
+            }
         } catch (Exception ignored) {
 
         }

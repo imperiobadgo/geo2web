@@ -4,6 +4,7 @@
 package de.geo2web.arithmetic.function;
 
 import de.geo2web.arithmetic.Operand;
+import de.geo2web.arithmetic.VariableOperand;
 
 /**
  * A class representing a Function which can be used in an expression
@@ -58,6 +59,18 @@ public abstract class Function {
      */
     public int getNumArguments() {
         return numArguments;
+    }
+
+    /**
+     * This method checks whether there are unresolved variables in the operands before the actual calculation.
+     * @param args the set of arguments used for calculating the function
+     * @return the result of the function evaluation or an instruction
+     */
+    public Operand applyWithVariableCheck(Operand... args){
+        if (VariableOperand.containsVariable(args)){
+            return VariableOperand.convertFunction(args, this);
+        }
+        return apply(args);
     }
 
     /**

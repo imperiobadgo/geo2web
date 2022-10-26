@@ -138,7 +138,7 @@ public class ShuntingYard {
             char ch = exprArray[i];
             if (ch == ArithmeticSettings.Instance().Assignment) {
                 if (closedParenthesesIndex == 0) {
-                    throw new IllegalArgumentException("A function needs at least one parameter. Please check the expression");
+                    return expression;//Maybe no function intended
                 }
                 functionDeclarationIndex = i;
                 break;
@@ -177,10 +177,6 @@ public class ShuntingYard {
 
         //get rest of expression for function body without assignment character
         String functionBody = trimmedExpression.substring(functionDeclarationIndex + 1);
-
-        if (StringUtil.contains(functionBody, ArithmeticSettings.Instance().Assignment)) {
-            throw new IllegalArgumentException("A function can not contain multiple assignments. Please check the expression");
-        }
 
         stack.push(new AssignmentToken(name, parameters.toArray(new String[parameters.size()])));
         variableNames.addAll(parameters);

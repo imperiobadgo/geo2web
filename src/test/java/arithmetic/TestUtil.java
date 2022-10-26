@@ -3,6 +3,7 @@
  */
 package arithmetic;
 
+import de.geo2web.arithmetic.Instruction;
 import de.geo2web.arithmetic.Number;
 import de.geo2web.arithmetic.Operand;
 import de.geo2web.arithmetic.operator.Operator;
@@ -10,6 +11,7 @@ import de.geo2web.arithmetic.tokenizer.*;
 import org.junit.Assert;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public abstract class TestUtil {
 
@@ -49,6 +51,10 @@ public abstract class TestUtil {
 
     public static void assertFunctionSeparatorToken(Token t) {
         assertEquals(t.getType(), Token.TOKEN_SEPARATOR);
+    }
+
+    public static void assertIsInstruction(Operand operand){
+        assertTrue(operand instanceof Instruction);
     }
 
     public static Operator getFactorialOperator() {
