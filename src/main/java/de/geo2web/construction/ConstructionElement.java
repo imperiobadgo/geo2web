@@ -1,9 +1,11 @@
 package de.geo2web.construction;
 
-import de.geo2web.arithmetic.ExpressionBuilder;
-import de.geo2web.arithmetic.Operand;
+import de.geo2web.arithmetic.*;
+import de.geo2web.arithmetic.function.Function;
+import de.geo2web.arithmetic.function.OperandBasedFunction;
 import de.geo2web.construction.application.ReadConstructionElementUseCase;
 import de.geo2web.shared.ElementName;
+import de.geo2web.shared.ElementParameters;
 import de.geo2web.shared.EvaluationResult;
 import de.geo2web.shared.ExpressionInput;
 import lombok.Builder;
@@ -11,10 +13,7 @@ import lombok.NonNull;
 import lombok.Value;
 import lombok.experimental.NonFinal;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.UUID;
+import java.util.*;
 
 @Value
 @Builder(toBuilder = true)
@@ -31,29 +30,67 @@ public class ConstructionElement {
 
     int version;
 
+    @NonFinal
     ElementName name;
+
+    @NonFinal
+    ElementParameters parameters;
 
     ExpressionInput input;
 
     @NonFinal
     EvaluationResult output;
 
-    public Operand evaluate(final ReadConstructionElementUseCase read){
-        List<ConstructionElement> orderedPreviousElements = read.findAllInOrderUntil(this.constructionIndex);
+    public Operand evaluate(final ReadConstructionElementUseCase read) {
+        final Expression expression = createExpression(read, input.getValue());
 
-        //Evaluate all previous elements and get the results
-        Map<String, Operand> variables = new HashMap<>();
-        for (ConstructionElement element: orderedPreviousElements) {
-            variables.put(element.getName().getName(), element.evaluate(read));
+        final Operand result = expression.evaluate();
+
+        if (result instanceof VariableFunctionOperand) {
+            final VariableFunction function = ((VariableFunctionOperand) result).getFunction();
+            this.name = ElementName.of(function.getName());
+            this.parameters = ElementParameters.of(function.getParameters());
         }
-        final Operand result = new ExpressionBuilder(input.getValue())
-                .variables(variables.keySet())
-                .build()
-                .setVariables(variables)
-                .evaluate();
 
         this.output = EvaluationResult.of(result.toReadableString());
         return result;
+    }
+
+    /**
+     * Creates the {@link Expression} by searching for other referenced construction elements.
+     * @param read Construction element repository.
+     * @param input Expression input.
+     * @return Prepared {@link Expression} with set variables and functions.
+     */
+    private Expression createExpression(final ReadConstructionElementUseCase read, String input) {
+        final List<ConstructionElement> orderedPreviousElements = read.findAllInOrderUntil(this.constructionIndex);
+
+        //Evaluate all previous elements and get the results
+        Map<String, Operand> variables = new HashMap<>();
+        List<Function> functions = new ArrayList<>();
+        for (ConstructionElement element : orderedPreviousElements) {
+            final Operand result = element.evaluate(read);
+            boolean addToVariable = true;
+
+            if (result instanceof VariableFunctionOperand) {
+                final VariableFunction variableFunction = ((VariableFunctionOperand) result).getFunction();
+                if (variableFunction.hasParameters()) {
+                    //Through the parameters, the operand is treated as a function and not as a variable.
+                    addToVariable = false;
+                    functions.add(OperandBasedFunction.create(variableFunction.getName(), variableFunction.getParameters(), variableFunction.getFunctionBody()));
+                }
+            }
+
+            if (addToVariable) {
+                variables.put(element.getName().getName(), result);
+            }
+        }
+
+        return new ExpressionBuilder(input)
+                .variables(variables.keySet())
+                .functions(functions)
+                .build()
+                .setVariables(variables);
     }
 
 

@@ -12,6 +12,9 @@ import java.util.*;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Future;
 
+/**
+ * A class representing a mathematical expression. The resolution of the variables can also be stored for evaluation purposes.
+ */
 public class Expression {
 
     private final Token[] tokens;
@@ -171,6 +174,10 @@ public class Expression {
         return executor.submit(this::evaluate);
     }
 
+    /**
+     * Evaluates the content of the expression.
+     * @return The operand can be the result or an instruction on how to retrieve the result by using variables.
+     */
     public Operand evaluate() {
         final Stack<Operand> output = new Stack<>();
         for (Token t : tokens) {
@@ -234,7 +241,13 @@ public class Expression {
                     final Variable variable = new Variable(name);
                     output.push(variable);
                 } else {
-                    output.push(value);
+                    if (value instanceof VariableFunctionOperand) {
+                        //Use the content of variable function
+                        output.push(((VariableFunctionOperand) value).getFunction().getFunctionBody());
+                    } else {
+                        output.push(value);
+                    }
+
                 }
 
             } else if (t.getType() == Token.TOKEN_OPERATOR) {
@@ -270,7 +283,7 @@ public class Expression {
                     throw new IllegalArgumentException("To many arguments left for function");
                 }
                 Operand lastOperand = output.pop();
-                VariableFunction variableFunction = new VariableFunction(lastOperand.toReadableString(), assignment.getName(), assignment.getParameters());
+                VariableFunction variableFunction = new VariableFunction(lastOperand, assignment.getName(), assignment.getParameters());
                 output.push(variableFunction);
             }
         }

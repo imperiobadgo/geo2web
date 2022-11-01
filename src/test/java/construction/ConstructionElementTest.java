@@ -3,6 +3,7 @@ package construction;
 import construction.mocks.ReadConstructionElementUseCaseMock;
 import de.geo2web.arithmetic.Number;
 import de.geo2web.arithmetic.Operand;
+import de.geo2web.arithmetic.VariableFunction;
 import de.geo2web.construction.ConstructionElement;
 import de.geo2web.construction.application.ConstructionElementChanges;
 import de.geo2web.shared.ElementName;
@@ -68,7 +69,7 @@ public class ConstructionElementTest {
         Operand result = element2.evaluate(read);
 
         float expectedResult = 6;
-        assertEquals(((Number)result).getValue(), expectedResult, Epsilon);
+        assertEquals(((Number) result).getValue(), expectedResult, Epsilon);
         assertEquals(element1.getConstructionIndex(), ConstructionElement.InitialConstructionIndex);
         assertEquals(element2.getConstructionIndex(), ConstructionElement.InitialConstructionIndex + 1);
     }
@@ -97,8 +98,8 @@ public class ConstructionElementTest {
 
         Operand result = element2.evaluate(read);
 
-        float expectedResult = 2f * (float)Math.sin(2 * Math.PI);
-        assertEquals(((Number)result).getValue(), expectedResult, Epsilon);
+        float expectedResult = 2f * (float) Math.sin(2 * Math.PI);
+        assertEquals(((Number) result).getValue(), expectedResult, Epsilon);
         assertEquals(element1.getConstructionIndex(), ConstructionElement.InitialConstructionIndex);
         assertEquals(element2.getConstructionIndex(), ConstructionElement.InitialConstructionIndex + 1);
     }
@@ -137,8 +138,8 @@ public class ConstructionElementTest {
 
         Operand result = element3.evaluate(read);
 
-        float expectedResult = 1/2f * (float)Math.sin(2 * Math.PI);
-        assertEquals(((Number)result).getValue(), expectedResult, Epsilon);
+        float expectedResult = 1 / 2f * (float) Math.sin(2 * Math.PI);
+        assertEquals(((Number) result).getValue(), expectedResult, Epsilon);
         assertEquals(element1.getConstructionIndex(), ConstructionElement.InitialConstructionIndex);
         assertEquals(element2.getConstructionIndex(), ConstructionElement.InitialConstructionIndex + 1);
         assertEquals(element3.getConstructionIndex(), ConstructionElement.InitialConstructionIndex + 2);
@@ -150,7 +151,7 @@ public class ConstructionElementTest {
 
         String expression1 = "1+2";
         String element1Name = "longVariableName";
-        String expression2 = "3+"+element1Name;
+        String expression2 = "3+" + element1Name;
         String element2Name = "result";
         ConstructionElementChanges changes1 = ConstructionElementChanges.builder()
                 .name(ElementName.of(element1Name))
@@ -169,7 +170,7 @@ public class ConstructionElementTest {
         Operand result = element2.evaluate(read);
 
         float expectedResult = 6;
-        assertEquals(((Number)result).getValue(), expectedResult, Epsilon);
+        assertEquals(((Number) result).getValue(), expectedResult, Epsilon);
         assertEquals(element1.getConstructionIndex(), ConstructionElement.InitialConstructionIndex);
         assertEquals(element2.getConstructionIndex(), ConstructionElement.InitialConstructionIndex + 1);
     }
@@ -180,7 +181,7 @@ public class ConstructionElementTest {
 
         String expression1 = "1+2";
         String element1Name = "notValid{Name";
-        String expression2 = "3+"+element1Name;
+        String expression2 = "3+" + element1Name;
         String element2Name = "result";
         ConstructionElementChanges changes1 = ConstructionElementChanges.builder()
                 .name(ElementName.of(element1Name))
@@ -205,7 +206,7 @@ public class ConstructionElementTest {
 
         String expression1 = "1+2";
         String element1Name = "sin";
-        String expression2 = "3+"+element1Name;
+        String expression2 = "3+" + element1Name;
         String element2Name = "result";
         ConstructionElementChanges changes1 = ConstructionElementChanges.builder()
                 .name(ElementName.of(element1Name))
@@ -222,6 +223,85 @@ public class ConstructionElementTest {
         read.Add(element2);
 
         element2.evaluate(read);
+    }
+
+    @Test
+    public void testEvaluateConstructionElementsWithFunctions1() {
+        ReadConstructionElementUseCaseMock read = new ReadConstructionElementUseCaseMock();
+
+        String expression1 = "a()=sin(2 * pi)";
+        String expression2 = "result() =2 * a";
+        ConstructionElementChanges changes1 = ConstructionElementChanges.builder()
+                .input(ExpressionInput.of(expression1))
+                .build();
+        ConstructionElement element1 = changes1.apply(ConstructionElement.builder(), read.getNextConstructionIndex());
+        read.Add(element1);
+
+        ConstructionElementChanges changes2 = ConstructionElementChanges.builder()
+                .input(ExpressionInput.of(expression2))
+                .build();
+        ConstructionElement element2 = changes2.apply(ConstructionElement.builder(), read.getNextConstructionIndex());
+        read.Add(element2);
+
+        Operand result = element2.evaluate(read);
+
+        float expectedResult = 2f * (float) Math.sin(2 * Math.PI);
+        VariableFunction function = (VariableFunction) result;
+        assertEquals(((Number) function.getFunctionBody()).getValue(), expectedResult, Epsilon);
+        assertEquals(element1.getConstructionIndex(), ConstructionElement.InitialConstructionIndex);
+        assertEquals(element2.getConstructionIndex(), ConstructionElement.InitialConstructionIndex + 1);
+    }
+
+    @Test
+    public void testEvaluateConstructionElementsWithFunctions2() {
+        ReadConstructionElementUseCaseMock read = new ReadConstructionElementUseCaseMock();
+
+        String expression1 = "a(b)= 2 + b";
+        String expression2 = "result() =2 * a(8)";
+        ConstructionElementChanges changes1 = ConstructionElementChanges.builder()
+                .input(ExpressionInput.of(expression1))
+                .build();
+        ConstructionElement element1 = changes1.apply(ConstructionElement.builder(), read.getNextConstructionIndex());
+        read.Add(element1);
+
+        ConstructionElementChanges changes2 = ConstructionElementChanges.builder()
+                .input(ExpressionInput.of(expression2))
+                .build();
+        ConstructionElement element2 = changes2.apply(ConstructionElement.builder(), read.getNextConstructionIndex());
+        read.Add(element2);
+
+        Operand result = element2.evaluate(read);
+
+        VariableFunction function = (VariableFunction) result;
+        assertEquals(((Number) function.getFunctionBody()).getValue(), 20, Epsilon);
+        assertEquals(element1.getConstructionIndex(), ConstructionElement.InitialConstructionIndex);
+        assertEquals(element2.getConstructionIndex(), ConstructionElement.InitialConstructionIndex + 1);
+    }
+
+    @Test
+    public void testEvaluateConstructionElementsWithFunctions3() {
+        ReadConstructionElementUseCaseMock read = new ReadConstructionElementUseCaseMock();
+
+        String expression1 = "a(b, c)= 2 + b * c";
+        String expression2 = "result() =2 * a(4, 2)";
+        ConstructionElementChanges changes1 = ConstructionElementChanges.builder()
+                .input(ExpressionInput.of(expression1))
+                .build();
+        ConstructionElement element1 = changes1.apply(ConstructionElement.builder(), read.getNextConstructionIndex());
+        read.Add(element1);
+
+        ConstructionElementChanges changes2 = ConstructionElementChanges.builder()
+                .input(ExpressionInput.of(expression2))
+                .build();
+        ConstructionElement element2 = changes2.apply(ConstructionElement.builder(), read.getNextConstructionIndex());
+        read.Add(element2);
+
+        Operand result = element2.evaluate(read);
+
+        VariableFunction function = (VariableFunction) result;
+        assertEquals(((Number) function.getFunctionBody()).getValue(), 20, Epsilon);
+        assertEquals(element1.getConstructionIndex(), ConstructionElement.InitialConstructionIndex);
+        assertEquals(element2.getConstructionIndex(), ConstructionElement.InitialConstructionIndex + 1);
     }
 
 }

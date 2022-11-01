@@ -37,6 +37,24 @@ public class VariableFunctionBuilderTest {
     }
 
     @Test
+    public void testVariableFunction4() {
+        Expression expr = new ExpressionBuilder("bob(yay)=sin(yay)*2+pi").build();
+        Operand result = expr.evaluate();
+
+        String readableString = result.toReadableString();
+        assertEquals(readableString, "bob(yay)=sin(yay)*2.0+3.1415927");
+    }
+
+    @Test
+    public void testVariableFunction5() {
+        Expression expr = new ExpressionBuilder("name()=8+6").build();
+        Operand result = expr.evaluate();
+
+        String readableString = result.toReadableString();
+        assertEquals(readableString, "name()=14.0");
+    }
+
+    @Test
     public void testVariable1() {
         Operand result = new ExpressionBuilder("2*x+5")
                 .build()

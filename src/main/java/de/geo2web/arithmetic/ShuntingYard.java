@@ -123,6 +123,13 @@ public class ShuntingYard {
         }
     }
 
+    /**
+     * Extracts the name declaration and parameters of a given function.
+     * @param expression    the expression for the analysis and extraction.
+     * @param stack         the resulting assignment token is pushed onto the stack.
+     * @param variableNames the detected parameters are added to this list.
+     * @return the function body as remaining {@link de.geo2web.arithmetic.Expression}.
+     */
     private static String parseVariableFunctionAndReturnRemainingExpression(final String expression, final Stack<Token> stack, final Set<String> variableNames) {
         String trimmedExpression = expression.trim();
         char[] exprArray = trimmedExpression.toCharArray();
@@ -157,14 +164,14 @@ public class ShuntingYard {
                     throw new IllegalArgumentException("Mismatched parentheses in function declaration detected. Please check the expression");
                 }
                 String parameter = trimmedExpression.substring(lastArgumentSeparator, i);
-                parameters.add(parameter);
+                testAndAddParameter(parameters, parameter);
                 closedParenthesesIndex = i;
             } else if (ch == ArithmeticSettings.Instance().Argument_Separator) {
                 if (openParenthesesIndex == 0 || lastArgumentSeparator == i) {
                     throw new IllegalArgumentException("No parameter between separator detected. Please check the expression");
                 }
                 String parameter = trimmedExpression.substring(lastArgumentSeparator, i);
-                parameters.add(parameter);
+                testAndAddParameter(parameters, parameter);
                 lastArgumentSeparator = i + 1;
             }
         }
@@ -178,9 +185,17 @@ public class ShuntingYard {
         //get rest of expression for function body without assignment character
         String functionBody = trimmedExpression.substring(functionDeclarationIndex + 1);
 
+        //noinspection ToArrayCallWithZeroLengthArrayArgument
         stack.push(new AssignmentToken(name, parameters.toArray(new String[parameters.size()])));
         variableNames.addAll(parameters);
 
         return functionBody;
+    }
+
+    private static void testAndAddParameter(List<String> parameters, String parameter){
+        if (!parameter.isBlank()) {
+            //Don't create parameters with empty string, to get a variable as reference
+            parameters.add(parameter.trim());
+        }
     }
 }

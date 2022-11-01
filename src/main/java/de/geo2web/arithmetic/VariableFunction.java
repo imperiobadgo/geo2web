@@ -3,11 +3,14 @@ package de.geo2web.arithmetic;
 import lombok.RequiredArgsConstructor;
 import lombok.Value;
 
+/**
+ * Mapping as operand for example: f(x)=5*x+2.
+ */
 @Value
 @RequiredArgsConstructor
 public class VariableFunction implements VariableFunctionOperand {
 
-    String functionBody;
+    Operand functionBody;
 
     String name;
 
@@ -31,12 +34,16 @@ public class VariableFunction implements VariableFunctionOperand {
         }
         builder.append(ArithmeticSettings.Instance().Close_Parentheses);
         builder.append(ArithmeticSettings.Instance().Assignment);
-        builder.append(functionBody);
+        builder.append(functionBody.toReadableString());
         return builder.toString();
     }
 
     @Override
     public VariableFunction getFunction() {
         return this;
+    }
+
+    public boolean hasParameters(){
+        return parameters.length > 0;
     }
 }

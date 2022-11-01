@@ -4,6 +4,9 @@ import lombok.RequiredArgsConstructor;
 import lombok.Value;
 import org.apache.commons.lang3.SerializationUtils;
 
+/**
+ * A class representing an operand version of a function or operator. Stores the single operands and name of the function or operator.
+ */
 @Value
 @RequiredArgsConstructor
 public class Instruction implements VariableOperand {
