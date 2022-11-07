@@ -1,5 +1,5 @@
-import { Injectable } from '@angular/core';
-import { GLSLConstants } from 'src/app/shared/GLSLConstants';
+import {Injectable} from '@angular/core';
+import {GLSLConstants} from 'src/app/shared/GLSLConstants';
 
 // @ts-ignore
 import fragmentShaderSrc from '../../../assets/toucan-fragment-shader.glsl';
@@ -7,7 +7,6 @@ import fragmentShaderSrc from '../../../assets/toucan-fragment-shader.glsl';
 import vertexShaderSrc from '../../../assets/toucan-vertex-shader.glsl';
 import * as matrix from 'gl-matrix';
 import {mat4} from "gl-matrix";
-import {of} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
@@ -73,7 +72,8 @@ export class WebGLService {
   /**
    * Creates a new instance of the {@link WebGLService} class.
    */
-  constructor() {}
+  constructor() {
+  }
 
   /**
    * Formats the scene for rendering (by resizing the WebGL canvas and setting the defaults for WebGL drawing).
@@ -105,7 +105,7 @@ export class WebGLService {
     // initialise shaders into WebGL
     let shaderProgram = this.initializeShaders();
 
-    if (!shaderProgram){
+    if (!shaderProgram) {
       alert('Unable to initialize the shader program.');
       return null;
     }
@@ -129,14 +129,18 @@ export class WebGLService {
           shaderProgram,
           'uModelViewMatrix'
         ),
+        screenResolution: this.gl.getUniformLocation(
+          shaderProgram,
+          'screenResolution'
+        ),
       },
     };
 
     // initalise the buffers to define what we want to draw
-    this.buffers = this.initializeBuffers();
+    this.buffers = this.initializeBuffersSquare();
 
     // prepare the scene to display content
-    this.prepareScene();
+    this.prepareScene(2);
 
     return this.gl
   }
@@ -211,10 +215,10 @@ export class WebGLService {
   /**
    * Prepare's the WebGL context to render content.
    */
-  prepareScene() {
+  prepareScene(bufferSize: number) {
     // tell WebGL how to pull out the positions from the position
     // buffer into the vertexPosition attribute
-    this.bindVertexPosition(this.programInfo, this.buffers);
+    this.bindVertexPosition(this.programInfo, this.buffers, bufferSize);
 
     // tell WebGL how to pull out the colors from the color buffer
     // into the vertexColor attribute.
@@ -233,6 +237,12 @@ export class WebGLService {
       this.programInfo.uniformLocations.modelViewMatrix,
       false,
       this.modelViewMatrix
+    );
+    let resolution = matrix.vec2.create();//(this.gl.canvas.width, this.gl.canvas.height);
+    matrix.vec2.set(resolution, this.gl.canvas.width, this.gl.canvas.height);
+    this.gl.uniform2fv(
+      this.programInfo.uniformLocations.screenResolution,
+      resolution
     );
   }
 
@@ -329,8 +339,7 @@ export class WebGLService {
    * Tell WebGL how to pull out the positions from the position
    * buffer into the vertexPosition attribute
    */
-  private bindVertexPosition(programInfo: any, buffers: any) {
-    const bufferSize = 3;
+  private bindVertexPosition(programInfo: any, buffers: any, bufferSize: number) {
     const type = this.gl.FLOAT;
     const normalize = false;
     const stride = 0;
@@ -355,7 +364,14 @@ export class WebGLService {
    * returns true if valid, false otherwise
    */
   private checkCompiledShader(compiledShader: WebGLShader): boolean {
-    if (!compiledShader) {
+
+    // Check the compiled status
+    const compilationSuccessful: GLboolean = this.gl.getShaderParameter(
+      compiledShader,
+      this.gl.COMPILE_STATUS
+    );
+
+    if (!compilationSuccessful) {
       // shader failed to compile, get the last error
       const lastError = this.gl.getShaderInfoLog(compiledShader);
       console.log("couldn't compile the shader due to: " + lastError);
@@ -398,8 +414,8 @@ export class WebGLService {
 
     // create an array of positions for the square.
     const positions = new Float32Array([
-      1.0,  1.0,
-      -1.0,  1.0,
+      1.0, 1.0,
+      -1.0, 1.0,
       1.0, -1.0,
       -1.0, -1.0
     ]);
@@ -452,57 +468,57 @@ export class WebGLService {
     // create an array of positions for the square.
     const positions = new Float32Array([
       // Front face
-      -1.0, -1.0,  1.0,
-      1.0, -1.0,  1.0,
-      -1.0,  1.0,  1.0,
+      -1.0, -1.0, 1.0,
+      1.0, -1.0, 1.0,
+      -1.0, 1.0, 1.0,
 
-      1.0,  1.0,  1.0,
-      -1.0,  1.0,  1.0,
-      1.0, -1.0,  1.0,
+      1.0, 1.0, 1.0,
+      -1.0, 1.0, 1.0,
+      1.0, -1.0, 1.0,
 
       // Back face
       -1.0, -1.0, -1.0,
-      -1.0,  1.0, -1.0,
-      1.0,  1.0, -1.0,
+      -1.0, 1.0, -1.0,
+      1.0, 1.0, -1.0,
 
-      1.0,  1.0, -1.0,
+      1.0, 1.0, -1.0,
       1.0, -1.0, -1.0,
       -1.0, -1.0, -1.0,
 
       // Top face
-      -1.0,  1.0, -1.0,
-      -1.0,  1.0,  1.0,
-      1.0,  1.0,  1.0,
+      -1.0, 1.0, -1.0,
+      -1.0, 1.0, 1.0,
+      1.0, 1.0, 1.0,
 
-      1.0,  1.0,  1.0,
-      1.0,  1.0, -1.0,
-      -1.0,  1.0, -1.0,
+      1.0, 1.0, 1.0,
+      1.0, 1.0, -1.0,
+      -1.0, 1.0, -1.0,
 
       // Bottom face
       -1.0, -1.0, -1.0,
       1.0, -1.0, -1.0,
-      1.0, -1.0,  1.0,
+      1.0, -1.0, 1.0,
 
-      1.0, -1.0,  1.0,
-      -1.0, -1.0,  1.0,
+      1.0, -1.0, 1.0,
+      -1.0, -1.0, 1.0,
       -1.0, -1.0, -1.0,
 
       // Right face
       1.0, -1.0, -1.0,
-      1.0,  1.0, -1.0,
-      1.0,  1.0,  1.0,
+      1.0, 1.0, -1.0,
+      1.0, 1.0, 1.0,
 
-      1.0,   1.0,  1.0,
-      1.0,  -1.0,  1.0,
-      1.0,  -1.0, -1.0,
+      1.0, 1.0, 1.0,
+      1.0, -1.0, 1.0,
+      1.0, -1.0, -1.0,
 
       // Left face
       -1.0, -1.0, -1.0,
-      -1.0, -1.0,  1.0,
-      -1.0,  1.0,  1.0,
+      -1.0, -1.0, 1.0,
+      -1.0, 1.0, 1.0,
 
-      -1.0,  1.0,  1.0,
-      -1.0,  1.0, -1.0,
+      -1.0, 1.0, 1.0,
+      -1.0, 1.0, -1.0,
       -1.0, -1.0, -1.0
     ]);
 
@@ -518,12 +534,12 @@ export class WebGLService {
 
     // Set up the colors for the vertices
     const faceColors = [
-      [1.0,  1.0,  1.0,  1.0],    // Front face: white
-      [1.0,  0.0,  0.0,  1.0],    // Back face: red
-      [0.0,  1.0,  0.0,  1.0],    // Top face: green
-      [0.0,  0.0,  1.0,  1.0],    // Bottom face: blue
-      [1.0,  1.0,  0.0,  1.0],    // Right face: yellow
-      [1.0,  0.0,  1.0,  1.0],    // Left face: purple
+      [1.0, 1.0, 1.0, 1.0],    // Front face: white
+      [1.0, 0.0, 0.0, 1.0],    // Back face: red
+      [0.0, 1.0, 0.0, 1.0],    // Top face: green
+      [0.0, 0.0, 1.0, 1.0],    // Bottom face: blue
+      [1.0, 1.0, 0.0, 1.0],    // Right face: yellow
+      [1.0, 0.0, 1.0, 1.0],    // Left face: purple
     ];
 
     // Convert the array of colors into a table for all the vertices.
@@ -563,7 +579,7 @@ export class WebGLService {
     // Create the gl shader
     const glShader: WebGLShader | null = this.gl.createShader(shaderTypeAsNumber);
 
-    if (!glShader){
+    if (!glShader) {
       return null;
     }
 
@@ -573,12 +589,7 @@ export class WebGLService {
     // Compile the shaders
     this.gl.compileShader(glShader);
 
-    // Check the compiled status
-    const compiledShader: WebGLShader = this.gl.getShaderParameter(
-      glShader,
-      this.gl.COMPILE_STATUS
-    );
-    return this.checkCompiledShader(compiledShader) ? glShader : null;
+    return this.checkCompiledShader(glShader) ? glShader : null;
   }
 
   /**

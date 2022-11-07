@@ -36,7 +36,7 @@ export class SceneComponent implements OnInit, AfterViewInit {
     // Set up to draw the scene periodically.
     const drawSceneInterval = interval(this._60fpsInterval);
     drawSceneInterval.subscribe(() => {
-      this.drawScene();
+      this.drawSceneSquare();
       this.deltaTime = this.deltaTime + (this._60fpsInterval * milliseconds);
     });
   }
@@ -45,7 +45,44 @@ export class SceneComponent implements OnInit, AfterViewInit {
   /**
    * Draws the scene
    */
-  private drawScene() {
+  private drawSceneSquare() {
+    // prepare the scene and update the viewport
+    this.webglService.formatScene();
+
+    if (!this.gl) {
+      return;
+    }
+
+    // draw the scene
+    const offset = 0;
+    // 2 triangles, 3 vertices, 6 faces
+    const vertexCount = 4;
+
+    // translate and rotate the model-view matrix to display the cube
+    const mvm = this.webglService.getModelViewMatrix();
+    matrix.mat4.translate(
+      mvm,                    // destination matrix
+      mvm,                    // matrix to translate
+      [-0.0, 0.0, -1.0]       // amount to translate
+    );
+
+    this.webglService.prepareScene(2);
+
+    this.gl.drawArrays(
+      this.gl.TRIANGLE_STRIP,
+      offset,
+      vertexCount
+    );
+
+    // rotate the cube
+    this.cubeRotation = this.deltaTime;
+
+  }
+
+  /**
+   * Draws the scene
+   */
+  private drawSceneCube() {
     // prepare the scene and update the viewport
     this.webglService.formatScene();
 
@@ -72,7 +109,7 @@ export class SceneComponent implements OnInit, AfterViewInit {
       [1, 1, 1]               // rotate around X, Y, Z axis
     );
 
-    this.webglService.prepareScene();
+    this.webglService.prepareScene(3);
 
     this.gl.drawArrays(
       this.gl.TRIANGLES,

@@ -4,17 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="cba5d1cc-47d2-4e5d-9117-80b432d6b105" name="Changes" comment="Introduced instructions to handle unresolved variables">
-      <change afterPath="$PROJECT_DIR$/src/main/java/de/geo2web/arithmetic/function/OperandBasedFunction.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/de/geo2web/shared/ElementParameters.java" afterDir="false" />
+    <list default="true" id="cba5d1cc-47d2-4e5d-9117-80b432d6b105" name="Changes" comment="WebGl sin wave with fragment shader">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/de/geo2web/arithmetic/Expression.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/geo2web/arithmetic/Expression.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/de/geo2web/arithmetic/Instruction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/geo2web/arithmetic/Instruction.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/de/geo2web/arithmetic/ShuntingYard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/geo2web/arithmetic/ShuntingYard.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/de/geo2web/arithmetic/VariableFunction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/geo2web/arithmetic/VariableFunction.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/de/geo2web/construction/ConstructionElement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/geo2web/construction/ConstructionElement.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/arithmetic/VariableFunctionBuilderTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/arithmetic/VariableFunctionBuilderTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/construction/ConstructionElementTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/construction/ConstructionElementTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/angular/geo2webClient/src/app/scene/scene.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/angular/geo2webClient/src/app/scene/scene.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/angular/geo2webClient/src/app/scene/services/web-gl.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/angular/geo2webClient/src/app/scene/services/web-gl.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/angular/geo2webClient/src/assets/toucan-fragment-shader.glsl" beforeDir="false" afterPath="$PROJECT_DIR$/angular/geo2webClient/src/assets/toucan-fragment-shader.glsl" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -34,6 +28,11 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="0248c1c6beade752d0636a169937b60a6e9ae64b" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="JpbToolWindowState">
@@ -115,7 +114,7 @@
       <recent name="de.geo2web.arithmetics" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.All in geo2web">
+  <component name="RunManager" selected="npm.Angular CLI Server">
     <configuration name="Application" type="Application" factoryName="Application" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="de.geo2web.Application" />
       <module name="geo2web" />
@@ -532,8 +531,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Added vector dot product and multiplication" />
-    <MESSAGE value="Added vector cross product" />
     <MESSAGE value="Added vector power and length" />
     <MESSAGE value="Added vector indexing" />
     <MESSAGE value="Extracted char definitions to separate ArithmeticSettings class" />
@@ -557,7 +554,9 @@
     <MESSAGE value="Layout stuff attempt number 2" />
     <MESSAGE value="VeriableFunction WIP" />
     <MESSAGE value="Introduced instructions to handle unresolved variables" />
-    <option name="LAST_COMMIT_MESSAGE" value="Introduced instructions to handle unresolved variables" />
+    <MESSAGE value="WebGl Showing square again" />
+    <MESSAGE value="WebGl sin wave with fragment shader" />
+    <option name="LAST_COMMIT_MESSAGE" value="WebGl sin wave with fragment shader" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
