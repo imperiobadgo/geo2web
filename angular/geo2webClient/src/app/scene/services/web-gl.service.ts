@@ -7,6 +7,7 @@ import fragmentShaderSrc from '../../../assets/toucan-fragment-shader.glsl';
 import vertexShaderSrc from '../../../assets/toucan-vertex-shader.glsl';
 import * as matrix from 'gl-matrix';
 import {mat4} from "gl-matrix";
+import {Camera} from "../lib/camera";
 
 @Injectable({
   providedIn: 'root'
@@ -35,7 +36,8 @@ export class WebGLService {
   /**
    * Variables for setting up the perspective for the {@link projectionMatrix}.
    */
-  private fieldOfView = (45 * Math.PI) / 180; // in radians
+  private fov = 45;
+  private fieldOfView = (this.fov * Math.PI) / 180; // in radians
   private aspect = 1;
   private zNear = 0.1;
   private zFar = 100.0;
@@ -61,6 +63,18 @@ export class WebGLService {
   private programInfo: any;
 
   /**
+   * Main camera.
+   */
+  private camera: Camera;
+
+  /**
+   * Gets the {@link camera}.
+   */
+  getCamera(): Camera {
+    return this.camera;
+  }
+
+  /**
    * Gets the {@link modelViewMatrix}.
    *
    * @returns modelViewMatrix
@@ -69,10 +83,20 @@ export class WebGLService {
     return this.modelViewMatrix;
   }
 
+
   /**
    * Creates a new instance of the {@link WebGLService} class.
    */
   constructor() {
+    this.camera = new Camera({
+      position: [0, 0, -2],
+      screenHeight: 320,
+      screenWidth: 480,
+      fieldOfView: this.fov,
+      near: this.zNear,
+      far: this.zFar,
+      isPerspective: true
+    });
   }
 
   /**
@@ -121,6 +145,10 @@ export class WebGLService {
         vertexColor: this.gl.getAttribLocation(shaderProgram, 'aVertexColor'),
       },
       uniformLocations: {
+        viewMatrix: this.gl.getUniformLocation(
+          shaderProgram,
+          'uViewMatrix'
+        ),
         projectionMatrix: this.gl.getUniformLocation(
           shaderProgram,
           'uProjectionMatrix'
@@ -137,10 +165,10 @@ export class WebGLService {
     };
 
     // initalise the buffers to define what we want to draw
-    this.buffers = this.initializeBuffersSquare();
+    this.buffers = this.initializeBuffers();
 
     // prepare the scene to display content
-    this.prepareScene(2);
+    this.prepareScene(3);
 
     return this.gl
   }
@@ -231,7 +259,12 @@ export class WebGLService {
     this.gl.uniformMatrix4fv(
       this.programInfo.uniformLocations.projectionMatrix,
       false,
-      this.projectionMatrix
+      this.camera.getProjectionMatrix()
+    );
+    this.gl.uniformMatrix4fv(
+      this.programInfo.uniformLocations.viewMatrix,
+      false,
+      this.camera.getViewMatrix()
     );
     this.gl.uniformMatrix4fv(
       this.programInfo.uniformLocations.modelViewMatrix,
@@ -255,6 +288,7 @@ export class WebGLService {
     if (this.gl.canvas.width !== width || this.gl.canvas.height !== height) {
       this.gl.canvas.width = width;
       this.gl.canvas.height = height;
+      this.camera.setSize(width, height);
     }
   }
 
@@ -267,6 +301,7 @@ export class WebGLService {
     // set width and height based on canvas width and height - good practice to use clientWidth and clientHeight
     this.gl.canvas.width = canvas.clientWidth;
     this.gl.canvas.height = canvas.clientHeight;
+    this.camera.setSize(this.gl.canvas.width, this.gl.canvas.height);
   }
 
   /**
@@ -357,7 +392,7 @@ export class WebGLService {
   }
 
   /**
-   * Checks the compiled shader and determines if its valid.
+   * Checks the compiled shader and determines if it's valid.
    * If it isn't, it's deleted from the GL context to prevent integrity issues.
    *
    * @param compiledShader

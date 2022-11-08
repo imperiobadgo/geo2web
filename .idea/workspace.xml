@@ -5,10 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="cba5d1cc-47d2-4e5d-9117-80b432d6b105" name="Changes" comment="WebGl sin wave with fragment shader">
+      <change afterPath="$PROJECT_DIR$/angular/geo2webClient/src/app/scene/lib/camera.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/angular/geo2webClient/src/app/scene/lib/gl-helpers.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/angular/geo2webClient/src/app/scene/lib/math-helpers.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/angular/geo2webClient/src/app/scene/lib/vector.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/angular/geo2webClient/src/app/scene/scene.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/angular/geo2webClient/src/app/scene/scene.component.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/angular/geo2webClient/src/app/scene/services/web-gl.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/angular/geo2webClient/src/app/scene/services/web-gl.service.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/angular/geo2webClient/src/assets/toucan-fragment-shader.glsl" beforeDir="false" afterPath="$PROJECT_DIR$/angular/geo2webClient/src/assets/toucan-fragment-shader.glsl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/angular/geo2webClient/src/assets/toucan-vertex-shader.glsl" beforeDir="false" afterPath="$PROJECT_DIR$/angular/geo2webClient/src/assets/toucan-vertex-shader.glsl" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -104,11 +109,11 @@
       <recent name="" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Lenovo\IdeaProjects\geo2web\angular\geo2webClient\src\app\scene\lib" />
       <recent name="C:\Users\Lenovo\IdeaProjects\geo2web\angular\geo2webClient\src\themes" />
       <recent name="C:\Users\Lenovo\IdeaProjects\geo2web\angular\geo2webClient\src" />
       <recent name="C:\Users\Lenovo\IdeaProjects\geo2web\angular\geo2webClient\src\app\algebra-input\services" />
       <recent name="C:\Users\Lenovo\IdeaProjects\geo2web\angular\geo2webClient\src\app\algebra-panel\services" />
-      <recent name="C:\Users\Lenovo\IdeaProjects\geo2web\angular\geo2webClient\src\app\domain\construction-element" />
     </key>
     <key name="CreateTestDialog.RecentsKey">
       <recent name="de.geo2web.arithmetics" />
@@ -276,6 +281,7 @@
       <workItem from="1666814787602" duration="9930000" />
       <workItem from="1667317163457" duration="5747000" />
       <workItem from="1667336167226" duration="5299000" />
+      <workItem from="1667931451047" duration="8661000" />
     </task>
     <task id="LOCAL-00001" summary="Initial Commit">
       <created>1661200014255</created>
@@ -501,7 +507,14 @@
       <option name="project" value="LOCAL" />
       <updated>1666824714578</updated>
     </task>
-    <option name="localTasksCounter" value="33" />
+    <task id="LOCAL-00033" summary="WebGl sin wave with fragment shader">
+      <created>1667864300623</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1667864300623</updated>
+    </task>
+    <option name="localTasksCounter" value="34" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
