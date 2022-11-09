@@ -1,8 +1,6 @@
-import {AfterViewInit, Component, ElementRef, OnInit, ViewChild} from '@angular/core';
-import {WebGLService} from "./services/web-gl.service";
-import {interval} from 'rxjs';
-import * as matrix from 'gl-matrix';
-import {degreesPerRad} from "./lib/math-helpers";
+import { AfterViewInit, Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
+import * as THREE from "three";
+import {TrackballControls} from "three/examples/jsm/controls/TrackballControls";
 
 @Component({
   selector: 'app-scene',
@@ -10,194 +8,148 @@ import {degreesPerRad} from "./lib/math-helpers";
   styleUrls: ['./scene.component.scss']
 })
 export class SceneComponent implements OnInit, AfterViewInit {
-  @ViewChild('sceneCanvas') private canvas: ElementRef<HTMLCanvasElement> | undefined;
+
+  @ViewChild('sceneCanvas')
+  private canvasRef!: ElementRef;
+
+  //* Cube Properties
+
+  @Input() public rotationSpeedX: number = 0.05;
+
+  @Input() public rotationSpeedY: number = 0.01;
+
+  @Input() public size: number = 200;
+
+  @Input() public texture: string = "/assets/texture.jpg";
+
+
+  //* Stage Properties
+
+  @Input() public cameraZ: number = 400;
+
+  @Input() public fieldOfView: number = 1;
+
+  @Input('nearClipping') public nearClippingPlane: number = 1;
+
+  @Input('farClipping') public farClippingPlane: number = 1000;
+
+  //? Helper Properties (Private Properties);
+
+  private camera!: THREE.PerspectiveCamera;
+  private controls!: TrackballControls;
+
+  private get canvas(): HTMLCanvasElement {
+    return this.canvasRef.nativeElement;
+  }
+  private loader = new THREE.TextureLoader();
+  private geometry = new THREE.BoxGeometry(1, 1, 1);
+  private material = new THREE.MeshBasicMaterial({ map: this.loader.load(this.texture) });
+
+  private cube: THREE.Mesh = new THREE.Mesh(this.geometry, this.material);
+
+  private renderer!: THREE.WebGLRenderer;
+
+  private scene!: THREE.Scene;
 
   /**
-   * The interval of refresh rate for drawing our scene during one second of elapsed time (1000ms).
+   *Animate the cube
+   *
+   * @private
+   * @memberof CubeComponent
    */
-  private _60fpsInterval = 16.666666666666666667;
-  private gl: WebGLRenderingContext | undefined | null
-
-  private cubeRotation = 0;
-  private deltaTime = 0;
-  private initialPosition: any;
-  private initialCameraPosition: any;
-
-  constructor(private webglService: WebGLService) {
+  private animateCube() {
+    this.cube.rotation.x += this.rotationSpeedX;
+    this.cube.rotation.y += this.rotationSpeedY;
   }
 
-  ngAfterViewInit(): void {
-    if (!this.canvas) {
-      alert("canvas not supplied! cannot bind WebGL context!");
-      return;
+  /**
+   * Create the scene
+   *
+   * @private
+   * @memberof CubeComponent
+   */
+  private createScene() {
+    //* Scene
+    this.scene = new THREE.Scene();
+    this.scene.background = new THREE.Color(0x000000)
+    this.scene.add(this.cube);
+    //*Camera
+    let aspectRatio = this.getAspectRatio();
+    this.camera = new THREE.PerspectiveCamera(
+      this.fieldOfView,
+      aspectRatio,
+      this.nearClippingPlane,
+      this.farClippingPlane
+    )
+    this.camera.position.z = this.cameraZ;
+  }
+
+  private getAspectRatio() {
+    return this.canvas.clientWidth / this.canvas.clientHeight;
+  }
+
+  private createControls( camera : THREE.Camera ) {
+
+    this.controls = new TrackballControls( camera, this.renderer.domElement );
+
+    this.controls.rotateSpeed = 3.0;
+    this.controls.zoomSpeed = 1.2;
+    this.controls.panSpeed = 0.005;
+    this.controls.dynamicDampingFactor = 0.2;
+
+    this.controls.keys = [ 'KeyA', 'KeyS', 'KeyD' ];
+
+  }
+
+  /**
+   * Start the rendering loop
+   *
+   * @private
+   * @memberof CubeComponent
+   */
+  private startRenderingLoop() {
+    //* Renderer
+    // Use canvas element in template
+    this.renderer = new THREE.WebGLRenderer({ canvas: this.canvas });
+    this.renderer.setPixelRatio(devicePixelRatio);
+    this.renderer.setSize(this.canvas.clientWidth, this.canvas.clientHeight);
+
+    this.createControls(this.camera);
+
+    let component: SceneComponent = this;
+    (function render() {
+      requestAnimationFrame(render);
+      component.resizeCanvasToDisplaySize();
+      component.controls.update();
+      //component.animateCube();
+      component.renderer.render(component.scene, component.camera);
+    }());
+  }
+
+  private resizeCanvasToDisplaySize() {
+    const canvas = this.renderer.domElement;
+    const width = canvas.clientWidth;
+    const height = canvas.clientHeight;
+    if (canvas.width !== width ||canvas.height !== height) {
+      // you must pass false here or three.js sadly fights the browser
+      this.renderer.setSize(width, height, false);
+      this.camera.aspect = width / height;
+      this.camera.updateProjectionMatrix();
+
+      // set render target sizes here
     }
-    this.gl = this.webglService.initializeWebGLContext(this.canvas.nativeElement);
-
-    this.canvas.nativeElement.addEventListener("keydown", this.onKeyDown);
-    this.canvas.nativeElement.addEventListener("pointerdown", this.onPointerDown);
-    this.canvas.nativeElement.addEventListener("wheel", this.onWheel);
-
-    // Set up to draw the scene periodically via deltaTime.
-    const milliseconds = 0.001;
-    this.deltaTime = this._60fpsInterval * milliseconds;
-
-    // Set up to draw the scene periodically.
-    const drawSceneInterval = interval(this._60fpsInterval);
-    drawSceneInterval.subscribe(() => {
-      this.drawSceneCube();
-      this.deltaTime = this.deltaTime + (this._60fpsInterval * milliseconds);
-    });
   }
+
+  constructor() { }
 
   ngOnInit(): void {
-  }
-
-  /**
-   * Draws the scene
-   */
-  private drawSceneSquare() {
-    // prepare the scene and update the viewport
-    this.webglService.formatScene();
-
-    if (!this.gl) {
-      return;
-    }
-
-    // draw the scene
-    const offset = 0;
-    // 2 triangles, 3 vertices, 6 faces
-    const vertexCount = 4;
-
-    // translate and rotate the model-view matrix to display the cube
-    const mvm = this.webglService.getModelViewMatrix();
-    matrix.mat4.translate(
-      mvm,                    // destination matrix
-      mvm,                    // matrix to translate
-      [-0.0, 0.0, -1.0]       // amount to translate
-    );
-
-    this.webglService.prepareScene(2);
-
-    this.gl.drawArrays(
-      this.gl.TRIANGLE_STRIP,
-      offset,
-      vertexCount
-    );
-
-    // rotate the cube
-    this.cubeRotation = this.deltaTime;
 
   }
 
-  /**
-   * Draws the scene
-   */
-  private drawSceneCube() {
-    // prepare the scene and update the viewport
-    this.webglService.formatScene();
-
-    if (!this.gl) {
-      return;
-    }
-
-    // draw the scene
-    const offset = 0;
-    // 2 triangles, 3 vertices, 6 faces
-    const vertexCount = 2 * 3 * 6;
-
-    // translate and rotate the model-view matrix to display the cube
-    const mvm = this.webglService.getModelViewMatrix();
-    matrix.mat4.translate(
-      mvm,                    // destination matrix
-      mvm,                    // matrix to translate
-      [-0.0, 0.0, -6.0]       // amount to translate
-    );
-    matrix.mat4.rotate(
-      mvm,                    // destination matrix
-      mvm,                    // matrix to rotate
-      this.cubeRotation,      // amount to rotate in radians
-      [1, 1, 1]               // rotate around X, Y, Z axis
-    );
-
-    this.webglService.prepareScene(3);
-
-    this.gl.drawArrays(
-      this.gl.TRIANGLES,
-      offset,
-      vertexCount
-    );
-
-    // rotate the cube
-    this.cubeRotation = this.deltaTime;
-
+  ngAfterViewInit() {
+    this.createScene();
+    this.startRenderingLoop();
   }
 
-  //Events
-  onKeyDown(e: any) {
-    switch (e.code) {
-      case "KeyA": {
-        console.log("Pressed key a");
-        //this.cameras.default.panBy({ x: 0.1 });
-        break;
-      }
-      // case "KeyD": {
-      //   this.cameras.default.panBy({ x: -0.1 });
-      //   break;
-      // }
-      // case "KeyW": {
-      //   this.cameras.default.panBy({ z: 0.1 });
-      //   break;
-      // }
-      // case "KeyS": {
-      //   this.cameras.default.panBy({ z: -0.1 });
-      //   break;
-      // }
-      // case "NumpadAdd": {
-      //   this.cameras.default.zoomBy(2);
-      //   break;
-      // }
-      // case "NumpadSubtract": {
-      //   this.cameras.default.zoomBy(0.5);
-      //   break;
-      // }
-    }
-  }
-
-  private onPointerDown = (e: any) => {
-    console.log("clicked!");
-    this.initialPosition = [e.offsetX, e.offsetY];
-    this.initialCameraPosition = this.webglService.getCamera().getPosition();
-    this.canvas?.nativeElement.setPointerCapture(e.pointerId);
-    this.canvas?.nativeElement.addEventListener("pointermove", this.onPointerMove);
-    this.canvas?.nativeElement.addEventListener("pointerup", this.onPointerUp);
-  }
-
-  private onPointerUp = (e: any) => {
-    this.canvas?.nativeElement.removeEventListener("pointermove", this.onPointerMove);
-    this.canvas?.nativeElement.removeEventListener("pointerup", this.onPointerUp);
-    this.canvas?.nativeElement.releasePointerCapture(e.pointerId);
-  }
-
-  private onPointerMove = (e: any) => {
-    if (!this.gl) {
-      return;
-    }
-    const pointerDelta = [
-      e.offsetX - this.initialPosition[0],
-      e.offsetY - this.initialPosition[1]
-    ];
-
-    const radsPerWidth = (180 / degreesPerRad) / this.gl.canvas.width;
-    const xRads = pointerDelta[0] * radsPerWidth;
-    const yRads = pointerDelta[1] * radsPerWidth * (this.gl.canvas.height / this.gl.canvas.width);
-
-    this.webglService.getCamera().setPosition(this.initialCameraPosition);
-    this.webglService.getCamera().orbitBy({ long: xRads, lat: yRads });
-  }
-
-  private onWheel = (e: any) => {
-    const delta = e.deltaY / 1000;
-    this.webglService.getCamera().orbitBy({ radius: delta });
-  }
 
 }
