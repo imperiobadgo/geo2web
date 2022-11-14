@@ -1,6 +1,7 @@
-import { AfterViewInit, Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
+import {AfterViewInit, Component, ElementRef, Input, OnInit, ViewChild} from '@angular/core';
 import * as THREE from "three";
 import {TrackballControls} from "three/examples/jsm/controls/TrackballControls";
+import {ResizeService} from "../services/resize.service";
 
 @Component({
   selector: 'app-scene',
@@ -41,9 +42,10 @@ export class SceneComponent implements OnInit, AfterViewInit {
   private get canvas(): HTMLCanvasElement {
     return this.canvasRef.nativeElement;
   }
+
   private loader = new THREE.TextureLoader();
   private geometry = new THREE.BoxGeometry(1, 1, 1);
-  private material = new THREE.MeshBasicMaterial({ map: this.loader.load(this.texture) });
+  private material = new THREE.MeshBasicMaterial({map: this.loader.load(this.texture)});
 
   private cube: THREE.Mesh = new THREE.Mesh(this.geometry, this.material);
 
@@ -88,16 +90,16 @@ export class SceneComponent implements OnInit, AfterViewInit {
     return this.canvas.clientWidth / this.canvas.clientHeight;
   }
 
-  private createControls( camera : THREE.Camera ) {
+  private createControls(camera: THREE.Camera) {
 
-    this.controls = new TrackballControls( camera, this.renderer.domElement );
+    this.controls = new TrackballControls(camera, this.renderer.domElement);
 
     this.controls.rotateSpeed = 3.0;
     this.controls.zoomSpeed = 1.2;
     this.controls.panSpeed = 0.005;
     this.controls.dynamicDampingFactor = 0.2;
 
-    this.controls.keys = [ 'KeyA', 'KeyS', 'KeyD' ];
+    this.controls.keys = ['KeyA', 'KeyS', 'KeyD'];
 
   }
 
@@ -110,7 +112,7 @@ export class SceneComponent implements OnInit, AfterViewInit {
   private startRenderingLoop() {
     //* Renderer
     // Use canvas element in template
-    this.renderer = new THREE.WebGLRenderer({ canvas: this.canvas });
+    this.renderer = new THREE.WebGLRenderer({canvas: this.canvas});
     this.renderer.setPixelRatio(devicePixelRatio);
     this.renderer.setSize(this.canvas.clientWidth, this.canvas.clientHeight);
 
@@ -119,20 +121,19 @@ export class SceneComponent implements OnInit, AfterViewInit {
     let component: SceneComponent = this;
     (function render() {
       requestAnimationFrame(render);
-      component.resizeCanvasToDisplaySize();
+      // component.resizeCanvasToDisplaySize();
       component.controls.update();
       //component.animateCube();
       component.renderer.render(component.scene, component.camera);
     }());
   }
 
-  private resizeCanvasToDisplaySize() {
+  private resizeCanvasToDisplaySize(width: number, height: number) {
     const canvas = this.renderer.domElement;
-    const width = canvas.clientWidth;
-    const height = canvas.clientHeight;
-    if (canvas.width !== width ||canvas.height !== height) {
-      // you must pass false here or three.js sadly fights the browser
-      this.renderer.setSize(width, height, false);
+    if (canvas.width !== width || canvas.height !== height) {
+      // you must pass true here to update the style of canvas,
+      // otherwise the canvas size is reset to the style size
+      this.renderer.setSize(width, height, true);
       this.camera.aspect = width / height;
       this.camera.updateProjectionMatrix();
 
@@ -140,10 +141,17 @@ export class SceneComponent implements OnInit, AfterViewInit {
     }
   }
 
-  constructor() { }
+  constructor(private el: ElementRef, private resizeService: ResizeService) {
+  }
 
   ngOnInit(): void {
+    this.resizeService.addResizeEventListener(this.el.nativeElement, (elem: any) => {
+      this.resizeCanvasToDisplaySize(elem.clientWidth, elem.clientHeight);
+    });
+  }
 
+  ngOnDestroy() {
+    this.resizeService.removeResizeEventListener(this.el.nativeElement);
   }
 
   ngAfterViewInit() {

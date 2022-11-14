@@ -1,14 +1,62 @@
 /* You can add global styles to this file, and also import other style files */
 html,
-//*, *::after, *::before {
-//  box-sizing: border-box;
-//}
+*, *::after, *::before {
+  box-sizing: border-box;
+  min-width: 0;//allow flex items to shrink past content size
+  min-height: 0;//allow flex items to shrink past content size
+}
 
 body {
   margin: 0;
-  height: 100%;
 }
 
 .margin--small {
   margin: 5px;
+}
+
+.inline-block {
+  display:inline-block!important
+}
+.flex {
+  display:flex!important;
+}
+.inline-flex {
+  display:inline-flex!important
+}
+
+.col {
+  flex-grow:1;
+  flex-basis:0;
+}
+
+.justify-content-start {
+  justify-content:flex-start!important
+}
+.justify-content-end {
+  justify-content:flex-end!important
+}
+.justify-content-center {
+  justify-content:center!important;
+}
+.justify-content-between {
+  justify-content:space-between!important
+}
+.justify-content-around {
+  justify-content:space-around!important
+}
+.justify-content-evenly {
+  justify-content:space-evenly!important
+}
+
+.align-items-stretch {
+  align-items:stretch!important
+}
+.align-items-start {
+  align-items:flex-start!important
+}
+.align-items-center {
+  align-items:center!important;
+}
+.align-items-end {
+  align-items:flex-end!important
 }

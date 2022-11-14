@@ -1,15 +1,19 @@
-<div style="display: flex; flex-direction: column; height: 100%">
+<div class="wrapper">
   <div style="flex: initial">
     <p-menubar [model]="items"></p-menubar>
   </div>
 
   <div style="flex: auto; height: 100%">
-    <p-splitter [style]="{'height': '100%', 'width' : '100%'}" [minSizes]="[10,10]" [panelSizes]="[20,80]">
+    <p-splitter [style]="{'height': '100%'}" [minSizes]="[10,10]" [panelSizes]="[20,80]" styleClass="mb-5">
       <ng-template pTemplate>
-        <app-algebra-panel></app-algebra-panel>
+        <div class="col flex align-items-center justify-content-center">
+          <app-algebra-panel class="column-content" ></app-algebra-panel>
+        </div>
       </ng-template>
       <ng-template pTemplate>
-        <app-scene></app-scene>
+        <div class="col flex align-items-stretch justify-content-between">
+            <app-scene class="column-content" ></app-scene>
+        </div>
       </ng-template>
     </p-splitter>
   </div>
