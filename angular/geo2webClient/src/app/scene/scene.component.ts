@@ -121,11 +121,20 @@ export class SceneComponent implements OnInit, AfterViewInit {
     let component: SceneComponent = this;
     (function render() {
       requestAnimationFrame(render);
+      component.updateThemeColors();
+
       // component.resizeCanvasToDisplaySize();
       component.controls.update();
       //component.animateCube();
       component.renderer.render(component.scene, component.camera);
     }());
+  }
+
+  private updateThemeColors(): void {
+    const style = getComputedStyle(this.el.nativeElement);
+    const backgroundColor = style.getPropertyValue('--surface-card');
+
+    this.scene.background = new THREE.Color(backgroundColor);
   }
 
   private resizeCanvasToDisplaySize(width: number, height: number) {

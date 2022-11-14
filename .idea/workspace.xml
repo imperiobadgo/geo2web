@@ -4,17 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="cba5d1cc-47d2-4e5d-9117-80b432d6b105" name="Changes" comment="WebGl now using three.js (@types/three)">
-      <change afterPath="$PROJECT_DIR$/angular/geo2webClient/src/app/shared/element-resize-detector.d.ts" afterDir="false" />
+    <list default="true" id="cba5d1cc-47d2-4e5d-9117-80b432d6b105" name="Changes" comment="Finally proper resizing of three.js content!">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/angular/geo2webClient/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/angular/geo2webClient/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/angular/geo2webClient/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/angular/geo2webClient/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/angular/geo2webClient/src/app/app.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/angular/geo2webClient/src/app/app.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/angular/geo2webClient/src/app/app.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/angular/geo2webClient/src/app/app.component.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/angular/geo2webClient/src/app/scene/scene.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/angular/geo2webClient/src/app/scene/scene.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/angular/geo2webClient/src/app/scene/scene.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/angular/geo2webClient/src/app/scene/scene.component.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/angular/geo2webClient/src/app/scene/scene.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/angular/geo2webClient/src/app/scene/scene.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/angular/geo2webClient/src/styles.scss" beforeDir="false" afterPath="$PROJECT_DIR$/angular/geo2webClient/src/styles.scss" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -285,7 +277,7 @@
       <workItem from="1667931451047" duration="8979000" />
       <workItem from="1668024331671" duration="8233000" />
       <workItem from="1668372026143" duration="5866000" />
-      <workItem from="1668458900841" duration="6202000" />
+      <workItem from="1668458900841" duration="8010000" />
     </task>
     <task id="LOCAL-00001" summary="Initial Commit">
       <created>1661200014255</created>
@@ -532,7 +524,14 @@
       <option name="project" value="LOCAL" />
       <updated>1668033758970</updated>
     </task>
-    <option name="localTasksCounter" value="36" />
+    <task id="LOCAL-00036" summary="Finally proper resizing of three.js content!">
+      <created>1668465180341</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1668465180341</updated>
+    </task>
+    <option name="localTasksCounter" value="37" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -562,7 +561,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Extracted char definitions to separate ArithmeticSettings class" />
     <MESSAGE value="Added Test WebGl scene" />
     <MESSAGE value="Added Test WebGl 3d scene" />
     <MESSAGE value="First start of Database" />
@@ -587,7 +585,8 @@
     <MESSAGE value="WebGl sin wave with fragment shader" />
     <MESSAGE value="WebGl added first attempt of camera controlling" />
     <MESSAGE value="WebGl now using three.js (@types/three)" />
-    <option name="LAST_COMMIT_MESSAGE" value="WebGl now using three.js (@types/three)" />
+    <MESSAGE value="Finally proper resizing of three.js content!" />
+    <option name="LAST_COMMIT_MESSAGE" value="Finally proper resizing of three.js content!" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
