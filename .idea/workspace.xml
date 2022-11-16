@@ -4,8 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="cba5d1cc-47d2-4e5d-9117-80b432d6b105" name="Changes" comment="Finally proper resizing of three.js content!">
+    <list default="true" id="cba5d1cc-47d2-4e5d-9117-80b432d6b105" name="Changes" comment="Update WebGL background to selected Theme">
+      <change afterPath="$PROJECT_DIR$/angular/geo2webClient/src/assets/cube-fragment-shader.glsl" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/angular/geo2webClient/src/assets/cube-vertex-shader.glsl" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/angular/geo2webClient/src/assets/fullscreen-vertex-shader.glsl" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/angular/geo2webClient/src/assets/grid-fragment-shader.glsl" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/angular/geo2webClient/src/app/scene/scene.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/angular/geo2webClient/src/app/scene/scene.component.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/angular/geo2webClient/src/app/scene/scene.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/angular/geo2webClient/src/app/scene/scene.component.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -277,7 +282,9 @@
       <workItem from="1667931451047" duration="8979000" />
       <workItem from="1668024331671" duration="8233000" />
       <workItem from="1668372026143" duration="5866000" />
-      <workItem from="1668458900841" duration="8010000" />
+      <workItem from="1668458900841" duration="8080000" />
+      <workItem from="1668527062788" duration="5944000" />
+      <workItem from="1668631226286" duration="7816000" />
     </task>
     <task id="LOCAL-00001" summary="Initial Commit">
       <created>1661200014255</created>
@@ -531,7 +538,14 @@
       <option name="project" value="LOCAL" />
       <updated>1668465180341</updated>
     </task>
-    <option name="localTasksCounter" value="37" />
+    <task id="LOCAL-00037" summary="Update WebGL background to selected Theme">
+      <created>1668466963917</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1668466963917</updated>
+    </task>
+    <option name="localTasksCounter" value="38" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -561,7 +575,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Added Test WebGl scene" />
     <MESSAGE value="Added Test WebGl 3d scene" />
     <MESSAGE value="First start of Database" />
     <MESSAGE value="Added ConstructionElement" />
@@ -586,7 +599,8 @@
     <MESSAGE value="WebGl added first attempt of camera controlling" />
     <MESSAGE value="WebGl now using three.js (@types/three)" />
     <MESSAGE value="Finally proper resizing of three.js content!" />
-    <option name="LAST_COMMIT_MESSAGE" value="Finally proper resizing of three.js content!" />
+    <MESSAGE value="Update WebGL background to selected Theme" />
+    <option name="LAST_COMMIT_MESSAGE" value="Update WebGL background to selected Theme" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

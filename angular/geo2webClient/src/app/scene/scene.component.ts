@@ -2,6 +2,15 @@ import {AfterViewInit, Component, ElementRef, Input, OnInit, ViewChild} from '@a
 import * as THREE from "three";
 import {TrackballControls} from "three/examples/jsm/controls/TrackballControls";
 import {ResizeService} from "../services/resize.service";
+// @ts-ignore
+import cubeFragmentShaderSrc from '../../assets/cube-fragment-shader.glsl';
+// @ts-ignore
+import cubeVertexShaderSrc from '../../assets/cube-vertex-shader.glsl';
+
+// @ts-ignore
+import gridFragmentShaderSrc from '../../assets/grid-fragment-shader.glsl';
+// @ts-ignore
+import fullscreenVertexShaderSrc from '../../assets/fullscreen-vertex-shader.glsl';
 
 @Component({
   selector: 'app-scene',
@@ -52,6 +61,8 @@ export class SceneComponent implements OnInit, AfterViewInit {
   private renderer!: THREE.WebGLRenderer;
 
   private scene!: THREE.Scene;
+
+  private gridShader!: THREE.ShaderMaterial;
 
   /**
    *Animate the cube
@@ -125,6 +136,11 @@ export class SceneComponent implements OnInit, AfterViewInit {
 
       // component.resizeCanvasToDisplaySize();
       component.controls.update();
+      component.gridShader.uniforms['screenSize'].value = new THREE.Vector2(component.renderer.domElement.width, component.renderer.domElement.height);
+      component.gridShader.uniforms['inverseCameraWorld'].value = component.camera.matrixWorldInverse;
+      // component.gridShader.uniforms['cameraPosition'].value = component.camera.position;
+      component.gridShader.uniforms['fov'].value = component.camera.fov;
+
       //component.animateCube();
       component.renderer.render(component.scene, component.camera);
     }());
@@ -165,8 +181,51 @@ export class SceneComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit() {
     this.createScene();
+    this.addExprerimentalCube();
+    this.addGrid();
     this.startRenderingLoop();
   }
 
+  private addGrid() {
+    let gridUniforms = {
+      screenSize: {type: "vec2", value: new THREE.Vector2(300, 200)},
+      inverseCameraWorld: {type: "mat4", value: this.camera.matrixWorldInverse},
+      // cameraPosition: {type: "vec3", value: this.camera.position},
+      fov: {type: "float", value: this.camera.fov},
+    }
+    this.gridShader = new THREE.ShaderMaterial({
+      vertexShader: fullscreenVertexShaderSrc,
+      fragmentShader: gridFragmentShaderSrc,
+      depthWrite: false,
+      depthTest: false,
+      transparent: true,
+      uniforms: gridUniforms,
+    });
 
+    var quad = new THREE.Mesh(
+      new THREE.PlaneGeometry(2, 2),
+      this.gridShader
+    );
+
+
+    this.scene.add(quad);
+  }
+
+  private addExprerimentalCube() {
+    let uniforms = {
+      colorB: {type: 'vec3', value: new THREE.Color(0x00FF00)},
+      colorA: {type: 'vec3', value: new THREE.Color(0xFF0000)}
+    };
+
+    let geometry = new THREE.BoxGeometry(1, 1, 1);
+    let material = new THREE.ShaderMaterial({
+      uniforms: uniforms,
+      fragmentShader: cubeFragmentShaderSrc,
+      vertexShader: cubeVertexShaderSrc,
+    });
+
+    let mesh = new THREE.Mesh(geometry, material);
+    mesh.position.x = 2;
+    this.scene.add(mesh);
+  }
 }
