@@ -206,7 +206,7 @@ export class SceneComponent implements OnInit, AfterViewInit {
       new THREE.PlaneGeometry(2, 2),
       this.gridShader
     );
-
+    quad.frustumCulled = false;//disable frustum culling to show the content, even if the origin is not in view
 
     this.scene.add(quad);
   }
