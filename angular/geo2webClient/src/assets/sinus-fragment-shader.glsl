@@ -19,9 +19,9 @@ float projectPointOnLine(vec3 lineOrigin, vec3 lineDirection, vec3 position) {
 
 void main() {
     vec3 origin = vec3(0.0, 0.0, 0.0);
-    vec3 xAxis = vec3(1.0, 0.0, 0.0);
-    vec3 yAxis = vec3(0.0, 1.0, 0.0);
-    vec3 zAxis = vec3(0.0, 0.0, 1.0);
+    vec3 xAxis = vec3(0.01, 0.0, 0.0);
+    vec3 yAxis = vec3(0.0, 0.01, 0.0);
+    vec3 zAxis = vec3(0.0, 0.0, 0.01);
 
     float imageAspectRatio = screenSize.x / screenSize.y;
 
@@ -38,32 +38,19 @@ void main() {
     vec4 worldSpaceRay4 = vec4(0.0, 0.0, 1.0, 1.0) * inverseCameraWorld;
     vec3 worldSpaceRay = worldSpaceRay4.xyz;
 
-    float intersectionParam = projectLineWithPlaneGetLineParam(worldSpaceOrigin, worldSpaceRay, origin, yAxis);
+    float intersectionParam = projectLineWithPlaneGetLineParam(worldSpaceOrigin, worldSpaceRay, origin, zAxis);
     vec3 intersection = worldSpaceOrigin + worldSpaceRay * intersectionParam;
 
     float xPos = projectPointOnLine(origin, xAxis, intersection);
-    float yPos = projectPointOnLine(origin, zAxis, intersection);
+    float yPos = projectPointOnLine(origin, yAxis, intersection);
 
-    //        float xPos = gl_FragCoord.x;
-    //        float yPos = gl_FragCoord.y;
-
-
-    vec2 pitch = vec2(30.0, 30.0);
-    float size = 80.0;
-    if (int(mod(xPos * size, pitch.x)) == 0 ||
-    int(mod(yPos * size, pitch.y)) == 0) {
-        gl_FragColor = vec4(0.0, 0.0, 0.0, 0.5);
-    } else {
-        gl_FragColor = vec4(1.0, 1.0, 1.0, 0.0);
+    float xResult = sin(xPos * 0.2) * 20.0 + 20.0;
+    if (floor(xResult) == floor(yPos))
+    {
+        gl_FragColor = vec4(1.0, 0.0, 0.0, 1.0);
     }
-
-//    float xResult = sin(xPos * 0.2) * 10.0 + 10.0;
-//    if (floor(xResult) == floor(yPos))
-//    {
-//        gl_FragColor = vec4(1.0, 0.0, 0.0, 1.0);
-//    }
-//    else
-//    {
-//        gl_FragColor = vec4(0.0, 0.0, 0.0, 0.0);// vColor;
-//    }
+    else
+    {
+        gl_FragColor = vec4(0.0, 0.0, 0.0, 0.0);// vColor;
+    }
 }

@@ -10,6 +10,8 @@ import cubeVertexShaderSrc from '../../assets/cube-vertex-shader.glsl';
 // @ts-ignore
 import gridFragmentShaderSrc from '../../assets/grid-fragment-shader.glsl';
 // @ts-ignore
+import sinusFragmentShaderSrc from '../../assets/sinus-fragment-shader.glsl';
+// @ts-ignore
 import fullscreenVertexShaderSrc from '../../assets/fullscreen-vertex-shader.glsl';
 
 @Component({
@@ -63,6 +65,8 @@ export class SceneComponent implements OnInit, AfterViewInit {
   private scene!: THREE.Scene;
 
   private gridShader!: THREE.ShaderMaterial;
+
+  private sinusShader!: THREE.ShaderMaterial;
 
   /**
    *Animate the cube
@@ -138,8 +142,9 @@ export class SceneComponent implements OnInit, AfterViewInit {
       component.controls.update();
       component.gridShader.uniforms['screenSize'].value = new THREE.Vector2(component.renderer.domElement.width, component.renderer.domElement.height);
       component.gridShader.uniforms['inverseCameraWorld'].value = component.camera.matrixWorldInverse;
-      // component.gridShader.uniforms['cameraPosition'].value = component.camera.position;
-      component.gridShader.uniforms['fov'].value = component.camera.fov;
+
+      component.sinusShader.uniforms['screenSize'].value = new THREE.Vector2(component.renderer.domElement.width, component.renderer.domElement.height);
+      component.sinusShader.uniforms['inverseCameraWorld'].value = component.camera.matrixWorldInverse;
 
       //component.animateCube();
       component.renderer.render(component.scene, component.camera);
@@ -190,8 +195,6 @@ export class SceneComponent implements OnInit, AfterViewInit {
     let gridUniforms = {
       screenSize: {type: "vec2", value: new THREE.Vector2(300, 200)},
       inverseCameraWorld: {type: "mat4", value: this.camera.matrixWorldInverse},
-      // cameraPosition: {type: "vec3", value: this.camera.position},
-      fov: {type: "float", value: this.camera.fov},
     }
     this.gridShader = new THREE.ShaderMaterial({
       vertexShader: fullscreenVertexShaderSrc,
@@ -202,13 +205,30 @@ export class SceneComponent implements OnInit, AfterViewInit {
       uniforms: gridUniforms,
     });
 
-    var quad = new THREE.Mesh(
+    this.sinusShader = new THREE.ShaderMaterial({
+      vertexShader: fullscreenVertexShaderSrc,
+      fragmentShader: sinusFragmentShaderSrc,
+      depthWrite: false,
+      depthTest: false,
+      transparent: true,
+      uniforms: gridUniforms,
+    });
+
+    var gridQuad = new THREE.Mesh(
       new THREE.PlaneGeometry(2, 2),
       this.gridShader
     );
-    quad.frustumCulled = false;//disable frustum culling to show the content, even if the origin is not in view
+    gridQuad.frustumCulled = false;//disable frustum culling to show the content, even if the origin is not in view
 
-    this.scene.add(quad);
+    this.scene.add(gridQuad);
+
+    var sinusQuad = new THREE.Mesh(
+      new THREE.PlaneGeometry(2, 2),
+      this.sinusShader
+    );
+    sinusQuad.frustumCulled = false;//disable frustum culling to show the content, even if the origin is not in view
+
+    this.scene.add(sinusQuad);
   }
 
   private addExprerimentalCube() {
