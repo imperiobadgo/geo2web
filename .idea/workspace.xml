@@ -4,11 +4,50 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="cba5d1cc-47d2-4e5d-9117-80b432d6b105" name="Changes" comment="WeGL sinus fragment shader first time working">
-      <change afterPath="$PROJECT_DIR$/angular/geo2webClient/src/assets/sinus-fragment-shader.glsl" afterDir="false" />
+    <list default="true" id="cba5d1cc-47d2-4e5d-9117-80b432d6b105" name="Changes" comment="WeGL grid fragment shader fixed aspect ratio">
+      <change afterPath="$PROJECT_DIR$/src/main/java/de/geo2web/interaction/matrix4x4/Matrix4x4.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/de/geo2web/interaction/matrix4x4/Matrix4x4Id.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/de/geo2web/interaction/matrix4x4/Matrix4x4Repository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/de/geo2web/interaction/matrix4x4/adapter/persistence/Matrix4x4Jpa.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/de/geo2web/interaction/matrix4x4/adapter/persistence/Matrix4x4JpaMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/de/geo2web/interaction/matrix4x4/adapter/persistence/Matrix4x4JpaRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/de/geo2web/interaction/matrix4x4/adapter/persistence/Matrix4x4RepositoryAdapter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/de/geo2web/interaction/matrix4x4/adapter/shared/Matrix4x4IdMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/de/geo2web/interaction/matrix4x4/adapter/shared/Matrix4x4Mapper.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/angular/geo2webClient/src/app/algebra-input/algebra-input.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/angular/geo2webClient/src/app/algebra-input/algebra-input.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/angular/geo2webClient/src/app/domain/construction-element/construction-element-create.ts" beforeDir="false" afterPath="$PROJECT_DIR$/angular/geo2webClient/src/app/domain/construction-element/construction-element-create.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/angular/geo2webClient/src/app/domain/construction-element/construction-element-read.ts" beforeDir="false" afterPath="$PROJECT_DIR$/angular/geo2webClient/src/app/domain/construction-element/construction-element-read.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/angular/geo2webClient/src/app/domain/construction-element/construction-element-write.ts" beforeDir="false" afterPath="$PROJECT_DIR$/angular/geo2webClient/src/app/domain/construction-element/construction-element-write.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/angular/geo2webClient/src/app/scene/scene.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/angular/geo2webClient/src/app/scene/scene.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/angular/geo2webClient/src/assets/grid-fragment-shader.glsl" beforeDir="false" afterPath="$PROJECT_DIR$/angular/geo2webClient/src/assets/grid-fragment-shader.glsl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/de/geo2web/construction/ConstructionElement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/geo2web/interaction/construction/ConstructionElement.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/de/geo2web/construction/ConstructionElementId.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/geo2web/interaction/construction/ConstructionElementId.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/de/geo2web/construction/ConstructionRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/geo2web/interaction/construction/ConstructionRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/de/geo2web/construction/adapter/persistence/ConstructionElementJpa.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/geo2web/interaction/construction/adapter/persistence/ConstructionElementJpa.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/de/geo2web/construction/adapter/persistence/ConstructionElementJpaMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/geo2web/interaction/construction/adapter/persistence/ConstructionElementJpaMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/de/geo2web/construction/adapter/persistence/ConstructionJpaRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/geo2web/interaction/construction/adapter/persistence/ConstructionJpaRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/de/geo2web/construction/adapter/persistence/ConstructionRepositoryAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/geo2web/interaction/construction/adapter/persistence/ConstructionRepositoryAdapter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/de/geo2web/construction/adapter/rest/ConstructionElementCreateModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/geo2web/interaction/construction/adapter/rest/ConstructionElementCreateModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/de/geo2web/construction/adapter/rest/ConstructionElementMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/geo2web/interaction/construction/adapter/rest/ConstructionElementMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/de/geo2web/construction/adapter/rest/ConstructionElementReadModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/geo2web/interaction/construction/adapter/rest/ConstructionElementReadModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/de/geo2web/construction/adapter/rest/ConstructionElementWriteModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/geo2web/interaction/construction/adapter/rest/ConstructionElementWriteModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/de/geo2web/construction/adapter/rest/ConstructionsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/geo2web/interaction/construction/adapter/rest/ConstructionsController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/de/geo2web/construction/adapter/rest/EvaluationResultReadModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/geo2web/interaction/construction/adapter/rest/EvaluationResultReadModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/de/geo2web/construction/adapter/shared/ConstructionElementIdMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/geo2web/interaction/construction/adapter/shared/ConstructionElementIdMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/de/geo2web/construction/application/ConstructionElementChanges.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/geo2web/interaction/construction/application/ConstructionElementChanges.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/de/geo2web/construction/application/ConstructionElementNotFoundException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/geo2web/interaction/construction/application/ConstructionElementNotFoundException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/de/geo2web/construction/application/CreateConstructionElementUseCase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/geo2web/interaction/construction/application/CreateConstructionElementUseCase.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/de/geo2web/construction/application/CreateConstructionElementUseCaseImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/geo2web/interaction/construction/application/CreateConstructionElementUseCaseImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/de/geo2web/construction/application/DeleteConstructionElementUseCase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/geo2web/interaction/construction/application/DeleteConstructionElementUseCase.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/de/geo2web/construction/application/DeleteConstructionElementUseCaseImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/geo2web/interaction/construction/application/DeleteConstructionElementUseCaseImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/de/geo2web/construction/application/EvaluateConstructionElementUseCase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/geo2web/interaction/construction/application/EvaluateConstructionElementUseCase.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/de/geo2web/construction/application/EvaluateConstructionElementUseCaseImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/geo2web/interaction/construction/application/EvaluateConstructionElementUseCaseImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/de/geo2web/construction/application/ReadConstructionElementUseCase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/geo2web/interaction/construction/application/ReadConstructionElementUseCase.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/de/geo2web/construction/application/ReadConstructionElementUseCaseImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/geo2web/interaction/construction/application/ReadConstructionElementUseCaseImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/de/geo2web/construction/application/UpdateConstructionElementUseCase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/geo2web/interaction/construction/application/UpdateConstructionElementUseCase.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/de/geo2web/construction/application/UpdateConstructionElementUseCaseImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/geo2web/interaction/construction/application/UpdateConstructionElementUseCaseImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/construction/ConstructionElementTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/construction/ConstructionElementTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/construction/mocks/ReadConstructionElementUseCaseMock.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/construction/mocks/ReadConstructionElementUseCaseMock.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -72,30 +111,31 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
-    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
-    "extract.method.default.visibility": "private",
-    "last_opened_file_path": "C:/Users/Lenovo/IdeaProjects/geo2web/angular/geo2webClient/src/assets",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.0",
-    "settings.editor.selected.configurable": "editor.preferences.tabs",
-    "spring.configuration.checksum": "3c5e0a303a466df6d93fc53f59a77a7c",
-    "ts.external.directory.path": "C:\\Users\\Lenovo\\IdeaProjects\\geo2web\\angular\\geo2webClient\\node_modules\\typescript\\lib"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary&quot;: &quot;JUnit5&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5&quot;: &quot;&quot;,
+    &quot;extract.method.default.visibility&quot;: &quot;private&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Lenovo/IdeaProjects/geo2web/angular/geo2webClient/src/assets&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;editor.preferences.tabs&quot;,
+    &quot;spring.configuration.checksum&quot;: &quot;3c5e0a303a466df6d93fc53f59a77a7c&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;C:\\Users\\Lenovo\\IdeaProjects\\geo2web\\angular\\geo2webClient\\node_modules\\typescript\\lib&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
       <recent name="de.geo2web.construction.application" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Lenovo\IdeaProjects\geo2web\angular\geo2webClient\src\assets" />
       <recent name="C:\Users\Lenovo\IdeaProjects\geo2web\angular\geo2webClient\src\themes" />
       <recent name="C:\Users\Lenovo\IdeaProjects\geo2web\angular\geo2webClient\dist\geo2web-client" />
       <recent name="C:\Users\Lenovo\IdeaProjects\geo2web\src\main\resources" />
@@ -114,7 +154,7 @@
       <recent name="de.geo2web.arithmetics" />
     </key>
   </component>
-  <component name="RunManager" selected="npm.Angular CLI Server">
+  <component name="RunManager" selected="Application.Application">
     <configuration name="Application" type="Application" factoryName="Application" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="de.geo2web.Application" />
       <module name="geo2web" />
@@ -224,6 +264,9 @@
     </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="SpringBeansView">
+    <option name="beanDetailsProportion" value="0.3" />
+  </component>
   <component name="SvnConfiguration">
     <configuration>C:\Users\Lenovo\AppData\Roaming\Subversion</configuration>
   </component>
@@ -284,7 +327,9 @@
       <workItem from="1668631226286" duration="7996000" />
       <workItem from="1669060872256" duration="2271000" />
       <workItem from="1669287443479" duration="14202000" />
-      <workItem from="1669664192995" duration="7086000" />
+      <workItem from="1669664192995" duration="7429000" />
+      <workItem from="1669751861134" duration="1051000" />
+      <workItem from="1670443321961" duration="6526000" />
     </task>
     <task id="LOCAL-00001" summary="Initial Commit">
       <created>1661200014255</created>
@@ -559,7 +604,14 @@
       <option name="project" value="LOCAL" />
       <updated>1669668312416</updated>
     </task>
-    <option name="localTasksCounter" value="40" />
+    <task id="LOCAL-00040" summary="WeGL grid fragment shader fixed aspect ratio">
+      <created>1669671988133</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1669671988133</updated>
+    </task>
+    <option name="localTasksCounter" value="41" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -589,7 +641,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Added ConstructionElement" />
     <MESSAGE value="Added VectorValidateTest" />
     <MESSAGE value="Included indices tests to VectorValidateTest" />
     <MESSAGE value="Added evaluation of dependent construction elements" />
@@ -614,16 +665,16 @@
     <MESSAGE value="Update WebGL background to selected Theme" />
     <MESSAGE value="WeGL fragment shader ray casting WIP" />
     <MESSAGE value="WeGL sinus fragment shader first time working" />
-    <option name="LAST_COMMIT_MESSAGE" value="WeGL sinus fragment shader first time working" />
+    <MESSAGE value="WeGL grid fragment shader fixed aspect ratio" />
+    <option name="LAST_COMMIT_MESSAGE" value="WeGL grid fragment shader fixed aspect ratio" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/de/geo2web/construction/adapter/persistence/ConstructionRepositoryAdapter.java</url>
-          <line>48</line>
-          <option name="timeStamp" value="2" />
-        </line-breakpoint>
+        <breakpoint enabled="true" type="java-exception">
+          <properties class="java.lang.NullPointerException" package="java.lang" />
+          <option name="timeStamp" value="3" />
+        </breakpoint>
       </breakpoints>
     </breakpoint-manager>
     <pin-to-top-manager>

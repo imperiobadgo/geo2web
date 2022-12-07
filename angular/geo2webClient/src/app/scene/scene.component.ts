@@ -127,7 +127,7 @@ export class SceneComponent implements OnInit, AfterViewInit {
   private startRenderingLoop() {
     //* Renderer
     // Use canvas element in template
-    this.renderer = new THREE.WebGLRenderer({canvas: this.canvas});
+    this.renderer = new THREE.WebGLRenderer({canvas: this.canvas, antialias: true});
     this.renderer.setPixelRatio(devicePixelRatio);
     this.renderer.setSize(this.canvas.clientWidth, this.canvas.clientHeight);
 

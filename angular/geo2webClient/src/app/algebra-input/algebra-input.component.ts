@@ -68,7 +68,8 @@ export class AlgebraInputComponent implements OnInit {
     let newElement: ConstructionElementCreate =
       {
         name: "",
-        input: this.input
+        input: this.input,
+        transform: [],
       };
     this.elementService.addConstructionElement(newElement).subscribe(
       () => {

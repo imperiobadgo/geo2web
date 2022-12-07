@@ -8,4 +8,6 @@ export interface ConstructionElementRead{
   input: string;
 
   output: string;
+
+  transform: number[];
 }

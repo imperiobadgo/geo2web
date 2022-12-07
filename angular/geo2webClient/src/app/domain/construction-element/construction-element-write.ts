@@ -4,4 +4,6 @@ export interface ConstructionElementWrite{
   name: string;
 
   input: string;
+
+  transform: number[];
 }

@@ -1,8 +1,8 @@
 package construction.mocks;
 
-import de.geo2web.construction.ConstructionElement;
-import de.geo2web.construction.ConstructionElementId;
-import de.geo2web.construction.application.ReadConstructionElementUseCase;
+import de.geo2web.interaction.construction.ConstructionElement;
+import de.geo2web.interaction.construction.ConstructionElementId;
+import de.geo2web.interaction.construction.application.ReadConstructionElementUseCase;
 
 import java.util.ArrayList;
 import java.util.List;
