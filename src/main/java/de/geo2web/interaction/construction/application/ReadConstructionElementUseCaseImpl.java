@@ -24,7 +24,7 @@ public class ReadConstructionElementUseCaseImpl implements ReadConstructionEleme
     @Override
     public ConstructionElement findById(ConstructionElementId id) {
         return repository.findById(id)
-                .orElseThrow(() -> new ConstructionElementNotFoundException(id.toString()));
+                .orElseThrow(() -> new ConstructionElementNotFoundException(id));
     }
 
     @Override
