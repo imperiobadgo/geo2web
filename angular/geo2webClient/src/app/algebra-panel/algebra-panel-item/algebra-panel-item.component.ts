@@ -1,9 +1,9 @@
 import {Component, Input, OnInit, SimpleChanges} from '@angular/core';
 import {ConstructionElementRead} from "../../domain/construction-element/construction-element-read";
 import {emptyConstructionElementRead} from "../../domain/construction-element/construction-element-factory";
-import {ConstructionElementWrite} from "../../domain/construction-element/construction-element-write";
-import {ConstructionElementService} from "../../services/construction-element.service";
-import {AlgebraPanelService} from "../services/algebra-panel.service";
+import {ConstructionElementCommunicationService} from "../../services/construction-element-communication.service";
+import {ConstructionElement} from "../../domain/construction-element/construction-element";
+import {ConstructionElementsService} from "../../services/construction-elements.service";
 
 @Component({
   selector: 'app-algebra-panel-item',
@@ -12,22 +12,19 @@ import {AlgebraPanelService} from "../services/algebra-panel.service";
 })
 export class AlgebraPanelItemComponent implements OnInit {
 
-  @Input() constructionElement: ConstructionElementRead;
-  inputEdit: string = "";
+  @Input() constructionElement: ConstructionElement;
   suggestions: string[] = [];
-  nameEdit: string = "";
 
 
-  constructor(private elementService: ConstructionElementService, private panelService: AlgebraPanelService) {
-    this.constructionElement = emptyConstructionElementRead();
-
+  constructor(private elementCommunicationService: ConstructionElementCommunicationService, private elementService: ConstructionElementsService) {
+    this.constructionElement = new ConstructionElement(emptyConstructionElementRead());
   }
 
   ngOnInit(): void {
   }
 
   ngOnChanges(changes: SimpleChanges){
-    this.inputEdit = changes["constructionElement"].currentValue.input;
+    this.constructionElement.input = changes["constructionElement"].currentValue.input;
   }
 
   search({event}: { event: any }) {
@@ -37,23 +34,18 @@ export class AlgebraPanelItemComponent implements OnInit {
   }
 
   onEnter(): void {
-    let newElement: ConstructionElementWrite =
-      {
-        id: this.constructionElement.id,
-        name: this.constructionElement.name,
-        input: this.inputEdit
-      };
-    this.elementService.updateConstructionElement(newElement).subscribe(
+    let newElement = this.constructionElement.createWriteConstructionElement();
+    this.elementCommunicationService.updateConstructionElement(newElement).subscribe(
       (element: ConstructionElementRead) => {
-        this.constructionElement = element;
+        this.constructionElement = new ConstructionElement(element);
       });
   }
 
   onDelete(): void {
-    this.elementService.deleteConstructionElement(this.constructionElement.id).subscribe(
+    this.elementCommunicationService.deleteConstructionElement(this.constructionElement.id).subscribe(
       (element: ConstructionElementRead) => {
-        this.constructionElement = element;
-        this.panelService.refresh();//Talk to the algebra panel through the service!!
+        this.constructionElement = new ConstructionElement(element);
+        this.elementService.refresh();//Talk to the algebra panel through the service!!
       });
   }
 }

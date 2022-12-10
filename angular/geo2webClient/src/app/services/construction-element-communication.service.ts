@@ -9,7 +9,7 @@ import {ConstructionElementWrite} from "../domain/construction-element/construct
 @Injectable({
   providedIn: 'root'
 })
-export class ConstructionElementService {
+export class ConstructionElementCommunicationService {
 
   private apiServerUrl: string = environment.apiBaseUrl;
 

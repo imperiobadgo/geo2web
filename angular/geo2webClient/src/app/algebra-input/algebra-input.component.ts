@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {ConstructionElementService} from "../services/construction-element.service";
+import {ConstructionElementCommunicationService} from "../services/construction-element-communication.service";
 import {ConstructionElementCreate} from "../domain/construction-element/construction-element-create";
-import {AlgebraPanelService} from "../algebra-panel/services/algebra-panel.service";
+import {ConstructionElementsService} from "../services/construction-elements.service";
 
 @Component({
   selector: 'app-algebra-input',
@@ -16,7 +16,7 @@ export class AlgebraInputComponent implements OnInit {
 
   testSuggestions: string[] = [];
 
-  constructor(private elementService: ConstructionElementService, private panelService: AlgebraPanelService) {
+  constructor(private elementCommunicationService: ConstructionElementCommunicationService, private elementService: ConstructionElementsService) {
     this.clearInput();
     this.testSuggestions = [
       "a",
@@ -71,9 +71,9 @@ export class AlgebraInputComponent implements OnInit {
         input: this.input,
         transform: [],
       };
-    this.elementService.addConstructionElement(newElement).subscribe(
+    this.elementCommunicationService.addConstructionElement(newElement).subscribe(
       () => {
-        this.panelService.refresh();//Talk to the algebra panel through the service!!
+        this.elementService.refresh();//Talk to the algebra panel through the service!!
         this.clearInput();
       });
   }

@@ -4,24 +4,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="cba5d1cc-47d2-4e5d-9117-80b432d6b105" name="Changes" comment="Added Matrix4x4 to backend">
-      <change afterPath="$PROJECT_DIR$/src/main/java/de/geo2web/interaction/matrix4x4/application/CreateMatrix4x4UseCase.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/de/geo2web/interaction/matrix4x4/application/CreateMatrix4x4UseCaseImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/de/geo2web/interaction/matrix4x4/application/DeleteMatrix4x4UseCase.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/de/geo2web/interaction/matrix4x4/application/DeleteMatrix4x4UseCaseImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/de/geo2web/interaction/matrix4x4/application/Matrix4x4Changes.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/de/geo2web/interaction/matrix4x4/application/Matrix4x4NotFoundException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/de/geo2web/interaction/matrix4x4/application/ReadMatrix4x4UseCase.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/de/geo2web/interaction/matrix4x4/application/ReadMatrix4x4UseCaseImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/de/geo2web/interaction/matrix4x4/application/UpdateMatrix4x4UseCase.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/de/geo2web/interaction/matrix4x4/application/UpdateMatrix4x4UseCaseImpl.java" afterDir="false" />
+    <list default="true" id="cba5d1cc-47d2-4e5d-9117-80b432d6b105" name="Changes" comment="Connected Matrix4x4 to construction element use cases">
+      <change afterPath="$PROJECT_DIR$/angular/geo2webClient/src/app/domain/construction-element/construction-element.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/de/geo2web/interaction/construction/application/ConstructionElementChanges.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/geo2web/interaction/construction/application/ConstructionElementChanges.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/de/geo2web/interaction/construction/application/ConstructionElementNotFoundException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/geo2web/interaction/construction/application/ConstructionElementNotFoundException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/de/geo2web/interaction/construction/application/CreateConstructionElementUseCaseImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/geo2web/interaction/construction/application/CreateConstructionElementUseCaseImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/de/geo2web/interaction/construction/application/DeleteConstructionElementUseCaseImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/geo2web/interaction/construction/application/DeleteConstructionElementUseCaseImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/de/geo2web/interaction/construction/application/ReadConstructionElementUseCaseImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/geo2web/interaction/construction/application/ReadConstructionElementUseCaseImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/de/geo2web/interaction/construction/application/UpdateConstructionElementUseCaseImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/geo2web/interaction/construction/application/UpdateConstructionElementUseCaseImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/angular/geo2webClient/src/app/algebra-input/algebra-input.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/angular/geo2webClient/src/app/algebra-input/algebra-input.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/angular/geo2webClient/src/app/algebra-panel/algebra-panel-item/algebra-panel-item.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/angular/geo2webClient/src/app/algebra-panel/algebra-panel-item/algebra-panel-item.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/angular/geo2webClient/src/app/algebra-panel/algebra-panel-item/algebra-panel-item.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/angular/geo2webClient/src/app/algebra-panel/algebra-panel-item/algebra-panel-item.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/angular/geo2webClient/src/app/algebra-panel/algebra-panel.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/angular/geo2webClient/src/app/algebra-panel/algebra-panel.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/angular/geo2webClient/src/app/algebra-panel/services/algebra-panel.service.spec.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/angular/geo2webClient/src/app/algebra-panel/services/algebra-panel.service.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/angular/geo2webClient/src/app/domain/construction-element/construction-element-factory.ts" beforeDir="false" afterPath="$PROJECT_DIR$/angular/geo2webClient/src/app/domain/construction-element/construction-element-factory.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/angular/geo2webClient/src/app/services/construction-element.service.spec.ts" beforeDir="false" afterPath="$PROJECT_DIR$/angular/geo2webClient/src/app/services/construction-element-communication.service.spec.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/angular/geo2webClient/src/app/services/construction-element.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/angular/geo2webClient/src/app/services/construction-element-communication.service.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -118,17 +112,17 @@
       <recent name="" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Lenovo\IdeaProjects\geo2web\angular\geo2webClient\src\app\domain\construction-element" />
       <recent name="C:\Users\Lenovo\IdeaProjects\geo2web\angular\geo2webClient\src\assets" />
       <recent name="C:\Users\Lenovo\IdeaProjects\geo2web\angular\geo2webClient\src\app\scene\lib" />
       <recent name="C:\Users\Lenovo\IdeaProjects\geo2web\angular\geo2webClient\src\themes" />
       <recent name="C:\Users\Lenovo\IdeaProjects\geo2web\angular\geo2webClient\src" />
-      <recent name="C:\Users\Lenovo\IdeaProjects\geo2web\angular\geo2webClient\src\app\algebra-input\services" />
     </key>
     <key name="CreateTestDialog.RecentsKey">
       <recent name="de.geo2web.arithmetics" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Application">
+  <component name="RunManager" selected="npm.Angular CLI Server">
     <configuration name="Application" type="Application" factoryName="Application" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="de.geo2web.Application" />
       <module name="geo2web" />
@@ -304,7 +298,7 @@
       <workItem from="1669664192995" duration="7429000" />
       <workItem from="1669751861134" duration="1051000" />
       <workItem from="1670443321961" duration="7030000" />
-      <workItem from="1670700521870" duration="7147000" />
+      <workItem from="1670700521870" duration="9475000" />
     </task>
     <task id="LOCAL-00001" summary="Initial Commit">
       <created>1661200014255</created>
@@ -593,7 +587,14 @@
       <option name="project" value="LOCAL" />
       <updated>1670451393274</updated>
     </task>
-    <option name="localTasksCounter" value="42" />
+    <task id="LOCAL-00042" summary="Connected Matrix4x4 to construction element use cases">
+      <created>1670709542446</created>
+      <option name="number" value="00042" />
+      <option name="presentableId" value="LOCAL-00042" />
+      <option name="project" value="LOCAL" />
+      <updated>1670709542446</updated>
+    </task>
+    <option name="localTasksCounter" value="43" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -623,7 +624,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Included indices tests to VectorValidateTest" />
     <MESSAGE value="Added evaluation of dependent construction elements" />
     <MESSAGE value="Added primeng styles" />
     <MESSAGE value="Changed stylesheet from css to scss" />
@@ -648,7 +648,8 @@
     <MESSAGE value="WeGL sinus fragment shader first time working" />
     <MESSAGE value="WeGL grid fragment shader fixed aspect ratio" />
     <MESSAGE value="Added Matrix4x4 to backend" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added Matrix4x4 to backend" />
+    <MESSAGE value="Connected Matrix4x4 to construction element use cases" />
+    <option name="LAST_COMMIT_MESSAGE" value="Connected Matrix4x4 to construction element use cases" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

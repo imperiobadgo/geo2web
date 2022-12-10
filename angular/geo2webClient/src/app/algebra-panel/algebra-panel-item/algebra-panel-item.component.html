@@ -1,7 +1,7 @@
 <div>
   <span class="p-float-label">
 <p-autoComplete id="float-input"
-                [(ngModel)]="inputEdit"
+                [(ngModel)]="constructionElement.input"
                 [suggestions]="suggestions"
                 (completeMethod)="search({event : $event})"
                 (keyup.enter)="onEnter()"></p-autoComplete>

@@ -5,5 +5,6 @@ export const emptyConstructionElementRead = (): ConstructionElementRead => ({
   constructionIndex: 0,
   name: "",
   input: "",
-  output: ""
+  output: "",
+  transform: []
 });

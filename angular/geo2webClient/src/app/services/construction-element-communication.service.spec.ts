@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { ConstructionElementService } from './construction-element.service';
+import { ConstructionElementCommunicationService } from './construction-element-communication.service';
 
 describe('ConstructionElementService', () => {
-  let service: ConstructionElementService;
+  let service: ConstructionElementCommunicationService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(ConstructionElementService);
+    service = TestBed.inject(ConstructionElementCommunicationService);
   });
 
   it('should be created', () => {
