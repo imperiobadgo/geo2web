@@ -14,6 +14,9 @@ import sinusFragmentShaderSrc from '../../assets/sinus-fragment-shader.glsl';
 // @ts-ignore
 import fullscreenVertexShaderSrc from '../../assets/fullscreen-vertex-shader.glsl';
 
+import renderVertexShaderSrc from '../../assets/render-vertex-shader.glsl';
+import renderFragmentShaderSrc from '../../assets/render-fragment-shader.glsl';
+
 @Component({
   selector: 'app-scene',
   templateUrl: './scene.component.html',
@@ -61,23 +64,16 @@ export class SceneComponent implements OnInit, AfterViewInit {
   private cube: THREE.Mesh = new THREE.Mesh(this.geometry, this.material);
 
   private renderer!: THREE.WebGLRenderer;
+  private renderTarget!: THREE.WebGLMultipleRenderTargets;
 
   private scene!: THREE.Scene;
+  private postProcessingScene!: THREE.Scene;
+
+  private postProcessingCamera!: THREE.Camera;
 
   private gridShader!: THREE.ShaderMaterial;
 
   private sinusShader!: THREE.ShaderMaterial;
-
-  /**
-   *Animate the cube
-   *
-   * @private
-   * @memberof CubeComponent
-   */
-  private animateCube() {
-    this.cube.rotation.x += this.rotationSpeedX;
-    this.cube.rotation.y += this.rotationSpeedY;
-  }
 
   /**
    * Create the scene
@@ -131,6 +127,35 @@ export class SceneComponent implements OnInit, AfterViewInit {
     this.renderer.setPixelRatio(devicePixelRatio);
     this.renderer.setSize(this.canvas.clientWidth, this.canvas.clientHeight);
 
+    let pxr = this.renderer.getPixelRatio();
+    // Create a multi render target with Float buffers
+    this.renderTarget = new THREE.WebGLMultipleRenderTargets(
+      this.canvas.clientWidth * pxr,
+      this.canvas.clientHeight * pxr, 2);
+
+    for (let i = 0, il = this.renderTarget.texture.length; i < il; i++) {
+
+      this.renderTarget.texture[i].minFilter = THREE.NearestFilter;
+      this.renderTarget.texture[i].magFilter = THREE.NearestFilter;
+
+    }
+
+    this.postProcessingScene = new THREE.Scene();
+    this.postProcessingCamera = new THREE.OrthographicCamera(-1, 1, 1, -1, 0, 1);
+
+    this.postProcessingScene.add(new THREE.Mesh(
+      new THREE.PlaneGeometry(2, 2),
+      new THREE.RawShaderMaterial({
+        vertexShader: renderVertexShaderSrc,
+        fragmentShader: renderFragmentShaderSrc,
+        uniforms: {
+          tDiffuse: {value: this.renderTarget.texture[0]},
+          tTest: {value: this.renderTarget.texture[1]}
+        },
+        glslVersion: THREE.GLSL3
+      })
+    ));
+
     this.createControls(this.camera);
 
     let component: SceneComponent = this;
@@ -146,8 +171,14 @@ export class SceneComponent implements OnInit, AfterViewInit {
       component.sinusShader.uniforms['screenSize'].value = new THREE.Vector2(component.renderer.domElement.width, component.renderer.domElement.height);
       component.sinusShader.uniforms['inverseCameraWorld'].value = component.camera.matrixWorldInverse;
 
-      //component.animateCube();
+      // render scene into target
+      component.renderer.setRenderTarget(component.renderTarget);
+
       component.renderer.render(component.scene, component.camera);
+
+      // render post FX
+      component.renderer.setRenderTarget(null);
+      component.renderer.render(component.postProcessingScene, component.postProcessingCamera);
     }());
   }
 
@@ -167,7 +198,9 @@ export class SceneComponent implements OnInit, AfterViewInit {
       this.camera.aspect = width / height;
       this.camera.updateProjectionMatrix();
 
-      // set render target sizes here
+      //also update the renderTarget to new display size
+      const dpr = this.renderer.getPixelRatio();
+      this.renderTarget.setSize(width * dpr, height * dpr);
     }
   }
 
@@ -193,25 +226,27 @@ export class SceneComponent implements OnInit, AfterViewInit {
 
   private addGrid() {
     let gridUniforms = {
-      screenSize: {type: "vec2", value: new THREE.Vector2(300, 200)},
-      inverseCameraWorld: {type: "mat4", value: this.camera.matrixWorldInverse},
+      screenSize: {value: new THREE.Vector2(300, 200)},
+      inverseCameraWorld: {value: this.camera.matrixWorldInverse},
     }
-    this.gridShader = new THREE.ShaderMaterial({
+    this.gridShader = new THREE.RawShaderMaterial({
       vertexShader: fullscreenVertexShaderSrc,
       fragmentShader: gridFragmentShaderSrc,
       depthWrite: false,
       depthTest: false,
       transparent: true,
       uniforms: gridUniforms,
+      glslVersion: THREE.GLSL3
     });
 
-    this.sinusShader = new THREE.ShaderMaterial({
+    this.sinusShader = new THREE.RawShaderMaterial({
       vertexShader: fullscreenVertexShaderSrc,
       fragmentShader: sinusFragmentShaderSrc,
       depthWrite: false,
       depthTest: false,
       transparent: true,
       uniforms: gridUniforms,
+      glslVersion: THREE.GLSL3
     });
 
     var gridQuad = new THREE.Mesh(

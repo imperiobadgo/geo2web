@@ -1,8 +1,13 @@
+precision highp float;
+precision highp int;
+
+layout (location = 0) out vec4 pc_FragColor;
+layout (location = 1) out vec4 pc_test;
+
+in vec2 vUv;
+
 uniform mat4 inverseCameraWorld;
 uniform vec2 screenSize;
-
-varying vec2 vUv;
-
 
 float projectLineWithPlaneGetLineParam(vec3 lineOrigin, vec3 lineDirection, vec3 planeOrigin, vec3 planeNormal) {
     float rechteSeiteEbene = dot(planeOrigin, planeNormal);
@@ -52,18 +57,20 @@ void main() {
     float size = 80.0;
     if (int(mod(xPos * size, pitch.x)) == 0 ||
     int(mod(yPos * size, pitch.y)) == 0) {
-        gl_FragColor = vec4(0.0, 0.0, 0.0, 0.5);
+        pc_FragColor = vec4(0.0, 0.0, 0.0, 0.5);
+        pc_test = vec4(1.0, 0.0, 0.0, 0.5);
     } else {
-        gl_FragColor = vec4(1.0, 1.0, 1.0, 0.0);
+        pc_FragColor = vec4(1.0, 1.0, 1.0, 0.0);
+        pc_test = vec4(1.0, 1.0, 1.0, 0.0);
     }
 
-//    float xResult = sin(xPos * 0.2) * 10.0 + 10.0;
-//    if (floor(xResult) == floor(yPos))
-//    {
-//        gl_FragColor = vec4(1.0, 0.0, 0.0, 1.0);
-//    }
-//    else
-//    {
-//        gl_FragColor = vec4(0.0, 0.0, 0.0, 0.0);// vColor;
-//    }
+    //    float xResult = sin(xPos * 0.2) * 10.0 + 10.0;
+    //    if (floor(xResult) == floor(yPos))
+    //    {
+    //        gl_FragColor = vec4(1.0, 0.0, 0.0, 1.0);
+    //    }
+    //    else
+    //    {
+    //        gl_FragColor = vec4(0.0, 0.0, 0.0, 0.0);// vColor;
+    //    }
 }

@@ -4,18 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="cba5d1cc-47d2-4e5d-9117-80b432d6b105" name="Changes" comment="Connected Matrix4x4 to construction element use cases">
-      <change afterPath="$PROJECT_DIR$/angular/geo2webClient/src/app/domain/construction-element/construction-element.ts" afterDir="false" />
+    <list default="true" id="cba5d1cc-47d2-4e5d-9117-80b432d6b105" name="Changes" comment="Added constructionElement container in frontend">
+      <change afterPath="$PROJECT_DIR$/angular/geo2webClient/src/assets/render-fragment-shader.glsl" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/angular/geo2webClient/src/assets/render-special-fragment-shader.glsl" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/angular/geo2webClient/src/assets/render-vertex-shader.glsl" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/angular/geo2webClient/src/app/algebra-input/algebra-input.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/angular/geo2webClient/src/app/algebra-input/algebra-input.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/angular/geo2webClient/src/app/algebra-panel/algebra-panel-item/algebra-panel-item.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/angular/geo2webClient/src/app/algebra-panel/algebra-panel-item/algebra-panel-item.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/angular/geo2webClient/src/app/algebra-panel/algebra-panel-item/algebra-panel-item.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/angular/geo2webClient/src/app/algebra-panel/algebra-panel-item/algebra-panel-item.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/angular/geo2webClient/src/app/algebra-panel/algebra-panel.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/angular/geo2webClient/src/app/algebra-panel/algebra-panel.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/angular/geo2webClient/src/app/algebra-panel/services/algebra-panel.service.spec.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/angular/geo2webClient/src/app/algebra-panel/services/algebra-panel.service.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/angular/geo2webClient/src/app/domain/construction-element/construction-element-factory.ts" beforeDir="false" afterPath="$PROJECT_DIR$/angular/geo2webClient/src/app/domain/construction-element/construction-element-factory.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/angular/geo2webClient/src/app/services/construction-element.service.spec.ts" beforeDir="false" afterPath="$PROJECT_DIR$/angular/geo2webClient/src/app/services/construction-element-communication.service.spec.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/angular/geo2webClient/src/app/services/construction-element.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/angular/geo2webClient/src/app/services/construction-element-communication.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/angular/geo2webClient/src/app/scene/scene.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/angular/geo2webClient/src/app/scene/scene.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/angular/geo2webClient/src/assets/fullscreen-vertex-shader.glsl" beforeDir="false" afterPath="$PROJECT_DIR$/angular/geo2webClient/src/assets/fullscreen-vertex-shader.glsl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/angular/geo2webClient/src/assets/grid-fragment-shader.glsl" beforeDir="false" afterPath="$PROJECT_DIR$/angular/geo2webClient/src/assets/grid-fragment-shader.glsl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/angular/geo2webClient/src/assets/sinus-fragment-shader.glsl" beforeDir="false" afterPath="$PROJECT_DIR$/angular/geo2webClient/src/assets/sinus-fragment-shader.glsl" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -298,7 +295,8 @@
       <workItem from="1669664192995" duration="7429000" />
       <workItem from="1669751861134" duration="1051000" />
       <workItem from="1670443321961" duration="7030000" />
-      <workItem from="1670700521870" duration="9475000" />
+      <workItem from="1670700521870" duration="10320000" />
+      <workItem from="1670876508221" duration="4454000" />
     </task>
     <task id="LOCAL-00001" summary="Initial Commit">
       <created>1661200014255</created>
@@ -594,7 +592,14 @@
       <option name="project" value="LOCAL" />
       <updated>1670709542446</updated>
     </task>
-    <option name="localTasksCounter" value="43" />
+    <task id="LOCAL-00043" summary="Added constructionElement container in frontend">
+      <created>1670712864902</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL-00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1670712864902</updated>
+    </task>
+    <option name="localTasksCounter" value="44" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -624,7 +629,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Added evaluation of dependent construction elements" />
     <MESSAGE value="Added primeng styles" />
     <MESSAGE value="Changed stylesheet from css to scss" />
     <MESSAGE value="Added first layout" />
@@ -649,7 +653,8 @@
     <MESSAGE value="WeGL grid fragment shader fixed aspect ratio" />
     <MESSAGE value="Added Matrix4x4 to backend" />
     <MESSAGE value="Connected Matrix4x4 to construction element use cases" />
-    <option name="LAST_COMMIT_MESSAGE" value="Connected Matrix4x4 to construction element use cases" />
+    <MESSAGE value="Added constructionElement container in frontend" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added constructionElement container in frontend" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

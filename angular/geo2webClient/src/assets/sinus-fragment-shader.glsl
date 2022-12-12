@@ -1,7 +1,13 @@
+precision highp float;
+precision highp int;
+
+layout(location = 0) out vec4 pc_FragColor;
+layout (location = 1) out vec4 pc_test;
+
+in vec2 vUv;
+
 uniform mat4 inverseCameraWorld;
 uniform vec2 screenSize;
-
-varying vec2 vUv;
 
 
 float projectLineWithPlaneGetLineParam(vec3 lineOrigin, vec3 lineDirection, vec3 planeOrigin, vec3 planeNormal) {
@@ -47,10 +53,12 @@ void main() {
     float xResult = sin(xPos * 0.2) * 20.0 + 20.0;
     if (floor(xResult) == floor(yPos))
     {
-        gl_FragColor = vec4(1.0, 0.0, 0.0, 1.0);
+        pc_FragColor = vec4(1.0, 0.0, 0.0, 1.0);
+        pc_test = vec4(0.0, 1.0, 0.0, 1.0);
     }
     else
     {
-        gl_FragColor = vec4(0.0, 0.0, 0.0, 0.0);// vColor;
+        pc_FragColor = vec4(0.0, 0.0, 0.0, 0.0);// vColor;
+        pc_test = vec4(0.0, 0.0, 0.0, 0.0);
     }
 }
