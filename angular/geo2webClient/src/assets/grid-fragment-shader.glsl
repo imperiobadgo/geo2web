@@ -6,7 +6,10 @@ layout (location = 1) out vec4 pc_test;
 
 in vec2 vUv;
 
-uniform mat4 inverseCameraWorld;
+uniform mat4 modelViewMatrix;
+uniform mat4 projectionMatrix;
+uniform mat4 viewMatrix;
+uniform mat4 modelMatrix;
 uniform vec2 screenSize;
 
 float projectLineWithPlaneGetLineParam(vec3 lineOrigin, vec3 lineDirection, vec3 planeOrigin, vec3 planeNormal) {
@@ -23,10 +26,16 @@ float projectPointOnLine(vec3 lineOrigin, vec3 lineDirection, vec3 position) {
 }
 
 void main() {
-    vec3 origin = vec3(0.0, 0.0, 0.0);
-    vec3 xAxis = vec3(1.0, 0.0, 0.0);
-    vec3 yAxis = vec3(0.0, 1.0, 0.0);
-    vec3 zAxis = vec3(0.0, 0.0, 1.0);
+    mat4 position = modelViewMatrix;
+    vec3 xAxis = position[0].xyz;
+    vec3 yAxis = position[1].xyz;
+    vec3 zAxis = position[2].xyz;
+    vec3 origin = position[3].xyz;
+//    vec3 origin = vec3(0.0,0.0,0.0);// position[3].xyz;
+
+
+    //    pc_FragColor = vec4(xAxis, 0.5);
+    //    pc_test = pc_FragColor;
 
     float imageAspectRatio = screenSize.x / screenSize.y;
 
@@ -36,18 +45,20 @@ void main() {
     //is automatically the ray origin because the camera is at the origin in the camera coordinate system.
     vec4 cameraSpaceOrigin = vec4(pixelScreenX, pixelScreenY, -1.0, 1.0);
 
-    vec4 worldSpaceOrigin4 = cameraSpaceOrigin * inverseCameraWorld;
+    vec4 worldSpaceOrigin4 = cameraSpaceOrigin;// * viewMatrix;
     vec3 worldSpaceOrigin = worldSpaceOrigin4.xyz;
 
     //direction is in ndc just (0,0,1)
-    vec4 worldSpaceRay4 = vec4(0.0, 0.0, 1.0, 1.0) * inverseCameraWorld;
+    vec4 worldSpaceRay4 = vec4(0.0, 0.0, 1.0, 1.0);// * viewMatrix;
     vec3 worldSpaceRay = worldSpaceRay4.xyz;
 
+    //    pc_FragColor = vec4(origin, 0.5);
+    //    pc_test = pc_FragColor;
     float intersectionParam = projectLineWithPlaneGetLineParam(worldSpaceOrigin, worldSpaceRay, origin, yAxis);
-    vec3 intersection = worldSpaceOrigin + worldSpaceRay * intersectionParam;
+    vec4 intersection = (worldSpaceOrigin4 + worldSpaceRay4 * intersectionParam);
 
-    float xPos = projectPointOnLine(origin, xAxis, intersection);
-    float yPos = projectPointOnLine(origin, zAxis, intersection);
+    float xPos = projectPointOnLine(origin, xAxis, intersection.xyz);
+    float yPos = projectPointOnLine(origin, zAxis, intersection.xyz);
 
     //        float xPos = gl_FragCoord.x;
     //        float yPos = gl_FragCoord.y;
@@ -55,6 +66,16 @@ void main() {
 
     vec2 pitch = vec2(30.0, 30.0);
     float size = 80.0;
+
+//    if (int(xPos * size) == 0 ||
+//    int(yPos * size) == 0) {
+//        pc_FragColor = vec4(0.0, 0.0, 0.0, 0.5);
+//        pc_test = vec4(1.0, 0.0, 0.0, 0.5);
+//    } else {
+//        pc_FragColor = vec4(1.0, 1.0, 1.0, 0.0);
+//        pc_test = vec4(1.0, 1.0, 1.0, 0.0);
+//    }
+
     if (int(mod(xPos * size, pitch.x)) == 0 ||
     int(mod(yPos * size, pitch.y)) == 0) {
         pc_FragColor = vec4(0.0, 0.0, 0.0, 0.5);

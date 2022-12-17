@@ -6,5 +6,6 @@ export const emptyConstructionElementRead = (): ConstructionElementRead => ({
   name: "",
   input: "",
   output: "",
+  shaderContent: "",
   transform: []
 });

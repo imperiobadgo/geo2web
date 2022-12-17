@@ -4,14 +4,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="cba5d1cc-47d2-4e5d-9117-80b432d6b105" name="Changes" comment="Added constructionElement container in frontend">
-      <change afterPath="$PROJECT_DIR$/angular/geo2webClient/src/assets/render-fragment-shader.glsl" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/angular/geo2webClient/src/assets/render-special-fragment-shader.glsl" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/angular/geo2webClient/src/assets/render-vertex-shader.glsl" afterDir="false" />
+    <list default="true" id="cba5d1cc-47d2-4e5d-9117-80b432d6b105" name="Changes" comment="Updated to WebGl2 adn added MultiplyRenderTargets">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/angular/geo2webClient/src/app/domain/construction-element/construction-element-factory.ts" beforeDir="false" afterPath="$PROJECT_DIR$/angular/geo2webClient/src/app/domain/construction-element/construction-element-factory.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/angular/geo2webClient/src/app/domain/construction-element/construction-element-read.ts" beforeDir="false" afterPath="$PROJECT_DIR$/angular/geo2webClient/src/app/domain/construction-element/construction-element-read.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/angular/geo2webClient/src/app/domain/construction-element/construction-element.ts" beforeDir="false" afterPath="$PROJECT_DIR$/angular/geo2webClient/src/app/domain/construction-element/construction-element.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/angular/geo2webClient/src/app/scene/scene.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/angular/geo2webClient/src/app/scene/scene.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/angular/geo2webClient/src/assets/fullscreen-vertex-shader.glsl" beforeDir="false" afterPath="$PROJECT_DIR$/angular/geo2webClient/src/assets/fullscreen-vertex-shader.glsl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/angular/geo2webClient/src/app/services/construction-elements.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/angular/geo2webClient/src/app/services/construction-elements.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/angular/geo2webClient/src/assets/cube-fragment-shader.glsl" beforeDir="false" afterPath="$PROJECT_DIR$/angular/geo2webClient/src/assets/cube-fragment-shader.glsl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/angular/geo2webClient/src/assets/cube-vertex-shader.glsl" beforeDir="false" afterPath="$PROJECT_DIR$/angular/geo2webClient/src/assets/cube-vertex-shader.glsl" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/angular/geo2webClient/src/assets/grid-fragment-shader.glsl" beforeDir="false" afterPath="$PROJECT_DIR$/angular/geo2webClient/src/assets/grid-fragment-shader.glsl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/angular/geo2webClient/src/assets/render-fragment-shader.glsl" beforeDir="false" afterPath="$PROJECT_DIR$/angular/geo2webClient/src/assets/render-fragment-shader.glsl" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/angular/geo2webClient/src/assets/sinus-fragment-shader.glsl" beforeDir="false" afterPath="$PROJECT_DIR$/angular/geo2webClient/src/assets/sinus-fragment-shader.glsl" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -90,7 +93,7 @@
     &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;editor.preferences.tabs&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;vcs.Subversion.SSH&quot;,
     &quot;spring.configuration.checksum&quot;: &quot;3c5e0a303a466df6d93fc53f59a77a7c&quot;,
     &quot;ts.external.directory.path&quot;: &quot;C:\\Users\\Lenovo\\IdeaProjects\\geo2web\\angular\\geo2webClient\\node_modules\\typescript\\lib&quot;
   }
@@ -296,7 +299,12 @@
       <workItem from="1669751861134" duration="1051000" />
       <workItem from="1670443321961" duration="7030000" />
       <workItem from="1670700521870" duration="10320000" />
-      <workItem from="1670876508221" duration="4454000" />
+      <workItem from="1670876508221" duration="4650000" />
+      <workItem from="1670961736715" duration="4825000" />
+      <workItem from="1671045587373" duration="4712000" />
+      <workItem from="1671275519313" duration="4709000" />
+      <workItem from="1671284329726" duration="67000" />
+      <workItem from="1671284593898" duration="10189000" />
     </task>
     <task id="LOCAL-00001" summary="Initial Commit">
       <created>1661200014255</created>
@@ -599,7 +607,14 @@
       <option name="project" value="LOCAL" />
       <updated>1670712864902</updated>
     </task>
-    <option name="localTasksCounter" value="44" />
+    <task id="LOCAL-00044" summary="Updated to WebGl2 adn added MultiplyRenderTargets">
+      <created>1670881508966</created>
+      <option name="number" value="00044" />
+      <option name="presentableId" value="LOCAL-00044" />
+      <option name="project" value="LOCAL" />
+      <updated>1670881508966</updated>
+    </task>
+    <option name="localTasksCounter" value="45" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -629,7 +644,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Added primeng styles" />
     <MESSAGE value="Changed stylesheet from css to scss" />
     <MESSAGE value="Added first layout" />
     <MESSAGE value="First attempt at Angular communication" />
@@ -654,7 +668,8 @@
     <MESSAGE value="Added Matrix4x4 to backend" />
     <MESSAGE value="Connected Matrix4x4 to construction element use cases" />
     <MESSAGE value="Added constructionElement container in frontend" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added constructionElement container in frontend" />
+    <MESSAGE value="Updated to WebGl2 adn added MultiplyRenderTargets" />
+    <option name="LAST_COMMIT_MESSAGE" value="Updated to WebGl2 adn added MultiplyRenderTargets" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

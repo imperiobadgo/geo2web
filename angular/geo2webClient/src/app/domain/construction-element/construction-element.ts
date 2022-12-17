@@ -12,12 +12,15 @@ export class ConstructionElement {
 
   transform: number[];
 
+  fragmentShader: string;
+
   constructor(read: ConstructionElementRead) {
     this.id = read.id;
     this.name = read.name;
     this.input = read.input;
     this.output = read.output;
     this.transform = read.transform;
+    this.fragmentShader = '';// this.createFragmentShader(read.shaderContent);
   }
 
   public createWriteConstructionElement(): ConstructionElementWrite {
@@ -28,4 +31,8 @@ export class ConstructionElement {
       transform: this.transform,
     };
   }
+
+  // private createFragmentShader(output: string): string{
+  //
+  // }
 }

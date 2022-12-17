@@ -6,7 +6,7 @@ layout (location = 1) out vec4 pc_test;
 
 in vec2 vUv;
 
-uniform mat4 inverseCameraWorld;
+uniform mat4 viewMatrix;
 uniform vec2 screenSize;
 
 
@@ -37,11 +37,11 @@ void main() {
     //is automatically the ray origin because the camera is at the origin in the camera coordinate system.
     vec4 cameraSpaceOrigin = vec4(pixelScreenX, pixelScreenY, -1.0, 1.0);
 
-    vec4 worldSpaceOrigin4 = cameraSpaceOrigin * inverseCameraWorld;
+    vec4 worldSpaceOrigin4 = cameraSpaceOrigin * viewMatrix;
     vec3 worldSpaceOrigin = worldSpaceOrigin4.xyz;
 
     //direction is in ndc just (0,0,1)
-    vec4 worldSpaceRay4 = vec4(0.0, 0.0, 1.0, 1.0) * inverseCameraWorld;
+    vec4 worldSpaceRay4 = vec4(0.0, 0.0, 1.0, 1.0) * viewMatrix;
     vec3 worldSpaceRay = worldSpaceRay4.xyz;
 
     float intersectionParam = projectLineWithPlaneGetLineParam(worldSpaceOrigin, worldSpaceRay, origin, zAxis);

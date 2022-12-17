@@ -1,7 +1,12 @@
 import {AfterViewInit, Component, ElementRef, Input, OnInit, ViewChild} from '@angular/core';
 import * as THREE from "three";
 import {TrackballControls} from "three/examples/jsm/controls/TrackballControls";
+import {TransformControls} from "three/examples/jsm/controls/TransformControls";
+
 import {ResizeService} from "../services/resize.service";
+import {ConstructionElement} from "../domain/construction-element/construction-element";
+import {ConstructionElementsService} from "../services/construction-elements.service";
+
 // @ts-ignore
 import cubeFragmentShaderSrc from '../../assets/cube-fragment-shader.glsl';
 // @ts-ignore
@@ -27,17 +32,6 @@ export class SceneComponent implements OnInit, AfterViewInit {
   @ViewChild('sceneCanvas')
   private canvasRef!: ElementRef;
 
-  //* Cube Properties
-
-  @Input() public rotationSpeedX: number = 0.05;
-
-  @Input() public rotationSpeedY: number = 0.01;
-
-  @Input() public size: number = 200;
-
-  @Input() public texture: string = "/assets/texture.jpg";
-
-
   //* Stage Properties
 
   @Input() public cameraZ: number = 400;
@@ -52,16 +46,12 @@ export class SceneComponent implements OnInit, AfterViewInit {
 
   private camera!: THREE.PerspectiveCamera;
   private controls!: TrackballControls;
+  private transformControl!: TransformControls;
+
 
   private get canvas(): HTMLCanvasElement {
     return this.canvasRef.nativeElement;
   }
-
-  private loader = new THREE.TextureLoader();
-  private geometry = new THREE.BoxGeometry(1, 1, 1);
-  private material = new THREE.MeshBasicMaterial({map: this.loader.load(this.texture)});
-
-  private cube: THREE.Mesh = new THREE.Mesh(this.geometry, this.material);
 
   private renderer!: THREE.WebGLRenderer;
   private renderTarget!: THREE.WebGLMultipleRenderTargets;
@@ -71,9 +61,11 @@ export class SceneComponent implements OnInit, AfterViewInit {
 
   private postProcessingCamera!: THREE.Camera;
 
+  private gridObject!: THREE.Object3D;
   private gridShader!: THREE.ShaderMaterial;
-
   private sinusShader!: THREE.ShaderMaterial;
+
+  private elementShaders!: THREE.ShaderMaterial[];
 
   /**
    * Create the scene
@@ -85,7 +77,7 @@ export class SceneComponent implements OnInit, AfterViewInit {
     //* Scene
     this.scene = new THREE.Scene();
     this.scene.background = new THREE.Color(0x000000)
-    this.scene.add(this.cube);
+
     //*Camera
     let aspectRatio = this.getAspectRatio();
     this.camera = new THREE.PerspectiveCamera(
@@ -112,6 +104,12 @@ export class SceneComponent implements OnInit, AfterViewInit {
 
     this.controls.keys = ['KeyA', 'KeyS', 'KeyD'];
 
+    //Is not rendered currently, because it is using the default materials with only one shader output...
+    this.transformControl = new TransformControls(camera, this.renderer.domElement);
+    let cameraControl = this.controls;
+    this.transformControl.addEventListener( 'dragging-changed', function ( event : any ) {
+      cameraControl.enabled = ! event.value;
+    } );
   }
 
   /**
@@ -150,13 +148,16 @@ export class SceneComponent implements OnInit, AfterViewInit {
         fragmentShader: renderFragmentShaderSrc,
         uniforms: {
           tDiffuse: {value: this.renderTarget.texture[0]},
-          tTest: {value: this.renderTarget.texture[1]}
+          tTest: {value: this.renderTarget.texture[1]},
         },
         glslVersion: THREE.GLSL3
       })
     ));
 
     this.createControls(this.camera);
+
+    this.transformControl.attach(this.gridObject);
+    this.scene.add(this.transformControl);
 
     let component: SceneComponent = this;
     (function render() {
@@ -166,10 +167,15 @@ export class SceneComponent implements OnInit, AfterViewInit {
       // component.resizeCanvasToDisplaySize();
       component.controls.update();
       component.gridShader.uniforms['screenSize'].value = new THREE.Vector2(component.renderer.domElement.width, component.renderer.domElement.height);
-      component.gridShader.uniforms['inverseCameraWorld'].value = component.camera.matrixWorldInverse;
 
       component.sinusShader.uniforms['screenSize'].value = new THREE.Vector2(component.renderer.domElement.width, component.renderer.domElement.height);
       component.sinusShader.uniforms['inverseCameraWorld'].value = component.camera.matrixWorldInverse;
+
+      for (let i = 0; i < component.elementShaders.length; i++) {
+        let shader = component.elementShaders[i];
+        shader.uniforms['screenSize'].value = new THREE.Vector2(component.renderer.domElement.width, component.renderer.domElement.height);
+        shader.uniforms['inverseCameraWorld'].value = component.camera.matrixWorldInverse;
+      }
 
       // render scene into target
       component.renderer.setRenderTarget(component.renderTarget);
@@ -204,7 +210,48 @@ export class SceneComponent implements OnInit, AfterViewInit {
     }
   }
 
-  constructor(private el: ElementRef, private resizeService: ResizeService) {
+  constructor(private elementService: ConstructionElementsService, private el: ElementRef, private resizeService: ResizeService) {
+    this.elementShaders = []; //create empty array
+    elementService.currentElements.subscribe(elements => {
+      this.resetSceneContent(elements);
+    })
+  }
+
+  resetSceneContent(elements: ConstructionElement[]) {
+    if (!this.scene) return;
+    this.scene.clear();
+    this.elementShaders.length = 0;//clear array by setting the length to 0. All elements with index greater than 0 are deleted.
+
+    this.addGrid();
+    this.addSinus();
+    this.addExprerimentalCube();
+
+    let elementUniforms = {
+      screenSize: {value: new THREE.Vector2(300, 200)},
+      inverseCameraWorld: {value: this.camera.matrixWorldInverse},
+    }
+    for (let i = 0; i < elements.length; i++) {
+      let element = elements[i];
+
+      let elementShader = new THREE.RawShaderMaterial({
+        vertexShader: fullscreenVertexShaderSrc,
+        fragmentShader: element.fragmentShader,
+        depthWrite: false,
+        depthTest: false,
+        transparent: true,
+        uniforms: elementUniforms,
+        glslVersion: THREE.GLSL3
+      });
+
+      var elementQuad = new THREE.Mesh(
+        new THREE.PlaneGeometry(2, 2),
+        elementShader
+      );
+      elementQuad.frustumCulled = false;//disable frustum culling to show the content, even if the origin is not in view
+
+      this.scene.add(elementQuad);
+      this.elementShaders.push(elementShader);
+    }
   }
 
   ngOnInit(): void {
@@ -221,13 +268,14 @@ export class SceneComponent implements OnInit, AfterViewInit {
     this.createScene();
     this.addExprerimentalCube();
     this.addGrid();
+    this.addSinus();
     this.startRenderingLoop();
   }
 
   private addGrid() {
+
     let gridUniforms = {
-      screenSize: {value: new THREE.Vector2(300, 200)},
-      inverseCameraWorld: {value: this.camera.matrixWorldInverse},
+      screenSize: {value: new THREE.Vector2(300, 200)}
     }
     this.gridShader = new THREE.RawShaderMaterial({
       vertexShader: fullscreenVertexShaderSrc,
@@ -239,23 +287,29 @@ export class SceneComponent implements OnInit, AfterViewInit {
       glslVersion: THREE.GLSL3
     });
 
+    this.gridObject = new THREE.Mesh(
+      new THREE.PlaneGeometry(2, 2),
+      this.gridShader
+    );
+    this.gridObject.frustumCulled = false;//disable frustum culling to show the content, even if the origin is not in view
+
+    this.scene.add(this.gridObject);
+  }
+
+  private addSinus() {
+    let sinusUniforms = {
+      screenSize: {value: new THREE.Vector2(300, 200)},
+      inverseCameraWorld: {value: this.camera.matrixWorldInverse},
+    }
     this.sinusShader = new THREE.RawShaderMaterial({
       vertexShader: fullscreenVertexShaderSrc,
       fragmentShader: sinusFragmentShaderSrc,
       depthWrite: false,
       depthTest: false,
       transparent: true,
-      uniforms: gridUniforms,
+      uniforms: sinusUniforms,
       glslVersion: THREE.GLSL3
     });
-
-    var gridQuad = new THREE.Mesh(
-      new THREE.PlaneGeometry(2, 2),
-      this.gridShader
-    );
-    gridQuad.frustumCulled = false;//disable frustum culling to show the content, even if the origin is not in view
-
-    this.scene.add(gridQuad);
 
     var sinusQuad = new THREE.Mesh(
       new THREE.PlaneGeometry(2, 2),
@@ -268,19 +322,20 @@ export class SceneComponent implements OnInit, AfterViewInit {
 
   private addExprerimentalCube() {
     let uniforms = {
-      colorB: {type: 'vec3', value: new THREE.Color(0x00FF00)},
-      colorA: {type: 'vec3', value: new THREE.Color(0xFF0000)}
+      colorB: {value: new THREE.Color(0x00FF00)},
+      colorA: {value: new THREE.Color(0xFF0000)}
     };
 
     let geometry = new THREE.BoxGeometry(1, 1, 1);
-    let material = new THREE.ShaderMaterial({
+    let material = new THREE.RawShaderMaterial({
       uniforms: uniforms,
       fragmentShader: cubeFragmentShaderSrc,
       vertexShader: cubeVertexShaderSrc,
+      glslVersion: THREE.GLSL3
     });
 
     let mesh = new THREE.Mesh(geometry, material);
-    mesh.position.x = 2;
+    // mesh.position.x = 2;
     this.scene.add(mesh);
   }
 }

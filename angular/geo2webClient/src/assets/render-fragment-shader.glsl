@@ -9,6 +9,9 @@ uniform sampler2D tDiffuse;
 uniform sampler2D tTest;
 
 void main() {
+//    vec3 diffuse = texture(tDiffuse, vUv).rgb;
+//    pc_FragColor.rgb = diffuse;
+//    pc_FragColor.a = 1.0;
 
     vec3 diffuse = texture(tDiffuse, vUv).rgb;
     vec3 test = texture(tTest, vUv).rgb;

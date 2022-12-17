@@ -9,5 +9,7 @@ export interface ConstructionElementRead{
 
   output: string;
 
+  shaderContent: string;
+
   transform: number[];
 }

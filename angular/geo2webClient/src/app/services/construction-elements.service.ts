@@ -20,6 +20,21 @@ export class ConstructionElementsService {
     this.communicationService.getConstructionElements().subscribe(elements =>
       this.changeConstructionElements(elements)
     );
+    // this.createDebugElements();
+  }
+
+  createDebugElements() {
+    let elements :ConstructionElement[] = [];
+    elements.push(new ConstructionElement(new class implements ConstructionElementRead {
+      constructionIndex: number = 0;
+      id: string = '00';
+      input: string = 'sin(x)';
+      name: string = 'a';
+      output: string = '';
+      shaderContent: string = 'sin(x)';
+      transform: number[] = [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1];
+    }()))
+    this.constructionElements.next(elements);
   }
 
   changeConstructionElements(readElements: ConstructionElementRead[]) {
