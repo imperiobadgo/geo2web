@@ -36,7 +36,7 @@ export class SceneComponent implements OnInit, AfterViewInit {
 
   @Input() public cameraZ: number = 400;
 
-  @Input() public fieldOfView: number = 1;
+  @Input() public fieldOfView: number = 45;
 
   @Input('nearClipping') public nearClippingPlane: number = 1;
 
@@ -99,7 +99,7 @@ export class SceneComponent implements OnInit, AfterViewInit {
 
     this.controls.rotateSpeed = 3.0;
     this.controls.zoomSpeed = 1.2;
-    this.controls.panSpeed = 0.005;
+    this.controls.panSpeed = 0.1;
     this.controls.dynamicDampingFactor = 0.2;
 
     this.controls.keys = ['KeyA', 'KeyS', 'KeyD'];
@@ -166,10 +166,12 @@ export class SceneComponent implements OnInit, AfterViewInit {
 
       // component.resizeCanvasToDisplaySize();
       component.controls.update();
-      component.gridShader.uniforms['screenSize'].value = new THREE.Vector2(component.renderer.domElement.width, component.renderer.domElement.height);
 
-      component.sinusShader.uniforms['screenSize'].value = new THREE.Vector2(component.renderer.domElement.width, component.renderer.domElement.height);
-      component.sinusShader.uniforms['inverseCameraWorld'].value = component.camera.matrixWorldInverse;
+      // component.gridShader.uniforms['clip2camera'].value = component.camera.projectionMatrixInverse;
+      // component.gridShader.uniforms['camera2world'].value = component.camera.matrixWorld;
+
+      component.sinusShader.uniforms['clip2camera'].value = component.camera.projectionMatrixInverse;
+      component.sinusShader.uniforms['camera2world'].value = component.camera.matrixWorld;
 
       for (let i = 0; i < component.elementShaders.length; i++) {
         let shader = component.elementShaders[i];
@@ -267,7 +269,7 @@ export class SceneComponent implements OnInit, AfterViewInit {
   ngAfterViewInit() {
     this.createScene();
     this.addExprerimentalCube();
-    this.addGrid();
+    // this.addGrid();
     this.addSinus();
     this.startRenderingLoop();
   }
@@ -275,7 +277,8 @@ export class SceneComponent implements OnInit, AfterViewInit {
   private addGrid() {
 
     let gridUniforms = {
-      screenSize: {value: new THREE.Vector2(300, 200)}
+      clip2camera: {value: this.camera.projectionMatrixInverse},
+      camera2world: {value: this.camera.matrixWorld}
     }
     this.gridShader = new THREE.RawShaderMaterial({
       vertexShader: fullscreenVertexShaderSrc,
@@ -298,8 +301,8 @@ export class SceneComponent implements OnInit, AfterViewInit {
 
   private addSinus() {
     let sinusUniforms = {
-      screenSize: {value: new THREE.Vector2(300, 200)},
-      inverseCameraWorld: {value: this.camera.matrixWorldInverse},
+      clip2camera: {value: this.camera.projectionMatrixInverse},
+      camera2world: {value: this.camera.matrixWorld}
     }
     this.sinusShader = new THREE.RawShaderMaterial({
       vertexShader: fullscreenVertexShaderSrc,

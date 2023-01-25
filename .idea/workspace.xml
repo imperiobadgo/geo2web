@@ -4,17 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="cba5d1cc-47d2-4e5d-9117-80b432d6b105" name="Changes" comment="Updated to WebGl2 adn added MultiplyRenderTargets">
+    <list default="true" id="cba5d1cc-47d2-4e5d-9117-80b432d6b105" name="Changes" comment="Preparation of dynamically inject construction-elements into viewer and first try of multiple render targets and a transform control">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/angular/geo2webClient/src/app/domain/construction-element/construction-element-factory.ts" beforeDir="false" afterPath="$PROJECT_DIR$/angular/geo2webClient/src/app/domain/construction-element/construction-element-factory.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/angular/geo2webClient/src/app/domain/construction-element/construction-element-read.ts" beforeDir="false" afterPath="$PROJECT_DIR$/angular/geo2webClient/src/app/domain/construction-element/construction-element-read.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/angular/geo2webClient/src/app/domain/construction-element/construction-element.ts" beforeDir="false" afterPath="$PROJECT_DIR$/angular/geo2webClient/src/app/domain/construction-element/construction-element.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/angular/geo2webClient/src/app/scene/scene.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/angular/geo2webClient/src/app/scene/scene.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/angular/geo2webClient/src/app/services/construction-elements.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/angular/geo2webClient/src/app/services/construction-elements.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/angular/geo2webClient/src/assets/cube-fragment-shader.glsl" beforeDir="false" afterPath="$PROJECT_DIR$/angular/geo2webClient/src/assets/cube-fragment-shader.glsl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/angular/geo2webClient/src/assets/cube-vertex-shader.glsl" beforeDir="false" afterPath="$PROJECT_DIR$/angular/geo2webClient/src/assets/cube-vertex-shader.glsl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/angular/geo2webClient/src/assets/fullscreen-vertex-shader.glsl" beforeDir="false" afterPath="$PROJECT_DIR$/angular/geo2webClient/src/assets/fullscreen-vertex-shader.glsl" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/angular/geo2webClient/src/assets/grid-fragment-shader.glsl" beforeDir="false" afterPath="$PROJECT_DIR$/angular/geo2webClient/src/assets/grid-fragment-shader.glsl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/angular/geo2webClient/src/assets/render-fragment-shader.glsl" beforeDir="false" afterPath="$PROJECT_DIR$/angular/geo2webClient/src/assets/render-fragment-shader.glsl" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/angular/geo2webClient/src/assets/sinus-fragment-shader.glsl" beforeDir="false" afterPath="$PROJECT_DIR$/angular/geo2webClient/src/assets/sinus-fragment-shader.glsl" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -305,6 +299,8 @@
       <workItem from="1671275519313" duration="4709000" />
       <workItem from="1671284329726" duration="67000" />
       <workItem from="1671284593898" duration="10189000" />
+      <workItem from="1674509552050" duration="310000" />
+      <workItem from="1674671377109" duration="16329000" />
     </task>
     <task id="LOCAL-00001" summary="Initial Commit">
       <created>1661200014255</created>
