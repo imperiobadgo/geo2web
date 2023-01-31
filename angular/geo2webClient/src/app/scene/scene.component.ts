@@ -65,7 +65,13 @@ export class SceneComponent implements OnInit, AfterViewInit {
   private gridShader!: THREE.ShaderMaterial;
   private sinusShader!: THREE.ShaderMaterial;
 
+  private postProcessingShader!: THREE.ShaderMaterial;
+
   private elementShaders!: THREE.ShaderMaterial[];
+
+  private mouseX!: number;
+  private mouseY!: number;
+  private hoveredObjectId!: number;
 
   /**
    * Create the scene
@@ -107,9 +113,9 @@ export class SceneComponent implements OnInit, AfterViewInit {
     //Is not rendered currently, because it is using the default materials with only one shader output...
     this.transformControl = new TransformControls(camera, this.renderer.domElement);
     let cameraControl = this.controls;
-    this.transformControl.addEventListener( 'dragging-changed', function ( event : any ) {
-      cameraControl.enabled = ! event.value;
-    } );
+    this.transformControl.addEventListener('dragging-changed', function (event: any) {
+      cameraControl.enabled = !event.value;
+    });
   }
 
   /**
@@ -131,27 +137,33 @@ export class SceneComponent implements OnInit, AfterViewInit {
       this.canvas.clientWidth * pxr,
       this.canvas.clientHeight * pxr, 2);
 
-    for (let i = 0, il = this.renderTarget.texture.length; i < il; i++) {
+    // for (let i = 0, il = this.renderTarget.texture.length; i < il; i++) {
+    //
+    //   this.renderTarget.texture[i].minFilter = THREE.NearestFilter;
+    //   this.renderTarget.texture[i].magFilter = THREE.NearestFilter;
+    // }
 
-      this.renderTarget.texture[i].minFilter = THREE.NearestFilter;
-      this.renderTarget.texture[i].magFilter = THREE.NearestFilter;
-
-    }
+    // this.renderTarget.texture[1].format = THREE.RGBAFormat;
+    // this.renderTarget.texture[1].type = THREE.UnsignedByteType;
+    // this.renderTarget.texture[1].minFilter = THREE.LinearFilter;
 
     this.postProcessingScene = new THREE.Scene();
     this.postProcessingCamera = new THREE.OrthographicCamera(-1, 1, 1, -1, 0, 1);
 
+    this.postProcessingShader = new THREE.RawShaderMaterial({
+      vertexShader: renderVertexShaderSrc,
+      fragmentShader: renderFragmentShaderSrc,
+      uniforms: {
+        tDiffuse: {value: this.renderTarget.texture[0]},
+        tId: {value: this.renderTarget.texture[1]},
+        showId: {value: false}
+      },
+      glslVersion: THREE.GLSL3
+    });
+
     this.postProcessingScene.add(new THREE.Mesh(
       new THREE.PlaneGeometry(2, 2),
-      new THREE.RawShaderMaterial({
-        vertexShader: renderVertexShaderSrc,
-        fragmentShader: renderFragmentShaderSrc,
-        uniforms: {
-          tDiffuse: {value: this.renderTarget.texture[0]},
-          tTest: {value: this.renderTarget.texture[1]},
-        },
-        glslVersion: THREE.GLSL3
-      })
+      this.postProcessingShader
     ));
 
     this.createControls(this.camera);
@@ -170,6 +182,29 @@ export class SceneComponent implements OnInit, AfterViewInit {
       // component.gridShader.uniforms['clip2camera'].value = component.camera.projectionMatrixInverse;
       // component.gridShader.uniforms['camera2world'].value = component.camera.matrixWorld;
 
+      const id = 1;
+
+      const idValue = [
+        ((id >> 0) & 0xFF) / 0xFF,
+        ((id >> 8) & 0xFF) / 0xFF,
+        ((id >> 16) & 0xFF) / 0xFF,
+        ((id >> 24) & 0xFF) / 0xFF,
+      ];
+
+      // const idValue = [
+      //   ((id >> 0) & 0xFF) / 0xFF,
+      //   ((id >> 8) & 0xFF) / 0xFF,
+      //   ((id >> 16) & 0xFF) / 0xFF,
+      //   1.0,
+      // ];
+
+      component.sinusShader.uniforms['id'].value = idValue;
+      if (id == component.hoveredObjectId) {
+        component.sinusShader.uniforms['color'].value = [0.0, 1.0, 0.0];
+      } else {
+        component.sinusShader.uniforms['color'].value = [1.0, 0.0, 0.0];
+      }
+
       component.sinusShader.uniforms['clip2camera'].value = component.camera.projectionMatrixInverse;
       component.sinusShader.uniforms['camera2world'].value = component.camera.matrixWorld;
 
@@ -183,6 +218,45 @@ export class SceneComponent implements OnInit, AfterViewInit {
       component.renderer.setRenderTarget(component.renderTarget);
 
       component.renderer.render(component.scene, component.camera);
+
+      const canvas = component.renderer.domElement;
+      const pixelX = component.mouseX * canvas.width / canvas.clientWidth;
+      const pixelY = canvas.height - component.mouseY * canvas.height / canvas.clientHeight - 1;
+
+      // console.log("X, Y: " + pixelX + " , " + pixelY);
+
+      const data = new Uint8Array(4);
+      const gl = component.renderer.getContext();
+      gl.readPixels(
+        pixelX,            // x
+        pixelY,            // y
+        1,                 // width
+        1,                 // height
+        gl.RGBA,           // format
+        gl.UNSIGNED_BYTE,  // type
+        data);             // typed array to hold result
+      component.hoveredObjectId = data[0] + (data[1] << 8) + (data[2] << 16) + (data[3] << 24);
+      console.log("data: " + data + "  Id: " + component.hoveredObjectId);
+
+
+
+
+      // const data = new Uint8Array(4);
+      // component.renderer.readRenderTargetPixels(
+      //   component.renderTarget,
+      //   pixelX,
+      //   pixelY,
+      //   1,
+      //   1,
+      //   data);
+      // component.hoveredObjectId = data[0] + (data[1] << 8) + (data[2] << 16) + (data[3] << 24);
+      // console.log("data: " + data + "  Id: " + component.hoveredObjectId);
+
+      if (component.hoveredObjectId > 0) {
+        console.log("Id: " + component.hoveredObjectId);
+      }
+
+      component.postProcessingShader.uniforms['showId'].value = true;
 
       // render post FX
       component.renderer.setRenderTarget(null);
@@ -213,6 +287,7 @@ export class SceneComponent implements OnInit, AfterViewInit {
   }
 
   constructor(private elementService: ConstructionElementsService, private el: ElementRef, private resizeService: ResizeService) {
+
     this.elementShaders = []; //create empty array
     elementService.currentElements.subscribe(elements => {
       this.resetSceneContent(elements);
@@ -260,10 +335,13 @@ export class SceneComponent implements OnInit, AfterViewInit {
     this.resizeService.addResizeEventListener(this.el.nativeElement, (elem: any) => {
       this.resizeCanvasToDisplaySize(elem.clientWidth, elem.clientHeight);
     });
+
   }
 
   ngOnDestroy() {
     this.resizeService.removeResizeEventListener(this.el.nativeElement);
+    // this.renderer.domElement.removeEventListener('pointerup',  onPointerUp);
+    // this.renderer.domElement.removeEventListener( 'pointermove', component.onPointerMove );
   }
 
   ngAfterViewInit() {
@@ -272,6 +350,24 @@ export class SceneComponent implements OnInit, AfterViewInit {
     // this.addGrid();
     this.addSinus();
     this.startRenderingLoop();
+    let component = this;
+
+    function onPointerMove(event: any) {
+      const canvas = component.renderer.domElement;
+      const rect = canvas.getBoundingClientRect();
+
+      component.mouseX = event.clientX - rect.left;
+      component.mouseY = event.clientY - rect.top;
+
+    }
+
+    function onPointerUp(event: any) {
+      console.log("Id: " + component.hoveredObjectId);
+    }
+
+    this.renderer.domElement.addEventListener('pointermove', onPointerMove);
+    this.renderer.domElement.addEventListener('pointerup', onPointerUp);
+
   }
 
   private addGrid() {
@@ -301,8 +397,10 @@ export class SceneComponent implements OnInit, AfterViewInit {
 
   private addSinus() {
     let sinusUniforms = {
-      clip2camera: {value: this.camera.projectionMatrixInverse},
-      camera2world: {value: this.camera.matrixWorld}
+      id: {value: null},
+      color: {value: null},
+      clip2camera: {value: null},
+      camera2world: {value: null}
     }
     this.sinusShader = new THREE.RawShaderMaterial({
       vertexShader: fullscreenVertexShaderSrc,

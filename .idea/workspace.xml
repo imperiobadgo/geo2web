@@ -4,11 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="cba5d1cc-47d2-4e5d-9117-80b432d6b105" name="Changes" comment="Preparation of dynamically inject construction-elements into viewer and first try of multiple render targets and a transform control">
+    <list default="true" id="cba5d1cc-47d2-4e5d-9117-80b432d6b105" name="Changes" comment="fixed fragment shader matrix calculations">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/angular/geo2webClient/src/app/scene/scene.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/angular/geo2webClient/src/app/scene/scene.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/angular/geo2webClient/src/assets/fullscreen-vertex-shader.glsl" beforeDir="false" afterPath="$PROJECT_DIR$/angular/geo2webClient/src/assets/fullscreen-vertex-shader.glsl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/angular/geo2webClient/src/assets/grid-fragment-shader.glsl" beforeDir="false" afterPath="$PROJECT_DIR$/angular/geo2webClient/src/assets/grid-fragment-shader.glsl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/angular/geo2webClient/src/assets/render-fragment-shader.glsl" beforeDir="false" afterPath="$PROJECT_DIR$/angular/geo2webClient/src/assets/render-fragment-shader.glsl" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/angular/geo2webClient/src/assets/sinus-fragment-shader.glsl" beforeDir="false" afterPath="$PROJECT_DIR$/angular/geo2webClient/src/assets/sinus-fragment-shader.glsl" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -300,7 +299,10 @@
       <workItem from="1671284329726" duration="67000" />
       <workItem from="1671284593898" duration="10189000" />
       <workItem from="1674509552050" duration="310000" />
-      <workItem from="1674671377109" duration="16329000" />
+      <workItem from="1674671377109" duration="16512000" />
+      <workItem from="1675024473368" duration="3019000" />
+      <workItem from="1675100661237" duration="3739000" />
+      <workItem from="1675197092103" duration="6530000" />
     </task>
     <task id="LOCAL-00001" summary="Initial Commit">
       <created>1661200014255</created>
@@ -610,7 +612,14 @@
       <option name="project" value="LOCAL" />
       <updated>1670881508966</updated>
     </task>
-    <option name="localTasksCounter" value="45" />
+    <task id="LOCAL-00045" summary="fixed fragment shader matrix calculations">
+      <created>1674687897612</created>
+      <option name="number" value="00045" />
+      <option name="presentableId" value="LOCAL-00045" />
+      <option name="project" value="LOCAL" />
+      <updated>1674687897612</updated>
+    </task>
+    <option name="localTasksCounter" value="46" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -640,7 +649,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Changed stylesheet from css to scss" />
     <MESSAGE value="Added first layout" />
     <MESSAGE value="First attempt at Angular communication" />
     <MESSAGE value="First working Angular communication" />
@@ -665,7 +673,8 @@
     <MESSAGE value="Connected Matrix4x4 to construction element use cases" />
     <MESSAGE value="Added constructionElement container in frontend" />
     <MESSAGE value="Updated to WebGl2 adn added MultiplyRenderTargets" />
-    <option name="LAST_COMMIT_MESSAGE" value="Updated to WebGl2 adn added MultiplyRenderTargets" />
+    <MESSAGE value="fixed fragment shader matrix calculations" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixed fragment shader matrix calculations" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
