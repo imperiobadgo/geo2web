@@ -56,8 +56,8 @@ void main() {
     if (intersectionParam < 0.0)
     {
         //prevent intersection of the backward camera ray...
-        pc_FragColor = vec4(0.0, 0.0, 0.0, 0.0);
-        pc_Id = vec4(0.0, 0.0, 0.0, 0.0);
+        pc_FragColor = vec4(0.0);
+        pc_Id = vec4(0.0);
         return;
     }
 
@@ -78,19 +78,30 @@ void main() {
         yDistanceFWidth = fWidthMax;
     }
     float lineSize = 1.0;
+    float hittestSize = 3.0;
     float smoothBla = 0.5;
 
+    float idAlpha = smoothstep(hittestSize + smoothBla, hittestSize - smoothBla, abs(yDistance) / yDistanceFWidth);
+
     float lineAlpha = smoothstep(lineSize + smoothBla, lineSize - smoothBla, abs(yDistance) / yDistanceFWidth);
+
+    if (idAlpha != 0.0)
+    {
+        //Mouse picking can be bigger than the visual size
+        pc_Id = vec4(id.xyz, 1.0);
+    }
+    else
+    {
+        pc_Id = vec4(0.0);
+    }
 
     if (lineAlpha != 0.0)
     {
         pc_FragColor = vec4(color, lineAlpha);
-        pc_Id = id;
     }
     else
     {
         //Draw nothing
-        pc_FragColor = vec4(0.0, 0.0, 0.0, 0.0);
-        pc_Id = vec4(0.0, 0.0, 0.0, 0.0);
+        pc_FragColor = vec4(0.0);
     }
 }

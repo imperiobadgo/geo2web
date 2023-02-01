@@ -42,6 +42,8 @@ export class SceneComponent implements OnInit, AfterViewInit {
 
   @Input('farClipping') public farClippingPlane: number = 1000;
 
+  public MaxObjectCount = 100000;
+
   //? Helper Properties (Private Properties);
 
   private camera!: THREE.PerspectiveCamera;
@@ -53,6 +55,7 @@ export class SceneComponent implements OnInit, AfterViewInit {
     return this.canvasRef.nativeElement;
   }
 
+  private context!: WebGL2RenderingContext | null;
   private renderer!: THREE.WebGLRenderer;
   private renderTarget!: THREE.WebGLMultipleRenderTargets;
 
@@ -127,7 +130,12 @@ export class SceneComponent implements OnInit, AfterViewInit {
   private startRenderingLoop() {
     //* Renderer
     // Use canvas element in template
-    this.renderer = new THREE.WebGLRenderer({canvas: this.canvas, antialias: true});
+    this.context = this.canvas.getContext('webgl2');
+    if (!this.context) {
+      console.log("WebGl 2 not supported!");
+      return;
+    }
+    this.renderer = new THREE.WebGLRenderer({canvas: this.canvas, context: this.context, antialias: true});
     this.renderer.setPixelRatio(devicePixelRatio);
     this.renderer.setSize(this.canvas.clientWidth, this.canvas.clientHeight);
 
@@ -174,28 +182,27 @@ export class SceneComponent implements OnInit, AfterViewInit {
     let component: SceneComponent = this;
     (function render() {
       requestAnimationFrame(render);
-      component.updateThemeColors();
 
-      // component.resizeCanvasToDisplaySize();
+
       component.controls.update();
 
       // component.gridShader.uniforms['clip2camera'].value = component.camera.projectionMatrixInverse;
       // component.gridShader.uniforms['camera2world'].value = component.camera.matrixWorld;
 
-      const id = 1;
+      const id = 100000;
 
+      //the alpha value must apparently always be 1.0 for it to work
       const idValue = [
         ((id >> 0) & 0xFF) / 0xFF,
         ((id >> 8) & 0xFF) / 0xFF,
         ((id >> 16) & 0xFF) / 0xFF,
-        ((id >> 24) & 0xFF) / 0xFF,
+        1.0,
       ];
-
       // const idValue = [
       //   ((id >> 0) & 0xFF) / 0xFF,
       //   ((id >> 8) & 0xFF) / 0xFF,
       //   ((id >> 16) & 0xFF) / 0xFF,
-      //   1.0,
+      //   ((id >> 24) & 0xFF) / 0xFF,
       // ];
 
       component.sinusShader.uniforms['id'].value = idValue;
@@ -214,49 +221,49 @@ export class SceneComponent implements OnInit, AfterViewInit {
         shader.uniforms['inverseCameraWorld'].value = component.camera.matrixWorldInverse;
       }
 
+      //Is there a possibility to set the background of just gl.COLOR_ATTACHMENT1???
+      //component.scene.background = new THREE.Color(0.0,0.0,0.0);
+
       // render scene into target
       component.renderer.setRenderTarget(component.renderTarget);
 
       component.renderer.render(component.scene, component.camera);
 
+      //Convert the mouse position to the correct pixel on the canvas
       const canvas = component.renderer.domElement;
       const pixelX = component.mouseX * canvas.width / canvas.clientWidth;
       const pixelY = canvas.height - component.mouseY * canvas.height / canvas.clientHeight - 1;
 
-      // console.log("X, Y: " + pixelX + " , " + pixelY);
 
-      const data = new Uint8Array(4);
-      const gl = component.renderer.getContext();
-      gl.readPixels(
-        pixelX,            // x
-        pixelY,            // y
-        1,                 // width
-        1,                 // height
-        gl.RGBA,           // format
-        gl.UNSIGNED_BYTE,  // type
-        data);             // typed array to hold result
-      component.hoveredObjectId = data[0] + (data[1] << 8) + (data[2] << 16) + (data[3] << 24);
-      console.log("data: " + data + "  Id: " + component.hoveredObjectId);
+      if (component.context){
 
+        const data = new Uint8Array(4);
 
+        const gl = component.context;
+        //Set the buffer to the correct texture of the MultipleRenderTarget
+        gl.readBuffer(gl.COLOR_ATTACHMENT1);
+        gl.readPixels(
+          pixelX,            // x
+          pixelY,            // y
+          1,           // width
+          1,           // height
+          gl.RGBA,           // format
+          gl.UNSIGNED_BYTE,  // type
+          data);             // typed array to hold result
 
+        //don't convert the alpha value, because it is always 1.0 (or in this case 255)
+        component.hoveredObjectId = data[0] + (data[1] << 8) + (data[2] << 16);// + (data[3] << 24);
+        console.log("input: " + idValue + " data: " + data + "  Id: " + component.hoveredObjectId);
 
-      // const data = new Uint8Array(4);
-      // component.renderer.readRenderTargetPixels(
-      //   component.renderTarget,
-      //   pixelX,
-      //   pixelY,
-      //   1,
-      //   1,
-      //   data);
-      // component.hoveredObjectId = data[0] + (data[1] << 8) + (data[2] << 16) + (data[3] << 24);
-      // console.log("data: " + data + "  Id: " + component.hoveredObjectId);
-
-      if (component.hoveredObjectId > 0) {
-        console.log("Id: " + component.hoveredObjectId);
       }
 
-      component.postProcessingShader.uniforms['showId'].value = true;
+      // if (component.hoveredObjectId > 0) {
+      //   console.log("Id: " + component.hoveredObjectId);
+      // }
+
+      component.updateThemeColors();
+
+      component.postProcessingShader.uniforms['showId'].value = false;
 
       // render post FX
       component.renderer.setRenderTarget(null);
@@ -356,6 +363,7 @@ export class SceneComponent implements OnInit, AfterViewInit {
       const canvas = component.renderer.domElement;
       const rect = canvas.getBoundingClientRect();
 
+      //Update the mouse position on mouse move
       component.mouseX = event.clientX - rect.left;
       component.mouseY = event.clientY - rect.top;
 

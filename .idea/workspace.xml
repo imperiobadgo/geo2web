@@ -4,10 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="cba5d1cc-47d2-4e5d-9117-80b432d6b105" name="Changes" comment="fixed fragment shader matrix calculations">
+    <list default="true" id="cba5d1cc-47d2-4e5d-9117-80b432d6b105" name="Changes" comment="mouse picking WIP">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/angular/geo2webClient/src/app/scene/scene.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/angular/geo2webClient/src/app/scene/scene.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/angular/geo2webClient/src/assets/render-fragment-shader.glsl" beforeDir="false" afterPath="$PROJECT_DIR$/angular/geo2webClient/src/assets/render-fragment-shader.glsl" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/angular/geo2webClient/src/assets/sinus-fragment-shader.glsl" beforeDir="false" afterPath="$PROJECT_DIR$/angular/geo2webClient/src/assets/sinus-fragment-shader.glsl" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -302,7 +301,8 @@
       <workItem from="1674671377109" duration="16512000" />
       <workItem from="1675024473368" duration="3019000" />
       <workItem from="1675100661237" duration="3739000" />
-      <workItem from="1675197092103" duration="6530000" />
+      <workItem from="1675197092103" duration="6637000" />
+      <workItem from="1675280758347" duration="5374000" />
     </task>
     <task id="LOCAL-00001" summary="Initial Commit">
       <created>1661200014255</created>
@@ -619,7 +619,14 @@
       <option name="project" value="LOCAL" />
       <updated>1674687897612</updated>
     </task>
-    <option name="localTasksCounter" value="46" />
+    <task id="LOCAL-00046" summary="mouse picking WIP">
+      <created>1675203700811</created>
+      <option name="number" value="00046" />
+      <option name="presentableId" value="LOCAL-00046" />
+      <option name="project" value="LOCAL" />
+      <updated>1675203700812</updated>
+    </task>
+    <option name="localTasksCounter" value="47" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -649,7 +656,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Added first layout" />
     <MESSAGE value="First attempt at Angular communication" />
     <MESSAGE value="First working Angular communication" />
     <MESSAGE value="Implemented updating and deleting ConstructionElements in angular" />
@@ -674,7 +680,8 @@
     <MESSAGE value="Added constructionElement container in frontend" />
     <MESSAGE value="Updated to WebGl2 adn added MultiplyRenderTargets" />
     <MESSAGE value="fixed fragment shader matrix calculations" />
-    <option name="LAST_COMMIT_MESSAGE" value="fixed fragment shader matrix calculations" />
+    <MESSAGE value="mouse picking WIP" />
+    <option name="LAST_COMMIT_MESSAGE" value="mouse picking WIP" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
