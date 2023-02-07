@@ -143,8 +143,10 @@ export class SceneComponent implements OnInit, AfterViewInit {
     // Create a multi render target with Float buffers
     this.renderTarget = new THREE.WebGLMultipleRenderTargets(
       this.canvas.clientWidth * pxr,
-      this.canvas.clientHeight * pxr, 2);
-
+      this.canvas.clientHeight * pxr, 2,
+      {
+        depthTexture: new THREE.DepthTexture(this.canvas.clientWidth * pxr, this.canvas.clientHeight * pxr)
+      });
     // for (let i = 0, il = this.renderTarget.texture.length; i < il; i++) {
     //
     //   this.renderTarget.texture[i].minFilter = THREE.NearestFilter;
@@ -255,6 +257,7 @@ export class SceneComponent implements OnInit, AfterViewInit {
         component.hoveredObjectId = data[0] + (data[1] << 8) + (data[2] << 16);// + (data[3] << 24);
         console.log("input: " + idValue + " data: " + data + "  Id: " + component.hoveredObjectId);
 
+
       }
 
       // if (component.hoveredObjectId > 0) {
@@ -290,6 +293,7 @@ export class SceneComponent implements OnInit, AfterViewInit {
       //also update the renderTarget to new display size
       const dpr = this.renderer.getPixelRatio();
       this.renderTarget.setSize(width * dpr, height * dpr);
+      // this.renderTarget.DepthTexture = new THREE.DepthTexture(width * dpr, height * dpr);
     }
   }
 
