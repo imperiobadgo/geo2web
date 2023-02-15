@@ -1,9 +1,7 @@
-import {ElementRef, Injectable, NgZone} from '@angular/core';
+import {Inject, Injectable, NgZone} from '@angular/core';
 import {
   ArcRotateCamera,
-  Color3,
   Color4,
-  DynamicTexture,
   Engine,
   FreeCamera,
   HemisphericLight,
@@ -11,11 +9,10 @@ import {
   Mesh,
   MeshBuilder,
   Scene,
-  StandardMaterial,
   Vector3
 } from '@babylonjs/core';
+import {DOCUMENT} from "@angular/common";
 
-const FPS = 60;
 
 @Injectable({
   providedIn: 'root'
@@ -30,17 +27,17 @@ export class ViewerService {
   rootMesh!: Mesh;
   scene!: Scene;
 
-  public constructor(private readonly ngZone: NgZone, private document: Document) {
+  public constructor(@Inject(DOCUMENT) private document: Document, private readonly ngZone: NgZone) {
   }
 
-  createScene(canvas: ElementRef<HTMLCanvasElement>): Scene {
-    this.canvas = canvas.nativeElement;
-    this.canvas.style.height = '100%';
-    this.canvas.style.width = '100%';
+  createScene(canvas: HTMLCanvasElement): Scene {
+    this.canvas = canvas;
+    // this.canvas.style.height = '100%';
+    // this.canvas.style.width = '100%';
     this.engine = new Engine(this.canvas, true);
 
     this.scene = new Scene(this.engine);
-    this.scene.clearColor = new Color4(.1, .1, .1, 1);
+    this.scene.clearColor = new Color4(.8, .1, .1, 1);
     this.rootMesh = MeshBuilder.CreateDisc('root', {radius: .01}, this.scene);
 
     this.light = new HemisphericLight('light1', new Vector3(0, 1, 0), this.scene);
@@ -58,6 +55,7 @@ export class ViewerService {
     const oldAngle = {x: 0, y: 0};
     const newAngle = {x: 0, y: 0};
 
+    this.scene.addMesh(this.rootMesh);
 
     this.scene.beforeRender = () => {
       mousemov = false;
@@ -81,7 +79,7 @@ export class ViewerService {
     this.camera.setTarget(this.rootMesh);
 
 
-    canvas.nativeElement.addEventListener('pointerdown', (evt) => {
+    this.canvas.addEventListener('pointerdown', (evt) => {
       currentPosition.x = evt.clientX;
       currentPosition.y = evt.clientY;
       currentRotation.x = this.rootMesh.rotation.x;
@@ -89,7 +87,7 @@ export class ViewerService {
       clicked = true;
     });
 
-    canvas.nativeElement.addEventListener('pointermove', (evt) => {
+    this.canvas.addEventListener('pointermove', (evt) => {
 
       if (clicked) {
         mousemov = true;
@@ -109,7 +107,7 @@ export class ViewerService {
       currentPosition.y = evt.clientY;
     });
 
-    canvas.nativeElement.addEventListener('pointerup', () => {
+    this.canvas.addEventListener('pointerup', () => {
       clicked = false;
     });
     return this.scene;
@@ -149,6 +147,10 @@ export class ViewerService {
         freshRender = false;
       }
     });
-    window.addEventListener('resize', () => this.engine.resize());
+    // window.addEventListener('resize', () => this.engine.resize());
+  }
+
+  resize(clientWidth: number, clientHeight: number) {
+    this.engine.setSize(clientWidth, clientHeight, true);
   }
 }
