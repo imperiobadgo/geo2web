@@ -4,9 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="cba5d1cc-47d2-4e5d-9117-80b432d6b105" name="Changes" comment="Babylon.js viewer visible and resizing">
+    <list default="true" id="cba5d1cc-47d2-4e5d-9117-80b432d6b105" name="Changes" comment="Babylon.js viewer backgroundcolor, camera and testcube">
+      <change afterPath="$PROJECT_DIR$/angular/geo2webClient/src/assets/babylon-fullscreen-vertex.glsl" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/angular/geo2webClient/src/assets/babylon-grid-fragment.glsl" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/angular/geo2webClient/src/assets/babylon-simple-fragment.glsl" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/angular/geo2webClient/src/assets/babylon-simple-vertex.glsl" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/angular/geo2webClient/src/app/viewer/viewer.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/angular/geo2webClient/src/app/viewer/viewer.component.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/angular/geo2webClient/src/app/viewer/viewer.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/angular/geo2webClient/src/app/viewer/viewer.service.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -104,11 +107,11 @@
       <recent name="" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\Lenovo\IdeaProjects\geo2web\angular\geo2webClient\src\app\domain\construction-element" />
       <recent name="C:\Users\Lenovo\IdeaProjects\geo2web\angular\geo2webClient\src\assets" />
+      <recent name="C:\Users\Lenovo\IdeaProjects\geo2web\angular\geo2webClient\src" />
+      <recent name="C:\Users\Lenovo\IdeaProjects\geo2web\angular\geo2webClient\src\app\domain\construction-element" />
       <recent name="C:\Users\Lenovo\IdeaProjects\geo2web\angular\geo2webClient\src\app\scene\lib" />
       <recent name="C:\Users\Lenovo\IdeaProjects\geo2web\angular\geo2webClient\src\themes" />
-      <recent name="C:\Users\Lenovo\IdeaProjects\geo2web\angular\geo2webClient\src" />
     </key>
     <key name="CreateTestDialog.RecentsKey">
       <recent name="de.geo2web.arithmetics" />
@@ -305,7 +308,7 @@
       <workItem from="1675280758347" duration="5720000" />
       <workItem from="1675540333738" duration="2743000" />
       <workItem from="1675798723124" duration="2677000" />
-      <workItem from="1676577369928" duration="3777000" />
+      <workItem from="1676577369928" duration="9464000" />
     </task>
     <task id="LOCAL-00001" summary="Initial Commit">
       <created>1661200014255</created>
@@ -643,7 +646,14 @@
       <option name="project" value="LOCAL" />
       <updated>1676496057635</updated>
     </task>
-    <option name="localTasksCounter" value="49" />
+    <task id="LOCAL-00049" summary="Babylon.js viewer backgroundcolor, camera and testcube">
+      <created>1676582064905</created>
+      <option name="number" value="00049" />
+      <option name="presentableId" value="LOCAL-00049" />
+      <option name="project" value="LOCAL" />
+      <updated>1676582064905</updated>
+    </task>
+    <option name="localTasksCounter" value="50" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -660,7 +670,7 @@
                   <entry key="branch">
                     <value>
                       <list>
-                        <option value="master" />
+                        <option value="babylonViewer" />
                       </list>
                     </value>
                   </entry>
@@ -673,7 +683,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Implemented updating and deleting ConstructionElements in angular" />
     <MESSAGE value="Example of autocompletion" />
     <MESSAGE value="Change Theme on the fly" />
     <MESSAGE value="Refactoring theme changing" />
@@ -698,7 +707,8 @@
     <MESSAGE value="mouse picking WIP" />
     <MESSAGE value="first version of mouse picking is now working" />
     <MESSAGE value="Babylon.js viewer visible and resizing" />
-    <option name="LAST_COMMIT_MESSAGE" value="Babylon.js viewer visible and resizing" />
+    <MESSAGE value="Babylon.js viewer backgroundcolor, camera and testcube" />
+    <option name="LAST_COMMIT_MESSAGE" value="Babylon.js viewer backgroundcolor, camera and testcube" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
