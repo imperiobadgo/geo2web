@@ -23,7 +23,7 @@ export class ViewerComponent implements AfterViewInit, OnDestroy, OnInit {
 
   initScene() {
     // get the scene object
-    const scene = this.viewerService.createScene(this.canvasRef.nativeElement);
+    const scene = this.viewerService.createScene(this.el, this.canvasRef.nativeElement);
     // by setting blockfreeActiveMeshesAndRenderingGroups we tell the engine to
     // insert all meshes without indexing and checking them
     scene.blockfreeActiveMeshesAndRenderingGroups = true;

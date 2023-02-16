@@ -1,12 +1,9 @@
-import {Inject, Injectable, NgZone} from '@angular/core';
+import {ElementRef, Inject, Injectable, NgZone} from '@angular/core';
 import {
-  ArcRotateCamera,
+  ArcRotateCamera, AxesViewer, Axis,
   Color4,
   Engine,
   FreeCamera,
-  HemisphericLight,
-  Light,
-  Mesh,
   MeshBuilder,
   Scene,
   Vector3
@@ -19,97 +16,37 @@ import {DOCUMENT} from "@angular/common";
 })
 export class ViewerService {
 
-  protected engine!: Engine;
+  protected el!: ElementRef;
   protected canvas!: HTMLCanvasElement;
-  protected camera!: FreeCamera | ArcRotateCamera;
-  protected light!: Light;
 
-  rootMesh!: Mesh;
+  protected engine!: Engine;
+  protected camera!: FreeCamera | ArcRotateCamera;
+
   scene!: Scene;
 
   public constructor(@Inject(DOCUMENT) private document: Document, private readonly ngZone: NgZone) {
   }
 
-  createScene(canvas: HTMLCanvasElement): Scene {
+  createScene(el: ElementRef, canvas: HTMLCanvasElement): Scene {
+    this.el = el;
     this.canvas = canvas;
-    // this.canvas.style.height = '100%';
-    // this.canvas.style.width = '100%';
     this.engine = new Engine(this.canvas, true);
 
     this.scene = new Scene(this.engine);
     this.scene.clearColor = new Color4(.8, .1, .1, 1);
-    this.rootMesh = MeshBuilder.CreateDisc('root', {radius: .01}, this.scene);
-
-    this.light = new HemisphericLight('light1', new Vector3(0, 1, 0), this.scene);
-
-    // rotate scene by mouse-move
-    // https://www.babylonjs-playground.com/#CGXLT#5
-
-    let clicked = false;
-    const currentPosition = {x: 0, y: 0};
-    const currentRotation = {x: 0, y: 0};
-    let mousemov = false;
-    let framecount = 0;
-    const mxframecount = 120; //4 secs at 60 fps
-    const lastAngleDiff = {x: 0, y: 0};
-    const oldAngle = {x: 0, y: 0};
-    const newAngle = {x: 0, y: 0};
-
-    this.scene.addMesh(this.rootMesh);
-
-    this.scene.beforeRender = () => {
-      mousemov = false;
-    };
-
-    this.scene.afterRender = () => {
-      if (!mousemov && framecount < mxframecount) {
-        lastAngleDiff.x = lastAngleDiff.x / 1.1;
-        lastAngleDiff.y = lastAngleDiff.y / 1.1;
-        this.rootMesh.rotation.x += lastAngleDiff.x;
-        this.rootMesh.rotation.y += lastAngleDiff.y;
-        framecount++;
-        currentRotation.x = this.rootMesh.rotation.x;
-        currentRotation.y = this.rootMesh.rotation.y;
-      } else if (framecount >= mxframecount) {
-        framecount = 0;
-      }
-    };
 
     this.camera = new ArcRotateCamera('Camera', 0, 0.8, 35, Vector3.Zero(), this.scene);
-    this.camera.setTarget(this.rootMesh);
+    this.camera.panningInertia = 0.9;
+    this.camera.panningSensibility = 90;
+    this.camera.lowerRadiusLimit = 2;
+    // this.camera.setTarget(this.rootMesh);
+    this.camera.attachControl(this.canvas, true);
 
+    const worldAxes = new AxesViewer(this.scene, 2);
+    worldAxes.update(new Vector3(0, 0, 0), Axis.X, Axis.Y, Axis.Z);
 
-    this.canvas.addEventListener('pointerdown', (evt) => {
-      currentPosition.x = evt.clientX;
-      currentPosition.y = evt.clientY;
-      currentRotation.x = this.rootMesh.rotation.x;
-      currentRotation.y = this.rootMesh.rotation.y;
-      clicked = true;
-    });
+    MeshBuilder.CreateBox("box",{height: 1, width: 0.75, depth: 0.25} , this.scene);
 
-    this.canvas.addEventListener('pointermove', (evt) => {
-
-      if (clicked) {
-        mousemov = true;
-      }
-      if (!clicked) {
-        return;
-      }
-      oldAngle.x = this.rootMesh.rotation.x;
-      oldAngle.y = this.rootMesh.rotation.y;
-      this.rootMesh.rotation.y -= (evt.clientX - currentPosition.x) / 300.0;
-      this.rootMesh.rotation.x -= (evt.clientY - currentPosition.y) / 300.0;
-      newAngle.x = this.rootMesh.rotation.x;
-      newAngle.y = this.rootMesh.rotation.y;
-      lastAngleDiff.x = newAngle.x - oldAngle.x;
-      lastAngleDiff.y = newAngle.y - oldAngle.y;
-      currentPosition.x = evt.clientX;
-      currentPosition.y = evt.clientY;
-    });
-
-    this.canvas.addEventListener('pointerup', () => {
-      clicked = false;
-    });
     return this.scene;
   }
 
@@ -138,6 +75,7 @@ export class ViewerService {
     const element = this.document.getElementById('fpsLabel');
 
     this.engine.runRenderLoop(() => {
+      this.updateThemeColors();
       this.scene.render();
       if (element) {
         element.innerHTML = this.engine.getFps().toFixed() + ' fps';
@@ -147,10 +85,17 @@ export class ViewerService {
         freshRender = false;
       }
     });
-    // window.addEventListener('resize', () => this.engine.resize());
   }
 
   resize(clientWidth: number, clientHeight: number) {
     this.engine.setSize(clientWidth, clientHeight, true);
   }
+
+  private updateThemeColors(): void {
+    const style = getComputedStyle(this.el.nativeElement);
+    const backgroundColor = style.getPropertyValue('--surface-card');
+
+    this.scene.clearColor = Color4.FromHexString(backgroundColor);
+  }
+
 }
