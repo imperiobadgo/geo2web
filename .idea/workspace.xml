@@ -4,13 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="cba5d1cc-47d2-4e5d-9117-80b432d6b105" name="Changes" comment="Babylon.js viewer backgroundcolor, camera and testcube">
-      <change afterPath="$PROJECT_DIR$/angular/geo2webClient/src/assets/babylon-fullscreen-vertex.glsl" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/angular/geo2webClient/src/assets/babylon-grid-fragment.glsl" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/angular/geo2webClient/src/assets/babylon-simple-fragment.glsl" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/angular/geo2webClient/src/assets/babylon-simple-vertex.glsl" afterDir="false" />
+    <list default="true" id="cba5d1cc-47d2-4e5d-9117-80b432d6b105" name="Changes" comment="Babylon.js shader and multiRenderTarget">
+      <change afterPath="$PROJECT_DIR$/angular/geo2webClient/src/assets/babylon-sinus-fragment.glsl" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/angular/geo2webClient/src/app/viewer/viewer.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/angular/geo2webClient/src/app/viewer/viewer.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/angular/geo2webClient/src/assets/babylon-grid-fragment.glsl" beforeDir="false" afterPath="$PROJECT_DIR$/angular/geo2webClient/src/assets/babylon-grid-fragment.glsl" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -308,14 +306,8 @@
       <workItem from="1675280758347" duration="5720000" />
       <workItem from="1675540333738" duration="2743000" />
       <workItem from="1675798723124" duration="2677000" />
-      <workItem from="1676577369928" duration="9464000" />
-    </task>
-    <task id="LOCAL-00001" summary="Initial Commit">
-      <created>1661200014255</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1661200014255</updated>
+      <workItem from="1676577369928" duration="9742000" />
+      <workItem from="1676920751444" duration="4004000" />
     </task>
     <task id="LOCAL-00002" summary="Added variables">
       <created>1661287042860</created>
@@ -653,7 +645,14 @@
       <option name="project" value="LOCAL" />
       <updated>1676582064905</updated>
     </task>
-    <option name="localTasksCounter" value="50" />
+    <task id="LOCAL-00050" summary="Babylon.js shader and multiRenderTarget">
+      <created>1676587891920</created>
+      <option name="number" value="00050" />
+      <option name="presentableId" value="LOCAL-00050" />
+      <option name="project" value="LOCAL" />
+      <updated>1676587891920</updated>
+    </task>
+    <option name="localTasksCounter" value="51" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -683,7 +682,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Example of autocompletion" />
     <MESSAGE value="Change Theme on the fly" />
     <MESSAGE value="Refactoring theme changing" />
     <MESSAGE value="Layout stuff attempt number 1" />
@@ -708,7 +706,8 @@
     <MESSAGE value="first version of mouse picking is now working" />
     <MESSAGE value="Babylon.js viewer visible and resizing" />
     <MESSAGE value="Babylon.js viewer backgroundcolor, camera and testcube" />
-    <option name="LAST_COMMIT_MESSAGE" value="Babylon.js viewer backgroundcolor, camera and testcube" />
+    <MESSAGE value="Babylon.js shader and multiRenderTarget" />
+    <option name="LAST_COMMIT_MESSAGE" value="Babylon.js shader and multiRenderTarget" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

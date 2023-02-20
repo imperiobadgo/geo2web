@@ -22,6 +22,8 @@ import planeFragmentShaderSrc from '../../assets/babylon-simple-fragment.glsl';
 import fullscreenVertexShaderSrc from '../../assets/babylon-fullscreen-vertex.glsl';
 // @ts-ignore
 import gridFragmentShaderSrc from '../../assets/babylon-grid-fragment.glsl';
+// @ts-ignore
+import sinusFragmentShaderSrc from '../../assets/babylon-sinus-fragment.glsl';
 
 @Injectable({
   providedIn: 'root'
@@ -36,6 +38,8 @@ export class ViewerService {
 
   scene!: Scene;
   renderTarget!: MultiRenderTarget;
+  gridMaterial!: ShaderMaterial;
+  sinusMaterial!: ShaderMaterial;
 
   public constructor(@Inject(DOCUMENT) private document: Document, private readonly ngZone: NgZone) {
   }
@@ -61,28 +65,42 @@ export class ViewerService {
     worldAxes.update(new Vector3(0, 0, 0), Axis.X, Axis.Y, Axis.Z);
 
     // let box = MeshBuilder.CreateBox("box", {height: 1, width: 0.75, depth: 0.25}, this.scene);
-    let plane = MeshBuilder.CreatePlane("plane", {height: 2, width: 2, sideOrientation: Mesh.DOUBLESIDE}, this.scene);
+    let grid = MeshBuilder.CreatePlane("grid", {height: 2, width: 2, sideOrientation: Mesh.DOUBLESIDE}, this.scene);
+    let sinus = MeshBuilder.CreatePlane("sinus", {height: 2, width: 2, sideOrientation: Mesh.DOUBLESIDE}, this.scene);
 
     this.renderTarget = new MultiRenderTarget("renderTarget",
       {height: 100, width: 100}, 2, this.scene);
 
 
-    const planeMaterial = new ShaderMaterial("shader", this.scene,
+    this.gridMaterial = new ShaderMaterial("grid-shader", this.scene,
       {vertexSource: fullscreenVertexShaderSrc, fragmentSource: gridFragmentShaderSrc},
       {
         attributes: ["position", "uv"],
-        uniforms: ["worldViewProjection"],
+        uniforms: ["clip2camera", "camera2world"],
         needAlphaBlending: true,
         needAlphaTesting: true,
         shaderLanguage: ShaderLanguage.GLSL
       });
 
-    plane.material = planeMaterial;
+    this.sinusMaterial = new ShaderMaterial("sinus-shader", this.scene,
+      {vertexSource: fullscreenVertexShaderSrc, fragmentSource: sinusFragmentShaderSrc},
+      {
+        attributes: ["position", "uv"],
+        uniforms: ["clip2camera", "camera2world"],
+        needAlphaBlending: true,
+        needAlphaTesting: true,
+        shaderLanguage: ShaderLanguage.GLSL
+      });
 
-    plane.alwaysSelectAsActiveMesh = true;//disable frustum culling
+    grid.material = this.gridMaterial;
+    grid.alwaysSelectAsActiveMesh = true;//disable frustum culling
+
+    sinus.material = this.sinusMaterial;
+    sinus.alwaysSelectAsActiveMesh = true;
 
     this.renderTarget.renderList = [];
-    this.renderTarget.renderList.push(plane);
+    this.renderTarget.renderList.push(grid);
+    this.renderTarget.renderList.push(sinus);
 
     this.scene.customRenderTargets.push(this.renderTarget);
     return this.scene;
@@ -115,6 +133,14 @@ export class ViewerService {
     this.engine.runRenderLoop(() => {
       this.updateThemeColors();
       this.scene.render();
+      let projectionMatrix = this.camera.getProjectionMatrix().clone();
+      let projectionMatrixInverted = projectionMatrix.invert();
+
+      this.gridMaterial.setMatrix("clip2camera", projectionMatrixInverted);
+      this.gridMaterial.setMatrix("camera2world", this.camera.getWorldMatrix());
+      this.sinusMaterial.setMatrix("clip2camera", projectionMatrixInverted);
+      this.sinusMaterial.setMatrix("camera2world", this.camera.getWorldMatrix());
+
       if (element) {
         element.innerHTML = this.engine.getFps().toFixed() + ' fps';
       }

@@ -3,14 +3,14 @@ precision highp float;
 precision highp int;
 
 layout (location = 0) out vec4 pc_FragColor;
-layout (location = 1) out vec4 pc_test;
+layout (location = 1) out vec4 pc_Id;
 
 in vec2 fragmentPosition;
 
-//uniforms
+uniform vec4 id;
+uniform vec3 color;
 uniform mat4 clip2camera;
 uniform mat4 camera2world;
-//uniform mat4 modelViewMatrix;
 
 
 float projectLineWithPlaneGetLineParam(vec3 lineOrigin, vec3 lineDirection, vec3 planeOrigin, vec3 planeNormal) {
@@ -26,12 +26,24 @@ float projectPointOnLine(vec3 lineOrigin, vec3 lineDirection, vec3 position) {
     return dot(lineDirection, v) / lengthSquared;
 }
 
+float f(float x)
+{
+    return sin(x) * 5.0;
+}
+
+float f_dx(float x)
+{
+    float epsilon = 0.00001;
+    float y0 = f(x - epsilon);
+    float y1 = f(x + epsilon);
+    return (y1 - y0) / 2.0 * epsilon;
+}
+
 void main() {
-    mat4 position = mat4(1.0);// modelViewMatrix;
-    vec3 xAxis = position[0].xyz;
-    vec3 yAxis = position[1].xyz;
-    vec3 zAxis = position[2].xyz;
-    vec3 origin = position[3].xyz;
+    vec3 origin = vec3(0.0, 0.0, 0.0);
+    vec3 xAxis = vec3(1.0, 0.0, 0.0);
+    vec3 yAxis = vec3(0.0, 1.0, 0.0);
+    vec3 zAxis = vec3(0.0, 0.0, 1.0);
 
     vec4 worldPosition0 = camera2world * clip2camera * vec4(fragmentPosition.xy, -1.0, 1.0);
     vec4 worldPosition1 = camera2world * clip2camera * vec4(fragmentPosition.xy, 1.0, 1.0);
@@ -45,8 +57,8 @@ void main() {
     if (intersectionParam < 0.0)
     {
         //prevent intersection of the backward camera ray...
-        pc_FragColor = vec4(0.0, 0.0, 0.0, 0.0);
-        pc_test = vec4(0.0, 0.0, 0.0, 0.0);
+        pc_FragColor = vec4(0.0);
+        pc_Id = vec4(0.0);
         return;
     }
 
@@ -55,39 +67,42 @@ void main() {
     float xPos = projectPointOnLine(origin, xAxis, intersection);
     float yPos = projectPointOnLine(origin, yAxis, intersection);
 
-    //        float xPos = gl_FragCoord.x;
-    //        float yPos = gl_FragCoord.y;
 
+    float xResult = f(xPos);
 
-    vec2 pitch = vec2(30.0, 30.0);
-    float size = 80.0;
+    float yDistance = xResult - yPos;
 
-    //    if (int(xPos * size) == 0 ||
-    //    int(yPos * size) == 0) {
-    //        pc_FragColor = vec4(0.0, 0.0, 0.0, 0.5);
-    //        pc_test = vec4(1.0, 0.0, 0.0, 0.5);
-    //    } else {
-    //        pc_FragColor = vec4(1.0, 1.0, 1.0, 0.0);
-    //        pc_test = vec4(1.0, 1.0, 1.0, 0.0);
-    //    }
+    float yDistanceFWidth = fwidth(yDistance);
+    float fWidthMax = 1.0;
+    if (yDistanceFWidth > fWidthMax)
+    {
+        yDistanceFWidth = fWidthMax;
+    }
+    float lineSize = 1.0;
+    float hittestSize = 3.0;
+    float smoothBla = 0.5;
 
-    if (int(mod(xPos * size, pitch.x)) == 0 ||
-    int(mod(yPos * size, pitch.y)) == 0) {
-        pc_FragColor = vec4(0.0, 0.0, 0.0, 0.5);
-        pc_test = vec4(1.0, 0.0, 0.0, 0.5);
-    } else {
-        pc_FragColor = vec4(1.0, 1.0, 1.0, 0.0);
-        pc_test = vec4(1.0, 1.0, 1.0, 0.0);
+    float idAlpha = smoothstep(hittestSize + smoothBla, hittestSize - smoothBla, abs(yDistance) / yDistanceFWidth);
+
+    float lineAlpha = smoothstep(lineSize + smoothBla, lineSize - smoothBla, abs(yDistance) / yDistanceFWidth);
+
+    if (idAlpha != 0.0)
+    {
+        //Mouse picking can be bigger than the visual size
+        pc_Id = vec4(id.xyz, 1.0);
+    }
+    else
+    {
+        pc_Id = vec4(0.0);
     }
 
-    //    float xResult = sin(xPos * 0.2) * 10.0 + 10.0;
-    //    if (floor(xResult) == floor(yPos))
-    //    {
-    //        gl_FragColor = vec4(1.0, 0.0, 0.0, 1.0);
-    //    }
-    //    else
-    //    {
-    //        gl_FragColor = vec4(0.0, 0.0, 0.0, 0.0);// vColor;
-    //    }
+    if (lineAlpha != 0.0)
+    {
+        pc_FragColor = vec4(color, lineAlpha);
+    }
+    else
+    {
+        //Draw nothing
+        pc_FragColor = vec4(0.0);
+    }
 }
-
