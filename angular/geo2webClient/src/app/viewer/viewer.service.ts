@@ -27,6 +27,9 @@ import sinusFragmentShaderSrc from '../../assets/babylon-sinus-fragment.glsl';
 // @ts-ignore
 import depthVisualizationFragmentShaderSrc from '../../assets/babylon-depthVisualization-fragment.glsl';
 
+const MAIN_RENDER_TEXTURE = "mainRenderTexture";
+const MAIN_DEPTH_TEXTURE = "mainDepthTexture";
+
 @Injectable({
   providedIn: 'root'
 })
@@ -51,6 +54,8 @@ export class ViewerService {
     this.canvas = canvas;
     this.engine = new Engine(this.canvas, true);
 
+    this.engine.setDepthWrite(true);
+
     this.scene = new Scene(this.engine);
     this.scene.clearColor = new Color4(.8, .1, .1, 1);
 
@@ -71,7 +76,10 @@ export class ViewerService {
     let sinus = MeshBuilder.CreatePlane("sinus", {height: 2, width: 2, sideOrientation: Mesh.DOUBLESIDE}, this.scene);
 
     this.renderTarget = new MultiRenderTarget("renderTarget",
-      {height: 100, width: 100}, 2, this.scene);
+      {height: 100, width: 100}, 2, this.scene,
+      {
+        generateDepthTexture: true
+      });
 
 
     this.gridMaterial = new ShaderMaterial("grid-shader", this.scene,
@@ -106,14 +114,21 @@ export class ViewerService {
 
     this.scene.customRenderTargets.push(this.renderTarget);
 
-    Effect.ShadersStore["customFragmentShader"] =depthVisualizationFragmentShaderSrc;
+    Effect.ShadersStore["customFragmentShader"] = depthVisualizationFragmentShaderSrc;
 
-    const postProcess = new PostProcess("My custom post process", "custom", ["screenSize", "threshold"], null, 0.25, this.camera);
+    const viewerTarget = this.renderTarget;
+    const postProcess = new PostProcess("My custom post process", "custom",
+      [],
+      [
+        MAIN_RENDER_TEXTURE,
+        MAIN_DEPTH_TEXTURE,
+      ],
+      1.0,
+      this.camera);
     postProcess.onApply = function (effect) {
-      effect.setFloat2("screenSize", postProcess.width, postProcess.height);
-      effect.setFloat("threshold", 0.30);
+      effect.setTexture(MAIN_RENDER_TEXTURE, viewerTarget);
+      effect.setTexture(MAIN_DEPTH_TEXTURE, viewerTarget.depthTexture);
     }
-
 
     return this.scene;
   }

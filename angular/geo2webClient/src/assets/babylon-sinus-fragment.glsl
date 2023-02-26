@@ -99,12 +99,12 @@ void main() {
     if (lineAlpha != 0.0)
     {
         pc_FragColor = vec4(color, lineAlpha);
-//        gl_FragDepth = 0.0;
+        gl_FragDepth = 0.0;
     }
     else
     {
         //Draw nothing
         pc_FragColor = vec4(0.0);
-//        gl_FragDepth = 1.0;
+        gl_FragDepth = 1.0;
     }
 }

@@ -4,10 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="cba5d1cc-47d2-4e5d-9117-80b432d6b105" name="Changes" comment="Babylon.js sinus and grid shader working again">
-      <change afterPath="$PROJECT_DIR$/angular/geo2webClient/src/assets/babylon-depthVisualization-fragment.glsl" afterDir="false" />
+    <list default="true" id="cba5d1cc-47d2-4e5d-9117-80b432d6b105" name="Changes" comment="Added postprocessing for debugging">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/angular/geo2webClient/src/app/viewer/viewer.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/angular/geo2webClient/src/app/viewer/viewer.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/angular/geo2webClient/src/assets/babylon-depthVisualization-fragment.glsl" beforeDir="false" afterPath="$PROJECT_DIR$/angular/geo2webClient/src/assets/babylon-depthVisualization-fragment.glsl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/angular/geo2webClient/src/assets/babylon-grid-fragment.glsl" beforeDir="false" afterPath="$PROJECT_DIR$/angular/geo2webClient/src/assets/babylon-grid-fragment.glsl" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/angular/geo2webClient/src/assets/babylon-sinus-fragment.glsl" beforeDir="false" afterPath="$PROJECT_DIR$/angular/geo2webClient/src/assets/babylon-sinus-fragment.glsl" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -309,14 +310,7 @@
       <workItem from="1676577369928" duration="9742000" />
       <workItem from="1676920751444" duration="4004000" />
       <workItem from="1677360518786" duration="461000" />
-      <workItem from="1677442017186" duration="2474000" />
-    </task>
-    <task id="LOCAL-00002" summary="Added variables">
-      <created>1661287042860</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1661287042861</updated>
+      <workItem from="1677442017186" duration="6201000" />
     </task>
     <task id="LOCAL-00003" summary="Added net.objecthunter.exp4j mathematical expression evaluator for reference">
       <created>1661348485728</created>
@@ -654,7 +648,14 @@
       <option name="project" value="LOCAL" />
       <updated>1676587891920</updated>
     </task>
-    <option name="localTasksCounter" value="51" />
+    <task id="LOCAL-00051" summary="Added postprocessing for debugging">
+      <created>1677447658363</created>
+      <option name="number" value="00051" />
+      <option name="presentableId" value="LOCAL-00051" />
+      <option name="project" value="LOCAL" />
+      <updated>1677447658363</updated>
+    </task>
+    <option name="localTasksCounter" value="52" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -684,7 +685,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Change Theme on the fly" />
     <MESSAGE value="Refactoring theme changing" />
     <MESSAGE value="Layout stuff attempt number 1" />
     <MESSAGE value="Layout stuff attempt number 2" />
@@ -709,7 +709,8 @@
     <MESSAGE value="Babylon.js viewer visible and resizing" />
     <MESSAGE value="Babylon.js viewer backgroundcolor, camera and testcube" />
     <MESSAGE value="Babylon.js shader and multiRenderTarget" />
-    <option name="LAST_COMMIT_MESSAGE" value="Babylon.js shader and multiRenderTarget" />
+    <MESSAGE value="Added postprocessing for debugging" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added postprocessing for debugging" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
