@@ -4,11 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="cba5d1cc-47d2-4e5d-9117-80b432d6b105" name="Changes" comment="Babylon.js shader and multiRenderTarget">
-      <change afterPath="$PROJECT_DIR$/angular/geo2webClient/src/assets/babylon-sinus-fragment.glsl" afterDir="false" />
+    <list default="true" id="cba5d1cc-47d2-4e5d-9117-80b432d6b105" name="Changes" comment="Babylon.js sinus and grid shader working again">
+      <change afterPath="$PROJECT_DIR$/angular/geo2webClient/src/assets/babylon-depthVisualization-fragment.glsl" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/angular/geo2webClient/src/app/viewer/viewer.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/angular/geo2webClient/src/app/viewer/viewer.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/angular/geo2webClient/src/assets/babylon-grid-fragment.glsl" beforeDir="false" afterPath="$PROJECT_DIR$/angular/geo2webClient/src/assets/babylon-grid-fragment.glsl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/angular/geo2webClient/src/assets/babylon-sinus-fragment.glsl" beforeDir="false" afterPath="$PROJECT_DIR$/angular/geo2webClient/src/assets/babylon-sinus-fragment.glsl" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -308,6 +308,8 @@
       <workItem from="1675798723124" duration="2677000" />
       <workItem from="1676577369928" duration="9742000" />
       <workItem from="1676920751444" duration="4004000" />
+      <workItem from="1677360518786" duration="461000" />
+      <workItem from="1677442017186" duration="2474000" />
     </task>
     <task id="LOCAL-00002" summary="Added variables">
       <created>1661287042860</created>

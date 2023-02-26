@@ -3,10 +3,10 @@ import {
   ArcRotateCamera,
   AxesViewer,
   Axis,
-  Color4,
+  Color4, Effect,
   Engine,
   FreeCamera, Mesh,
-  MeshBuilder, MultiRenderTarget,
+  MeshBuilder, MultiRenderTarget, PostProcess,
   Scene,
   ShaderLanguage,
   ShaderMaterial,
@@ -24,6 +24,8 @@ import fullscreenVertexShaderSrc from '../../assets/babylon-fullscreen-vertex.gl
 import gridFragmentShaderSrc from '../../assets/babylon-grid-fragment.glsl';
 // @ts-ignore
 import sinusFragmentShaderSrc from '../../assets/babylon-sinus-fragment.glsl';
+// @ts-ignore
+import depthVisualizationFragmentShaderSrc from '../../assets/babylon-depthVisualization-fragment.glsl';
 
 @Injectable({
   providedIn: 'root'
@@ -89,7 +91,7 @@ export class ViewerService {
         uniforms: ["clip2camera", "camera2world"],
         needAlphaBlending: true,
         needAlphaTesting: true,
-        shaderLanguage: ShaderLanguage.GLSL
+        shaderLanguage: ShaderLanguage.GLSL,
       });
 
     grid.material = this.gridMaterial;
@@ -103,6 +105,16 @@ export class ViewerService {
     this.renderTarget.renderList.push(sinus);
 
     this.scene.customRenderTargets.push(this.renderTarget);
+
+    Effect.ShadersStore["customFragmentShader"] =depthVisualizationFragmentShaderSrc;
+
+    const postProcess = new PostProcess("My custom post process", "custom", ["screenSize", "threshold"], null, 0.25, this.camera);
+    postProcess.onApply = function (effect) {
+      effect.setFloat2("screenSize", postProcess.width, postProcess.height);
+      effect.setFloat("threshold", 0.30);
+    }
+
+
     return this.scene;
   }
 
