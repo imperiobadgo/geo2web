@@ -4,11 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="cba5d1cc-47d2-4e5d-9117-80b432d6b105" name="Changes" comment="Added postprocessing for debugging">
+    <list default="true" id="cba5d1cc-47d2-4e5d-9117-80b432d6b105" name="Changes" comment="First Try to get depth values">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/angular/geo2webClient/src/app/viewer/viewer.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/angular/geo2webClient/src/app/viewer/viewer.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/angular/geo2webClient/src/assets/babylon-depthVisualization-fragment.glsl" beforeDir="false" afterPath="$PROJECT_DIR$/angular/geo2webClient/src/assets/babylon-depthVisualization-fragment.glsl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/angular/geo2webClient/src/assets/babylon-grid-fragment.glsl" beforeDir="false" afterPath="$PROJECT_DIR$/angular/geo2webClient/src/assets/babylon-grid-fragment.glsl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/angular/geo2webClient/src/assets/babylon-simple-fragment.glsl" beforeDir="false" afterPath="$PROJECT_DIR$/angular/geo2webClient/src/assets/babylon-simple-fragment.glsl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/angular/geo2webClient/src/assets/babylon-simple-vertex.glsl" beforeDir="false" afterPath="$PROJECT_DIR$/angular/geo2webClient/src/assets/babylon-simple-vertex.glsl" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/angular/geo2webClient/src/assets/babylon-sinus-fragment.glsl" beforeDir="false" afterPath="$PROJECT_DIR$/angular/geo2webClient/src/assets/babylon-sinus-fragment.glsl" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -311,6 +311,8 @@
       <workItem from="1676920751444" duration="4004000" />
       <workItem from="1677360518786" duration="461000" />
       <workItem from="1677442017186" duration="6201000" />
+      <workItem from="1678048908583" duration="4135000" />
+      <workItem from="1678132657948" duration="4795000" />
     </task>
     <task id="LOCAL-00003" summary="Added net.objecthunter.exp4j mathematical expression evaluator for reference">
       <created>1661348485728</created>

@@ -3,7 +3,7 @@ precision highp float;
 precision highp int;
 
 layout (location = 0) out vec4 pc_FragColor;
-layout (location = 1) out vec4 pc_Id;
+//layout (location = 1) out vec4 pc_Id;
 
 in vec2 fragmentPosition;
 
@@ -58,7 +58,8 @@ void main() {
     {
         //prevent intersection of the backward camera ray...
         pc_FragColor = vec4(0.0);
-        pc_Id = vec4(0.0);
+        gl_FragDepth = 1.0;
+//        pc_Id = vec4(0.0);
         return;
     }
 
@@ -89,11 +90,11 @@ void main() {
     if (idAlpha != 0.0)
     {
         //Mouse picking can be bigger than the visual size
-        pc_Id = vec4(id.xyz, 1.0);
+//        pc_Id = vec4(id.xyz, 1.0);
     }
     else
     {
-        pc_Id = vec4(0.0);
+//        pc_Id = vec4(0.0);
     }
 
     if (lineAlpha != 0.0)

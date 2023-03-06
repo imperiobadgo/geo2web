@@ -5,7 +5,7 @@ import {
   Axis,
   Color4, Effect,
   Engine,
-  FreeCamera, Mesh,
+  FreeCamera, HemisphericLight, Mesh,
   MeshBuilder, MultiRenderTarget, PostProcess,
   Scene,
   ShaderLanguage,
@@ -71,23 +71,36 @@ export class ViewerService {
     const worldAxes = new AxesViewer(this.scene, 2);
     worldAxes.update(new Vector3(0, 0, 0), Axis.X, Axis.Y, Axis.Z);
 
-    // let box = MeshBuilder.CreateBox("box", {height: 1, width: 0.75, depth: 0.25}, this.scene);
+    var light = new HemisphericLight("light", new Vector3(0, 1, 0), this.scene);
+
+    let box = MeshBuilder.CreateBox("box", {height: 1, width: 1, depth: 1}, this.scene);
     let grid = MeshBuilder.CreatePlane("grid", {height: 2, width: 2, sideOrientation: Mesh.DOUBLESIDE}, this.scene);
     let sinus = MeshBuilder.CreatePlane("sinus", {height: 2, width: 2, sideOrientation: Mesh.DOUBLESIDE}, this.scene);
 
     this.renderTarget = new MultiRenderTarget("renderTarget",
-      {height: 100, width: 100}, 2, this.scene,
+      {height: 100, width: 100}, 1, this.scene,
       {
         generateDepthTexture: true
       });
 
+    let boxMaterial = new ShaderMaterial("box-shader", this.scene,
+      {vertexSource: planeVertexShaderSrc, fragmentSource: planeFragmentShaderSrc},
+      {
+        attributes: ["position", "uv"],
+        uniforms: ["worldViewProjection"],
+        needAlphaBlending: false,
+        needAlphaTesting: true,
+        shaderLanguage: ShaderLanguage.GLSL
+      });
+//, "logarithmicDepthConstant"
+    box.material = boxMaterial;
 
     this.gridMaterial = new ShaderMaterial("grid-shader", this.scene,
       {vertexSource: fullscreenVertexShaderSrc, fragmentSource: gridFragmentShaderSrc},
       {
         attributes: ["position", "uv"],
         uniforms: ["clip2camera", "camera2world"],
-        needAlphaBlending: true,
+        needAlphaBlending: false,
         needAlphaTesting: true,
         shaderLanguage: ShaderLanguage.GLSL
       });
@@ -97,7 +110,7 @@ export class ViewerService {
       {
         attributes: ["position", "uv"],
         uniforms: ["clip2camera", "camera2world"],
-        needAlphaBlending: true,
+        needAlphaBlending: false,
         needAlphaTesting: true,
         shaderLanguage: ShaderLanguage.GLSL,
       });
@@ -107,10 +120,6 @@ export class ViewerService {
 
     sinus.material = this.sinusMaterial;
     sinus.alwaysSelectAsActiveMesh = true;
-
-    this.renderTarget.renderList = [];
-    this.renderTarget.renderList.push(grid);
-    this.renderTarget.renderList.push(sinus);
 
     this.scene.customRenderTargets.push(this.renderTarget);
 
@@ -129,6 +138,11 @@ export class ViewerService {
       effect.setTexture(MAIN_RENDER_TEXTURE, viewerTarget);
       effect.setTexture(MAIN_DEPTH_TEXTURE, viewerTarget.depthTexture);
     }
+
+    this.renderTarget.renderList = [];
+    this.renderTarget.renderList.push(box);
+    // this.renderTarget.renderList.push(grid);
+    this.renderTarget.renderList.push(sinus);
 
     return this.scene;
   }
