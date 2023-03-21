@@ -7,6 +7,7 @@ uniform sampler2D mainDepthTexture;
 
 void main() {
     vec3 depth = vec3(texture(mainDepthTexture, vUV));
+//    gl_FragColor = texture(mainRenderTexture, vUV);
     if (vUV.x < 0.5){
         gl_FragColor = texture(mainRenderTexture, vUV);
     }

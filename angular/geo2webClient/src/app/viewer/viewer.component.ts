@@ -35,11 +35,16 @@ export class ViewerComponent implements AfterViewInit, OnDestroy, OnInit {
 
   ngAfterViewInit(): void {
     this.initScene();
+    this.canvasRef.nativeElement.addEventListener('pointermove', (e: any) => this.viewerService.onPointerMove(e));
+    this.canvasRef.nativeElement.addEventListener('pointerup', (e: any) => this.viewerService.onPointerUp(e));
+
     this.viewerService.start(true);
   }
 
   ngOnDestroy(): void {
     this.resizeService.removeResizeEventListener(this.el.nativeElement);
+    this.canvasRef.nativeElement.removeEventListener('pointermove', this.viewerService.onPointerMove);
+    this.canvasRef.nativeElement.removeEventListener('pointerup', this.viewerService.onPointerUp);
     this.viewerService.stop();
   }
 

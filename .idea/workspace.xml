@@ -4,11 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="cba5d1cc-47d2-4e5d-9117-80b432d6b105" name="Changes" comment="First Try to get depth values">
+    <list default="true" id="cba5d1cc-47d2-4e5d-9117-80b432d6b105" name="Changes" comment="DepthTesting more refined.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/angular/geo2webClient/src/app/viewer/viewer.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/angular/geo2webClient/src/app/viewer/viewer.component.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/angular/geo2webClient/src/app/viewer/viewer.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/angular/geo2webClient/src/app/viewer/viewer.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/angular/geo2webClient/src/assets/babylon-depthVisualization-fragment.glsl" beforeDir="false" afterPath="$PROJECT_DIR$/angular/geo2webClient/src/assets/babylon-depthVisualization-fragment.glsl" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/angular/geo2webClient/src/assets/babylon-simple-fragment.glsl" beforeDir="false" afterPath="$PROJECT_DIR$/angular/geo2webClient/src/assets/babylon-simple-fragment.glsl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/angular/geo2webClient/src/assets/babylon-simple-vertex.glsl" beforeDir="false" afterPath="$PROJECT_DIR$/angular/geo2webClient/src/assets/babylon-simple-vertex.glsl" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/angular/geo2webClient/src/assets/babylon-sinus-fragment.glsl" beforeDir="false" afterPath="$PROJECT_DIR$/angular/geo2webClient/src/assets/babylon-sinus-fragment.glsl" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -312,14 +313,9 @@
       <workItem from="1677360518786" duration="461000" />
       <workItem from="1677442017186" duration="6201000" />
       <workItem from="1678048908583" duration="4135000" />
-      <workItem from="1678132657948" duration="4795000" />
-    </task>
-    <task id="LOCAL-00003" summary="Added net.objecthunter.exp4j mathematical expression evaluator for reference">
-      <created>1661348485728</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1661348485728</updated>
+      <workItem from="1678132657948" duration="7544000" />
+      <workItem from="1678303900577" duration="2879000" />
+      <workItem from="1679425959570" duration="6118000" />
     </task>
     <task id="LOCAL-00004" summary="Adapted net.objecthunter.exp4j for own use and number encapsulated">
       <created>1661376146568</created>
@@ -657,7 +653,14 @@
       <option name="project" value="LOCAL" />
       <updated>1677447658363</updated>
     </task>
-    <option name="localTasksCounter" value="52" />
+    <task id="LOCAL-00052" summary="First working depth testing!!">
+      <created>1678137549963</created>
+      <option name="number" value="00052" />
+      <option name="presentableId" value="LOCAL-00052" />
+      <option name="project" value="LOCAL" />
+      <updated>1678137549963</updated>
+    </task>
+    <option name="localTasksCounter" value="53" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -687,8 +690,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Refactoring theme changing" />
-    <MESSAGE value="Layout stuff attempt number 1" />
     <MESSAGE value="Layout stuff attempt number 2" />
     <MESSAGE value="VeriableFunction WIP" />
     <MESSAGE value="Introduced instructions to handle unresolved variables" />
@@ -712,7 +713,9 @@
     <MESSAGE value="Babylon.js viewer backgroundcolor, camera and testcube" />
     <MESSAGE value="Babylon.js shader and multiRenderTarget" />
     <MESSAGE value="Added postprocessing for debugging" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added postprocessing for debugging" />
+    <MESSAGE value="First working depth testing!!" />
+    <MESSAGE value="DepthTesting more refined." />
+    <option name="LAST_COMMIT_MESSAGE" value="DepthTesting more refined." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

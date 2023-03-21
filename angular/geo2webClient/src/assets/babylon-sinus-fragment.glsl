@@ -3,7 +3,7 @@ precision highp float;
 precision highp int;
 
 layout (location = 0) out vec4 pc_FragColor;
-//layout (location = 1) out vec4 pc_Id;
+layout (location = 1) out vec4 pc_Id;
 
 in vec2 fragmentPosition;
 
@@ -11,6 +11,8 @@ uniform vec4 id;
 uniform vec3 color;
 uniform mat4 clip2camera;
 uniform mat4 camera2world;
+uniform float nearClipping;
+uniform float farClipping;
 
 
 float projectLineWithPlaneGetLineParam(vec3 lineOrigin, vec3 lineDirection, vec3 planeOrigin, vec3 planeNormal) {
@@ -54,12 +56,14 @@ void main() {
     vec3 cameraRay = cameraPos1 - cameraPos0;
 
     float intersectionParam = projectLineWithPlaneGetLineParam(cameraPos0, cameraRay, origin, zAxis);
-    if (intersectionParam < 0.0)
+    float intersectionDepth = intersectionParam * length(cameraRay);
+    if (intersectionParam < 0.0 || intersectionDepth > farClipping)
     {
         //prevent intersection of the backward camera ray...
+        //And clip after farclipping plane
         pc_FragColor = vec4(0.0);
         gl_FragDepth = 1.0;
-//        pc_Id = vec4(0.0);
+        pc_Id = vec4(0.0);
         return;
     }
 
@@ -90,17 +94,22 @@ void main() {
     if (idAlpha != 0.0)
     {
         //Mouse picking can be bigger than the visual size
-//        pc_Id = vec4(id.xyz, 1.0);
+        pc_Id = vec4(id.xyz, 1.0);
     }
     else
     {
-//        pc_Id = vec4(0.0);
+        pc_Id = vec4(0.0);
     }
 
+    //float distanceToCamera = length(cameraPos0 - intersection);
+    float depth = (intersectionDepth - nearClipping) / (farClipping - nearClipping);
+    //    pc_FragColor = vec4(0.0, 1.0, 0.0, depth);
+    //    gl_FragDepth = 1.0;
     if (lineAlpha != 0.0)
     {
         pc_FragColor = vec4(color, lineAlpha);
-        gl_FragDepth = 0.0;
+        //log(Cz + 1) / log(CFar + 1) * w;
+        gl_FragDepth = depth;
     }
     else
     {
